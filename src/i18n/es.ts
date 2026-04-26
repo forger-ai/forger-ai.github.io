@@ -16,6 +16,7 @@ export default {
     heroSubtitle:
       'Descarga apps y habla con ellas. Haz preguntas, manipula tus datos, cambia la interfaz o cómo se comportan — todo en lenguaje natural. Sin nube. Sin suscripción. Solo tu máquina.',
     ctaDownload: 'Descargar para macOS',
+    ctaDownloadWindows: 'Descargar para Windows',
     ctaBlog: 'Leer el blog →',
 
     what: {

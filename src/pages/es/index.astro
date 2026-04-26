@@ -8,6 +8,8 @@ const lang = 'es';
 const i18n = t(lang);
 
 const iconMap = { MessageSquare, Sliders, HardDrive, ShieldCheck };
+const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-arm64.dmg';
+const windowsDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-windows-x64.exe';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'es'))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -28,10 +30,13 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lan
     <div class="animate-fade-up delay-300 mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
       <a
         id="download"
-        href="#download"
+        href={macDownloadUrl}
         class="px-6 py-3 rounded-full bg-brand hover:bg-brand-dark transition-colors text-white font-semibold text-sm"
       >
         {i18n.home.ctaDownload}
+      </a>
+      <a href={windowsDownloadUrl} class="text-sm text-zinc-400 hover:text-white transition-colors">
+        {i18n.home.ctaDownloadWindows}
       </a>
       <a href="/es/blog" class="text-sm text-zinc-400 hover:text-white transition-colors">
         {i18n.home.ctaBlog}

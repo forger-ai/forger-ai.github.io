@@ -16,6 +16,7 @@ export default {
     heroSubtitle:
       'Download apps and talk to them. Ask questions, manipulate your data, tweak the UI, or change how they behave — all through plain language. No cloud. No subscription. Just your machine.',
     ctaDownload: 'Download for macOS',
+    ctaDownloadWindows: 'Download for Windows',
     ctaBlog: 'Read the blog →',
 
     what: {

@@ -23,6 +23,7 @@ const altLang: Lang = lang === 'en' ? 'es' : 'en';
 const altPath = altLang === 'es'
   ? `/es${Astro.url.pathname}`
   : Astro.url.pathname.replace(/^\/es/, '') || '/';
+const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-arm64.dmg';
 ---
 
 <!doctype html>
@@ -73,7 +74,7 @@ const altPath = altLang === 'es'
             {altLang === 'es' ? 'ES' : 'EN'}
           </a>
           <a
-            href="#download"
+            href={macDownloadUrl}
             class="px-4 py-1.5 rounded-full bg-brand text-white font-medium hover:bg-brand-dark transition-colors"
           >
             {i18n.nav.download}
