@@ -1,0 +1,38 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getLang, t, localePath, type Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  lang?: Lang;
+}
+
+const { title, description, pubDate, lang: langProp } = Astro.props;
+const lang: Lang = langProp ?? getLang(Astro.url);
+const i18n = t(lang);
+
+const formatted = pubDate.toLocaleDateString(lang === 'es' ? 'es-CL' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} — Forger Blog`} description={description} lang={lang}>
+  <div class="max-w-2xl mx-auto px-6 pt-32 pb-24">
+    <a
+      href={localePath(lang, '/blog')}
+      class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+    >
+      {i18n.blog.back}
+    </a>
+    <h1 class="mt-6 text-3xl font-bold text-white leading-tight">{title}</h1>
+    <time class="mt-2 block text-sm text-zinc-500">{formatted}</time>
+    <div class="mt-10 prose prose-invert prose-zinc max-w-none
+                prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import { getLang, t, localePath, type Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  lang?: Lang;
+}
+
+const {
+  title,
+  description = 'Forger — Build and run local AI-powered apps, no cloud required.',
+  ogImage = '/og.png',
+  lang: langProp,
+} = Astro.props;
+
+const lang: Lang = langProp ?? getLang(Astro.url);
+const i18n = t(lang);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const altLang: Lang = lang === 'en' ? 'es' : 'en';
+const altPath = altLang === 'es'
+  ? `/es${Astro.url.pathname}`
+  : Astro.url.pathname.replace(/^\/es/, '') || '/';
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={altLang} href={new URL(altPath, Astro.site)} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-surface-base text-zinc-100 font-sans antialiased">
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-surface-base/80 backdrop-blur-md">
+      <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href={localePath(lang, '/')} class="flex items-center gap-2.5">
+          <img src="/icon-dark.svg" alt="Forger" class="w-9 h-9" />
+          <span class="text-white text-xl font-light" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.35em;">FORGER</span>
+        </a>
+        <div class="flex items-center gap-5 text-sm text-zinc-400">
+          <a href={`${localePath(lang, '/')}#what`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.what}</a>
+          <a href={`${localePath(lang, '/')}#features`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.features}</a>
+          <a href={`${localePath(lang, '/')}#beta`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.beta}</a>
+          <a href={localePath(lang, '/blog')} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.blog}</a>
+          <a
+            href={altPath}
+            class="text-zinc-500 hover:text-zinc-300 transition-colors font-mono text-xs tracking-widest uppercase"
+            title={altLang === 'es' ? 'Español' : 'English'}
+          >
+            {altLang === 'es' ? 'ES' : 'EN'}
+          </a>
+          <a
+            href="#download"
+            class="px-4 py-1.5 rounded-full bg-brand text-white font-medium hover:bg-brand-dark transition-colors"
+          >
+            {i18n.nav.download}
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/5 mt-24 py-10 text-center text-zinc-500 text-sm">
+      <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="font-semibold text-zinc-400">FORGER</span>. {i18n.footer.rights}</p>
+    </footer>
+  </body>
+</html>
