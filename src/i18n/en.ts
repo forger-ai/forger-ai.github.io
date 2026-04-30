@@ -8,6 +8,8 @@ export default {
   },
   footer: {
     rights: 'All rights reserved.',
+    privacy: 'Data privacy',
+    terms: 'Terms',
   },
   home: {
     badge: 'Open beta',

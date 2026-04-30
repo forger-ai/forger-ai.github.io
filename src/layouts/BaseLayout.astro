@@ -88,7 +88,13 @@ const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/lat
     </main>
 
     <footer class="border-t border-white/5 mt-24 py-10 text-center text-zinc-500 text-sm">
-      <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="font-semibold text-zinc-400">FORGER</span>. {i18n.footer.rights}</p>
+      <div class="flex flex-col items-center gap-3">
+        <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="font-semibold text-zinc-400">FORGER</span>. {i18n.footer.rights}</p>
+        <div class="flex items-center gap-4">
+          <a href={localePath(lang, '/privacy')} class="hover:text-zinc-300 transition-colors">{i18n.footer.privacy}</a>
+          <a href={localePath(lang, '/terms')} class="hover:text-zinc-300 transition-colors">{i18n.footer.terms}</a>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
