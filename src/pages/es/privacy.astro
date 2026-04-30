@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const lang = 'es';
+---
+
+<BaseLayout title="Privacidad de datos — Forger" description="Cómo Forger maneja datos locales, cuentas de Forger Cloud, reviews, feedback e información de soporte." lang={lang}>
+  <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
+    <h1>Privacidad de datos</h1>
+    <p><strong>Última actualización:</strong> 30 de abril de 2026</p>
+
+    <h2>Resumen</h2>
+    <p>Forger está construido alrededor de apps locales. Las apps instaladas mediante Forger corren en un workspace privado en tu computador. Forger Cloud se usa para funciones de cuenta, catálogo de apps, descargas, ratings, reviews, feedback privado y soporte del producto.</p>
+
+    <h2>Datos guardados localmente</h2>
+    <p>Las apps instaladas, bases de datos locales, workspaces, archivos seleccionados por el usuario, archivos generados y modificaciones de apps se guardan en tu equipo, salvo que decidas enviar información a Forger Cloud o a un servicio de terceros mediante una app o flujo de agente.</p>
+
+    <h2>Datos enviados a Forger Cloud</h2>
+    <p>Forger Cloud puede recibir datos de cuenta como nombre, apellido opcional, correo, país opcional, edad opcional, género opcional, IP de registro, país de registro inferido, metadata de sesión, eventos de descarga, ratings, reviews, feedback privado y metadata operacional necesaria para operar el catálogo y dar soporte.</p>
+
+    <h2>Reviews y feedback</h2>
+    <p>Los ratings y reviews visibles pueden mostrarse en Forger Desktop y superficies relacionadas con el catálogo. El feedback privado se usa para diagnosticar problemas, priorizar mejoras y responder solicitudes.</p>
+
+    <h2>IA y datos de apps</h2>
+    <p>Forger Desktop puede usar agentes locales y cuentas de IA conectadas por el usuario para operar o modificar apps instaladas. Cuando pides a un agente trabajar con contenido, archivos, screenshots o datos de una app, el contenido necesario para esa tarea puede enviarse al proveedor de IA configurado para ese flujo. Forger Cloud no recibe automáticamente tus bases de datos locales ni archivos privados del workspace.</p>
+
+    <h2>Proveedores de servicio</h2>
+    <p>Forger puede usar proveedores de hosting, base de datos, correo, analítica, logging, almacenamiento y soporte para operar el servicio. Estos proveedores procesan datos solo en la medida necesaria para entregar infraestructura y soporte.</p>
+
+    <h2>Seguridad</h2>
+    <p>Usamos medidas técnicas y organizacionales razonables para proteger datos de Forger Cloud, incluyendo confirmación de cuenta, controles de acceso y separación entre datos locales de apps y datos de cuenta en la nube. Ningún sistema es perfectamente seguro.</p>
+
+    <h2>Tus decisiones</h2>
+    <p>Puedes usar apps locales sin una cuenta de Forger Cloud cuando la función no requiera inicio de sesión. Tú decides si publicas una review, envías feedback privado, conectas una cuenta de IA o compartes archivos con una app o agente.</p>
+
+    <h2>Contacto</h2>
+    <p>Para consultas de privacidad, contacta al equipo de Forger mediante el canal de soporte publicado en Forger Desktop o en el sitio de Forger.</p>
+  </article>
+</BaseLayout>
