@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [desktop-release]
 
 permissions:
   contents: read
@@ -27,6 +29,9 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+      - run: npm run generate:desktop-versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
