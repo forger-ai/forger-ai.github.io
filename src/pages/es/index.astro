@@ -1,122 +1,18 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { t } from '../../i18n/utils';
-import { MessageSquare, Sliders, HardDrive, ShieldCheck, Check } from 'lucide-astro';
+import HomePage from '../../components/HomePage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const lang = 'es';
-const i18n = t(lang);
-
-const iconMap = { MessageSquare, Sliders, HardDrive, ShieldCheck };
-const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-arm64.dmg';
-const windowsDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-windows-x64.exe';
-
-const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'es'))
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === lang))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 ---
 
-<BaseLayout title="Forger — La app store del futuro" lang={lang}>
-
-  <!-- Hero -->
-  <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-16">
-    <h1 class="animate-fade-up text-5xl sm:text-7xl font-bold text-white leading-[1.05] tracking-tight max-w-3xl">
-      {i18n.home.heroTitle1}<br />
-      <span class="text-brand">{i18n.home.heroTitle2}</span>
-    </h1>
-    <p class="animate-fade-up delay-200 mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed">
-      {i18n.home.heroSubtitle}
-    </p>
-    <div class="animate-fade-up delay-300 mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
-      <a
-        id="download"
-        href={macDownloadUrl}
-        class="px-6 py-3 rounded-full bg-brand hover:bg-brand-dark transition-colors text-white font-semibold text-sm"
-      >
-        {i18n.home.ctaDownload}
-      </a>
-      <a href={windowsDownloadUrl} class="text-sm text-zinc-400 hover:text-white transition-colors">
-        {i18n.home.ctaDownloadWindows}
-      </a>
-      <a href="/es/blog" class="text-sm text-zinc-400 hover:text-white transition-colors">
-        {i18n.home.ctaBlog}
-      </a>
-    </div>
-  </section>
-
-  <!-- What is Forger? -->
-  <section id="what" class="max-w-3xl mx-auto px-6 py-16 text-center">
-    <h2 class="animate-fade-up text-3xl font-bold text-white">{i18n.home.what.title}</h2>
-    <p class="animate-fade-up delay-100 mt-4 text-zinc-400 text-lg leading-relaxed">
-      {i18n.home.what.body}
-    </p>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="max-w-5xl mx-auto px-6 pb-24 grid sm:grid-cols-2 gap-6">
-    {i18n.home.features.map((f, i) => {
-      const Icon = iconMap[f.icon as keyof typeof iconMap];
-      return (
-        <div class={`animate-fade-up delay-${(i + 1) * 100} p-7 rounded-2xl border border-white/5 bg-surface-raised hover:bg-surface-overlay transition-colors`}>
-          <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4">
-            <Icon class="text-brand" size={20} />
-          </div>
-          <h3 class="font-semibold text-white mb-2">{f.title}</h3>
-          <p class="text-sm text-zinc-400 leading-relaxed">{f.body}</p>
-        </div>
-      );
-    })}
-  </section>
-
-  <!-- Beta notice -->
-  <section id="beta" class="max-w-5xl mx-auto px-6 pb-24">
-    <div class="rounded-2xl border border-brand/20 bg-brand/5 p-8 sm:p-10">
-      <span class="inline-block px-2.5 py-0.5 rounded-md bg-brand/15 text-brand text-xs font-medium tracking-wide uppercase mb-4">
-        {i18n.home.beta.tag}
-      </span>
-      <h2 class="text-2xl font-bold text-white max-w-xl leading-snug">
-        {i18n.home.beta.title}
-      </h2>
-      <p class="mt-3 text-zinc-400 leading-relaxed max-w-2xl">
-        {i18n.home.beta.body}
-      </p>
-      <ul class="mt-6 space-y-2.5">
-        {i18n.home.beta.items.map((item) => (
-          <li class="flex items-center gap-3 text-sm text-zinc-300">
-            <Check size={15} class="text-brand shrink-0" />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Blog preview -->
-  {posts.length > 0 && (
-    <section class="max-w-5xl mx-auto px-6 pb-24">
-      <h2 class="text-2xl font-bold text-white mb-8">{i18n.home.fromBlog}</h2>
-      <div class="grid sm:grid-cols-3 gap-6">
-        {posts.map((post) => (
-          <a
-            href={`/es/blog/${post.id.replace(/^es\//, '')}`}
-            class="group p-6 rounded-2xl border border-white/5 bg-surface-raised hover:bg-surface-overlay transition-colors"
-          >
-            <time class="text-xs text-zinc-500">
-              {post.data.pubDate.toLocaleDateString('es-CL', { month: 'short', day: 'numeric', year: 'numeric' })}
-            </time>
-            <h3 class="mt-2 font-semibold text-white group-hover:text-brand transition-colors leading-snug">
-              {post.data.title}
-            </h3>
-            <p class="mt-2 text-sm text-zinc-400 line-clamp-2">{post.data.description}</p>
-          </a>
-        ))}
-      </div>
-      <div class="mt-8 text-center">
-        <a href="/es/blog" class="text-sm text-zinc-500 hover:text-white transition-colors">
-          {i18n.home.allPosts}
-        </a>
-      </div>
-    </section>
-  )}
-
+<BaseLayout
+  title="Forger — La app store del futuro"
+  description="Apps abiertas, privadas y potenciadas por IA que corren localmente en tu computador."
+  lang={lang}
+>
+  <HomePage lang={lang} posts={posts} />
 </BaseLayout>

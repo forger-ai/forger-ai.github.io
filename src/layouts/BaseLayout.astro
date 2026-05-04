@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import DownloadPicker from '../components/DownloadPicker.astro';
 import { getLang, t, localePath, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -23,7 +24,7 @@ const altLang: Lang = lang === 'en' ? 'es' : 'en';
 const altPath = altLang === 'es'
   ? `/es${Astro.url.pathname}`
   : Astro.url.pathname.replace(/^\/es/, '') || '/';
-const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-arm64.dmg';
+const githubUrl = 'https://github.com/forger-ai';
 ---
 
 <!doctype html>
@@ -56,15 +57,16 @@ const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/lat
   </head>
   <body class="bg-surface-base text-zinc-100 font-sans antialiased">
     <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-surface-base/80 backdrop-blur-md">
-      <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href={localePath(lang, '/')} class="flex items-center gap-2.5">
           <img src="/icon-dark.svg" alt="Forger" class="w-9 h-9" />
           <span class="text-white text-xl font-light" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.35em;">FORGER</span>
         </a>
         <div class="flex items-center gap-5 text-sm text-zinc-400">
           <a href={`${localePath(lang, '/')}#what`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.what}</a>
-          <a href={`${localePath(lang, '/')}#features`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.features}</a>
-          <a href={`${localePath(lang, '/')}#beta`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.beta}</a>
+          <a href={`${localePath(lang, '/')}#apps`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.apps}</a>
+          <a href={`${localePath(lang, '/')}#privacy`} class="hover:text-white transition-colors hidden md:block">{i18n.nav.privacy}</a>
+          <a href={`${localePath(lang, '/')}#cloud`} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.cloud}</a>
           <a href={localePath(lang, '/blog')} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.blog}</a>
           <a
             href={altPath}
@@ -73,12 +75,7 @@ const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/lat
           >
             {altLang === 'es' ? 'ES' : 'EN'}
           </a>
-          <a
-            href={macDownloadUrl}
-            class="px-4 py-1.5 rounded-full bg-brand text-white font-medium hover:bg-brand-dark transition-colors"
-          >
-            {i18n.nav.download}
-          </a>
+          <DownloadPicker lang={lang} compact />
         </div>
       </nav>
     </header>
@@ -89,10 +86,15 @@ const macDownloadUrl = 'https://github.com/forger-ai/forger-desktop/releases/lat
 
     <footer class="border-t border-white/5 mt-24 py-10 text-center text-zinc-500 text-sm">
       <div class="flex flex-col items-center gap-3">
+        <p class="text-zinc-400">
+          {i18n.footer.contact}{' '}
+          <a href="mailto:hello@forger.cloud" class="font-medium text-brand transition-colors hover:text-brand-dark">hello@forger.cloud</a>
+        </p>
         <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="font-semibold text-zinc-400">FORGER</span>. {i18n.footer.rights}</p>
         <div class="flex items-center gap-4">
           <a href={localePath(lang, '/privacy')} class="hover:text-zinc-300 transition-colors">{i18n.footer.privacy}</a>
           <a href={localePath(lang, '/terms')} class="hover:text-zinc-300 transition-colors">{i18n.footer.terms}</a>
+          <a href={githubUrl} class="hover:text-zinc-300 transition-colors">{i18n.footer.github}</a>
         </div>
       </div>
     </footer>

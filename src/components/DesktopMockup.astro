@@ -1,0 +1,25 @@
+---
+import ScreenshotFrame from './ScreenshotFrame.astro';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    alt: 'Forger Desktop catalog showing installable local apps including Finance OS and Recipes.',
+  },
+  es: {
+    alt: 'Catálogo de Forger Desktop mostrando apps locales instalables, incluyendo Finance OS y Recipes.',
+  },
+}[lang];
+---
+
+<ScreenshotFrame
+  src="/assets/screenshots/forger-catalog.png"
+  alt={copy.alt}
+  class="animate-fade-up delay-300"
+/>

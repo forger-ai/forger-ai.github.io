@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  incomeLabel?: string;
+  expenseLabel?: string;
+  compact?: boolean;
+}
+
+const { title, subtitle, incomeLabel = 'Ingresos', expenseLabel = 'Egresos', compact = false } = Astro.props;
+const bars = [
+  { income: '58%', expense: '34%' },
+  { income: '64%', expense: '40%' },
+  { income: '52%', expense: '45%' },
+  { income: '70%', expense: '47%' },
+  { income: '61%', expense: '38%' },
+  { income: '76%', expense: '51%' },
+  { income: '67%', expense: '43%' },
+  { income: '82%', expense: '55%' },
+];
+---
+
+<div class:list={[
+  'rounded-2xl border border-white/10 bg-zinc-950/85 shadow-2xl shadow-black/30 backdrop-blur',
+  compact ? 'p-4' : 'p-5',
+]}>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <p class="text-sm font-semibold text-white">{title}</p>
+      <p class="mt-1 text-xs text-zinc-500">{subtitle}</p>
+    </div>
+    <span class="rounded-full bg-brand/15 px-2.5 py-1 text-[11px] font-medium text-brand">12m</span>
+  </div>
+  <div class="mt-6 flex h-32 items-end gap-2 border-b border-l border-white/10 pl-3">
+    {bars.map((bar) => (
+      <div class="flex h-full flex-1 items-end justify-center gap-1">
+        <span
+          class="w-full rounded-t-sm bg-emerald-300/80"
+          style={`height: ${bar.income}`}
+        ></span>
+        <span
+          class="w-full rounded-t-sm bg-brand/85"
+          style={`height: ${bar.expense}`}
+        ></span>
+      </div>
+    ))}
+  </div>
+  <div class="mt-4 flex items-center gap-4 text-[11px] text-zinc-400">
+    <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>{incomeLabel}</span>
+    <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-brand"></span>{expenseLabel}</span>
+  </div>
+</div>

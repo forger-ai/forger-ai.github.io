@@ -1,0 +1,30 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  label?: string;
+  class?: string;
+}
+
+const { src, alt, label, class: className = '' } = Astro.props;
+---
+
+<figure class={`overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-950 shadow-2xl shadow-black/35 ${className}`}>
+  {label && (
+    <figcaption class="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-medium text-zinc-400">
+      <span>{label}</span>
+      <span class="flex gap-1.5">
+        <span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-amber-300/70"></span>
+        <span class="h-2.5 w-2.5 rounded-full bg-emerald-300/70"></span>
+      </span>
+    </figcaption>
+  )}
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    class="block h-auto w-full"
+  />
+</figure>
