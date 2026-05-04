@@ -1,0 +1,40 @@
+---
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    user:
+      'Hi, Forger. I would like Finance OS to show a new dashboard chart: income vs. expenses, month by month, for the last year.',
+    agent1: 'Perfect. I will review the dashboard structure and prepare the change.',
+    agent2: 'Done. I added the chart to the Finance OS dashboard. Refresh the app to see it.',
+  },
+  es: {
+    user:
+      'Hola, Forger. Me gustaría que Finance OS muestre un nuevo gráfico en el dashboard: ingresos vs. egresos, mes a mes, durante el último año.',
+    agent1: 'Perfecto. Voy a revisar la estructura del dashboard y preparar el cambio.',
+    agent2: 'Listo. Agregué el gráfico al dashboard de Finance OS. Refresca la app para verlo.',
+  },
+}[lang];
+---
+
+<div class="mx-auto max-w-4xl">
+  <div class="space-y-6">
+    <div class="chat-message delay-100 ml-auto max-w-[86%] rounded-[1.35rem] rounded-tr-md bg-[#7faadd] px-5 py-4 text-base leading-relaxed text-zinc-950 shadow-xl shadow-black/15">
+      {copy.user}
+    </div>
+    <div class="chat-message delay-500 flex max-w-[92%] items-start gap-4">
+      <img src="/icon-dark.svg" alt="" class="mt-1 h-9 w-9 shrink-0" />
+      <p class="text-base leading-relaxed text-zinc-100">{copy.agent1}</p>
+    </div>
+    <div class="chat-message delay-700 flex max-w-[92%] items-start gap-4">
+      <img src="/icon-dark.svg" alt="" class="mt-1 h-9 w-9 shrink-0" />
+      <p class="text-base leading-relaxed text-zinc-100">{copy.agent2}</p>
+    </div>
+  </div>
+</div>

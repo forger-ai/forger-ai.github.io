@@ -1,0 +1,15 @@
+---
+import AppLandingLayout from '../../../layouts/AppLandingLayout.astro';
+import { apps } from '../../../data/apps';
+
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: { slug: app.slug },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+---
+
+<AppLandingLayout app={app} lang="es" />

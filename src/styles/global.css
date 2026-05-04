@@ -25,6 +25,21 @@
   to   { opacity: 1; }
 }
 
+@keyframes chat-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes chart-reveal {
+  from { opacity: 0; transform: translateY(16px); clip-path: inset(0 0 100% 0 round 1rem); }
+  to   { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0 round 1rem); }
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.35; transform: scaleX(0.85); }
+  50%      { opacity: 0.9; transform: scaleX(1); }
+}
+
 .animate-fade-up  { animation: fade-up  0.6s ease both; }
 .animate-fade-in  { animation: fade-in  0.5s ease both; }
 
@@ -32,3 +47,58 @@
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-900 { animation-delay: 900ms; }
+
+.orbital-field {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(217, 120, 50, 0.20), transparent 28%),
+    radial-gradient(circle at 70% 16%, rgba(125, 211, 252, 0.10), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 42%);
+}
+
+.orbital-field::before {
+  content: "";
+  position: absolute;
+  inset: 6rem auto auto 50%;
+  width: min(760px, 88vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(-12deg);
+  border: 1px solid rgba(217, 120, 50, 0.13);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 72px rgba(255, 255, 255, 0.015),
+    0 0 0 144px rgba(255, 255, 255, 0.01);
+}
+
+.chat-message {
+  opacity: 0;
+  animation: chat-rise 0.52s ease forwards;
+}
+
+.chart-reveal {
+  opacity: 0;
+  animation: chart-reveal 0.7s ease forwards;
+}
+
+.pulse-line {
+  transform-origin: left center;
+  animation: pulse-line 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .chat-message,
+  .chart-reveal {
+    opacity: 1;
+  }
+}
