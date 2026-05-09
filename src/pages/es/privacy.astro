@@ -4,34 +4,57 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const lang = 'es';
 ---
 
-<BaseLayout title="Privacidad de datos — Forger" description="Cómo Forger maneja datos locales, cuentas de Forger Cloud, reviews, feedback e información de soporte." lang={lang}>
+<BaseLayout title="Privacidad de datos — Forger" description="Cómo Forger maneja datos locales, cuentas de Forger Cloud, datos de Google/Gmail, reviews, feedback, backups, dispositivos e información de soporte." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Privacidad de datos</h1>
-    <p><strong>Última actualización:</strong> 30 de abril de 2026</p>
+    <p><strong>Última actualización:</strong> 9 de mayo de 2026</p>
 
     <h2>Resumen</h2>
-    <p>Forger está construido alrededor de apps locales. Las apps instaladas mediante Forger corren en un workspace privado en tu computador. Forger Cloud se usa para funciones de cuenta, catálogo de apps, descargas, ratings, reviews, feedback privado y soporte del producto.</p>
+    <p>Forger está construido alrededor de apps locales. Las apps instaladas mediante Forger corren en un workspace privado en tu computador. Forger Cloud soporta funciones de cuenta, catálogo de apps, descargas y actualizaciones, ratings, reviews, feedback privado, backups, dispositivos vinculados, sesiones de acceso remoto, soporte OAuth de Google para Gmail y soporte del producto.</p>
+    <p>Esta política explica qué queda local, qué se envía a Forger Cloud, cómo se manejan los datos de Google y Gmail, y qué decisiones puedes tomar.</p>
 
     <h2>Datos guardados localmente</h2>
-    <p>Las apps instaladas, bases de datos locales, workspaces, archivos seleccionados por el usuario, archivos generados y modificaciones de apps se guardan en tu equipo, salvo que decidas enviar información a Forger Cloud o a un servicio de terceros mediante una app o flujo de agente.</p>
+    <p>Las apps instaladas, el código de apps, bases de datos locales, workspaces locales, archivos seleccionados por el usuario, archivos generados, modificaciones locales de apps, estado de servicios locales, transcripciones locales de automatizaciones, contexto local de agentes, configuración local de herramientas y credenciales o tokens locales guardados por la app desktop permanecen en tu equipo salvo que uses explícitamente una función que envía información a otro lugar.</p>
+    <p>Las apps de Forger deben trabajar dentro del workspace privado de Forger y no deben leer archivos fuera de ese workspace salvo que compartas esos archivos con una app, agente, tarea, automatización o herramienta para un propósito específico.</p>
 
     <h2>Datos enviados a Forger Cloud</h2>
-    <p>Forger Cloud puede recibir datos de cuenta como nombre, apellido opcional, correo, país opcional, edad opcional, género opcional, IP de registro, país de registro inferido, metadata de sesión, eventos de descarga, ratings, reviews, feedback privado y metadata operacional necesaria para operar el catálogo y dar soporte.</p>
+    <p>Forger Cloud puede recibir datos de cuenta como nombre, apellido opcional, correo, datos de autenticación de contraseña, datos de confirmación de cuenta, país opcional, edad opcional, género opcional, IP de registro, país de registro inferido, tipo de suscripción, metadata de sesión y metadata de recuperación o confirmación de cuenta.</p>
+    <p>Forger Cloud también puede recibir datos de catálogo y producto como resúmenes de apps instaladas reportados por dispositivos vinculados, eventos de descarga, plataforma, user agent, identificador de dispositivo, código de país, ratings, reviews, feedback privado, versión de desktop, versión de app, logs operacionales, reportes de error, metadata de backups, registros de vinculación de dispositivos, heartbeats de dispositivos y metadata de sesiones remotas.</p>
 
     <h2>Reviews y feedback</h2>
     <p>Los ratings y reviews visibles pueden mostrarse en Forger Desktop y superficies relacionadas con el catálogo. El feedback privado se usa para diagnosticar problemas, priorizar mejoras y responder solicitudes.</p>
+    <p>Si envías feedback o un reporte de error, incluye solo información que quieras que Forger revise. Los reportes de error pueden incluir detalles técnicos, identificadores de app, versiones, información de plataforma y campos de diagnóstico necesarios para entender el problema.</p>
 
-    <h2>IA y datos de apps</h2>
-    <p>Forger Desktop puede usar agentes locales y cuentas de IA conectadas por el usuario para operar o modificar apps instaladas. Cuando pides a un agente trabajar con contenido, archivos, screenshots o datos de una app, el contenido necesario para esa tarea puede enviarse al proveedor de IA configurado para ese flujo. Forger Cloud no recibe automáticamente tus bases de datos locales ni archivos privados del workspace.</p>
+    <h2>Backups, dispositivos y acceso remoto</h2>
+    <p>Si usas backups en la nube, Forger Cloud guarda los archivos de backup y la metadata necesaria para listar, descargar, verificar y eliminar esos backups. La metadata de backup puede incluir ID de app, nombre de app, versión de app, tipo de backup, origen, checksum, cantidad de archivos, tamaño y timestamps.</p>
+    <p>Si vinculas un dispositivo con Forger Cloud, Forger Cloud guarda identificadores de dispositivo, un secreto de dispositivo hasheado, nombre de dispositivo, plataforma, estado de vinculación, resúmenes de apps instaladas, resúmenes de estado de runtime y timestamps de heartbeat. Las sesiones de acceso remoto usan Forger Cloud para enrutar una sesión autenticada del navegador hacia un desktop vinculado y online. Forger Cloud guarda metadata de la sesión remota; el contenido de la app se retransmite solo en la medida necesaria para entregar la sesión remota.</p>
+
+    <h2>Agentes, tareas, automatizaciones e IA</h2>
+    <p>Forger Desktop puede usar agentes, tareas de IA, chat de apps y automatizaciones para inspeccionar, explicar, operar o modificar apps instaladas. Cuando pides a un agente o automatización trabajar con contenido, archivos, screenshots, correo u otros datos, el contenido necesario para esa tarea puede enviarse al proveedor de IA configurado para ese flujo. Forger Cloud no recibe automáticamente tus bases de datos locales ni archivos privados del workspace solo porque existan localmente.</p>
+    <p>Las automatizaciones corren sin esperar aprobación interactiva por herramienta. Si una automatización tiene permitido usar una herramienta configurada, puede usarla según las instrucciones de la automatización y las reglas de validación propias de la herramienta.</p>
+
+    <h2>Datos de Google y Gmail</h2>
+    <p>Forger puede conectar Gmail como herramienta oficial cuando decides conectar una cuenta de Google. La herramienta actual de Gmail solicita permisos de solo lectura de Gmail y envío de Gmail para que Forger pueda buscar mensajes, leer mensajes y conversaciones, leer adjuntos seleccionados y enviar correo cuando se lo pidas a un agente, tarea, app o automatización.</p>
+    <p>Forger Cloud ayuda a completar el intercambio y refresh de tokens OAuth de Google porque el secreto OAuth no debe quedar embebido en la app desktop. El refresh token de Gmail se guarda por Forger Desktop en el almacén local de secretos de tu equipo. Forger Cloud no guarda tu refresh token de Gmail como parte del flujo actual de Gmail en desktop.</p>
+    <p>Cuando usas funciones de Gmail, Forger puede enviar solicitudes a Google para buscar mensajes, leer contenido de mensajes o conversaciones, descargar adjuntos seleccionados, renovar access tokens o enviar correo. Los adjuntos de Gmail leídos por la herramienta pueden guardarse localmente para que el agente pueda revisarlos o reutilizarlos en la tarea solicitada.</p>
+    <p>Forger no vende datos de usuario de Google. Forger no usa datos de usuario de Google para publicidad. Forger no usa contenido de Gmail para entrenar modelos generales de IA. Forger no permite que humanos lean contenido de Gmail salvo que pidas soporte específicamente sobre ese contenido, sea necesario para seguridad o investigación de abuso, sea requerido por ley, o los datos estén agregados y ya no te identifiquen.</p>
+    <p>El uso y transferencia por parte de Forger de la información recibida desde APIs de Google cumplirá la Google API Services User Data Policy, incluyendo los requisitos de Limited Use.</p>
 
     <h2>Proveedores de servicio</h2>
-    <p>Forger puede usar proveedores de hosting, base de datos, correo, analítica, logging, almacenamiento y soporte para operar el servicio. Estos proveedores procesan datos solo en la medida necesaria para entregar infraestructura y soporte.</p>
+    <p>Forger puede usar proveedores de hosting, base de datos, entrega de correo, analítica, logging, almacenamiento, autenticación, OAuth, IA y soporte para operar el servicio. Estos proveedores procesan datos solo en la medida necesaria para entregar infraestructura, funcionalidad de producto, seguridad y soporte.</p>
 
     <h2>Seguridad</h2>
-    <p>Usamos medidas técnicas y organizacionales razonables para proteger datos de Forger Cloud, incluyendo confirmación de cuenta, controles de acceso y separación entre datos locales de apps y datos de cuenta en la nube. Ningún sistema es perfectamente seguro.</p>
+    <p>Usamos medidas técnicas y organizacionales razonables para proteger datos de Forger Cloud, incluyendo confirmación de cuenta, controles de acceso, manejo de tokens, filtrado de parámetros en logs y separación entre datos locales de apps y datos de cuenta en la nube. Ningún sistema es perfectamente seguro, y debes mantener protegidos tu dispositivo, sistema operativo, cuenta de Forger, cuenta de Google y cuentas de proveedores de IA.</p>
 
     <h2>Tus decisiones</h2>
-    <p>Puedes usar apps locales sin una cuenta de Forger Cloud cuando la función no requiera inicio de sesión. Tú decides si publicas una review, envías feedback privado, conectas una cuenta de IA o compartes archivos con una app o agente.</p>
+    <p>Puedes usar apps locales sin una cuenta de Forger Cloud cuando la función no requiera login. Tú decides si creas una cuenta de Forger Cloud, publicas una review, envías feedback privado, subes backups, vinculas dispositivos, creas sesiones remotas, conectas Gmail, conectas una cuenta de IA, compartes archivos, ejecutas automatizaciones o pides a un agente operar una app o herramienta.</p>
+    <p>Puedes revocar el acceso de Google desde los permisos de tu Cuenta de Google, desconectar o reconfigurar herramientas en Forger Desktop, eliminar backups en la nube, quitar dispositivos vinculados y dejar de usar funciones con cuenta. Algunos registros operacionales pueden conservarse cuando sea necesario por seguridad, cumplimiento legal, prevención de abuso, soporte e integridad del servicio.</p>
+
+    <h2>Menores de edad</h2>
+    <p>Forger no está dirigido a menores. No uses Forger si no tienes edad suficiente para consentir estos términos y prácticas de privacidad en tu jurisdicción.</p>
+
+    <h2>Cambios a esta política</h2>
+    <p>Podemos actualizar esta política a medida que Forger cambia. Si cambiamos materialmente cómo Forger usa datos de usuario de Google u otros datos personales, actualizaremos esta política y, cuando corresponda, pediremos consentimiento antes de usar esos datos de una forma nueva.</p>
 
     <h2>Contacto</h2>
     <p>Para consultas de privacidad, contacta al equipo de Forger mediante el canal de soporte publicado en Forger Desktop o en el sitio de Forger.</p>

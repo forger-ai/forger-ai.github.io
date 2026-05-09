@@ -4,34 +4,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const lang = 'en';
 ---
 
-<BaseLayout title="Data Privacy — Forger" description="How Forger handles local app data, Forger Cloud account data, reviews, feedback, and support information." lang={lang}>
+<BaseLayout title="Data Privacy — Forger" description="How Forger handles local app data, Forger Cloud account data, Google/Gmail data, reviews, feedback, backups, devices, and support information." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Data Privacy</h1>
-    <p><strong>Last updated:</strong> April 30, 2026</p>
+    <p><strong>Last updated:</strong> May 9, 2026</p>
 
     <h2>Summary</h2>
-    <p>Forger is built around local apps. Apps installed through Forger run in a private workspace on your computer. Forger Cloud is used for account features, the app catalog, app downloads, ratings, reviews, private feedback, and product support.</p>
+    <p>Forger is built around local apps. Apps installed through Forger run in a private workspace on your computer. Forger Cloud supports account features, the app catalog, app downloads and updates, ratings, reviews, private feedback, backups, paired devices, remote access sessions, Google OAuth support for Gmail, and product support.</p>
+    <p>This policy explains what is local, what is sent to Forger Cloud, how Google and Gmail data is handled, and what choices you have.</p>
 
     <h2>Data stored locally</h2>
-    <p>Installed apps, local app databases, app workspaces, user-selected files, generated files, and app modifications are stored on your device unless you explicitly send information to Forger Cloud or to a third-party service through an app or agent workflow.</p>
+    <p>Installed apps, app code, local app databases, local workspaces, user-selected files, generated files, local app modifications, local service state, local automation transcripts, local agent context, local tool settings, and local credentials or tokens stored by the desktop app remain on your device unless you explicitly use a feature that sends information elsewhere.</p>
+    <p>Forger apps must work inside the private Forger workspace and must not read files outside that workspace unless you share those files with an app, agent, task, automation, or tool for a specific purpose.</p>
 
     <h2>Data sent to Forger Cloud</h2>
-    <p>Forger Cloud may receive account details such as first name, optional last name, email, optional country, optional age, optional gender, registration IP, inferred registration country, session metadata, app download events, ratings, reviews, private feedback, and operational metadata needed to run the catalog and support the service.</p>
+    <p>Forger Cloud may receive account data such as first name, optional last name, email, password authentication data, account confirmation data, optional country, optional age, optional gender, registration IP, inferred registration country, subscription tier, session metadata, and password reset or confirmation metadata.</p>
+    <p>Forger Cloud may also receive catalog and product data such as installed app summaries reported by paired devices, download events, platform, user agent, device identifier, country code, ratings, reviews, private feedback, desktop version, app version, operational logs, error reports, backup metadata, device pairing records, device heartbeats, and remote session metadata.</p>
 
     <h2>Reviews and feedback</h2>
     <p>Ratings and visible reviews may be shown in Forger Desktop and related catalog surfaces. Private feedback is used by the Forger team to diagnose problems, prioritize improvements, and respond to user requests.</p>
+    <p>If you submit feedback or an error report, include only information you want Forger to review. Error reports can include technical details, app identifiers, versions, platform information, and diagnostic fields needed to understand the problem.</p>
 
-    <h2>AI and app data</h2>
-    <p>Forger Desktop can use local agents and user-connected AI accounts to help operate or modify installed apps. When you ask an agent to work with app content, files, screenshots, or data, the content needed for that task may be sent to the AI provider configured for that workflow. Forger Cloud does not automatically receive your local app databases or private workspace files.</p>
+    <h2>Backups, devices, and remote access</h2>
+    <p>If you use cloud backups, Forger Cloud stores the backup files and metadata needed to list, download, verify, and delete those backups. Backup metadata can include app ID, app name, app version, backup type, source, checksum, file count, size, and timestamps.</p>
+    <p>If you pair a device with Forger Cloud, Forger Cloud stores device identifiers, a hashed device secret, device name, platform, paired status, installed app summaries, runtime status summaries, and heartbeat timestamps. Remote access sessions use Forger Cloud to route an authenticated browser session to a paired online desktop. Remote session metadata is stored by Forger Cloud; app content is relayed only as needed to provide the remote session.</p>
+
+    <h2>Agents, tasks, automations, and AI</h2>
+    <p>Forger Desktop can use agents, AI tasks, app chat, and automations to inspect, explain, operate, or modify installed apps. When you ask an agent or automation to work with app content, files, screenshots, email, or other data, the content needed for that task may be sent to the AI provider configured for that workflow. Forger Cloud does not automatically receive your local app databases or private workspace files merely because they exist locally.</p>
+    <p>Automations run without waiting for interactive tool approval. If an automation is allowed to use a configured tool, it may use that tool according to the automation instructions and the tool's own validation rules.</p>
+
+    <h2>Google and Gmail data</h2>
+    <p>Forger can connect Gmail as an official tool when you choose to connect a Google account. The current Gmail tool requests Gmail read-only and Gmail send permissions so Forger can search messages, read messages and threads, read selected attachments, and send email when you ask an agent, task, app, or automation to do so.</p>
+    <p>Forger Cloud helps complete the Google OAuth token exchange and token refresh because the OAuth client secret must not be embedded in the desktop app. The Gmail refresh token is stored by Forger Desktop in the local secret store on your device. Forger Cloud does not store your Gmail refresh token as part of the current desktop Gmail flow.</p>
+    <p>When you use Gmail features, Forger may send requests to Google to search messages, read message or thread content, download selected attachments, refresh access tokens, or send email. Gmail attachments that are read by the tool may be saved locally so the agent can inspect or reuse them for your requested task.</p>
+    <p>Forger does not sell Google user data. Forger does not use Google user data for advertising. Forger does not use Gmail content to train general AI models. Forger does not allow humans to read Gmail content unless you specifically ask for support involving that content, it is necessary for security or abuse investigation, it is required by law, or the data is aggregated and no longer identifies you.</p>
+    <p>Forger's use and transfer of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements.</p>
 
     <h2>Service providers</h2>
-    <p>Forger may use hosting, database, email, analytics, logging, storage, and support providers to operate the service. These providers process data only as needed to provide infrastructure and product support.</p>
+    <p>Forger may use hosting, database, email delivery, analytics, logging, storage, authentication, OAuth, AI, and support providers to operate the service. These providers process data only as needed to provide infrastructure, product functionality, security, and support.</p>
 
     <h2>Security</h2>
-    <p>We use reasonable technical and organizational measures to protect Forger Cloud data, including account confirmation, access controls, and separation between local app data and cloud account data. No system is perfectly secure.</p>
+    <p>We use reasonable technical and organizational measures to protect Forger Cloud data, including account confirmation, access controls, token handling, filtered parameter logging, and separation between local app data and cloud account data. No system is perfectly secure, and you should keep your device, operating system, Forger account, Google account, and AI provider accounts protected.</p>
 
     <h2>Your choices</h2>
-    <p>You can use local apps without a Forger Cloud account when login is not required for a feature. You can choose whether to publish a review, send private feedback, connect an AI account, or share files with an app or agent.</p>
+    <p>You can use local apps without a Forger Cloud account when the feature does not require login. You choose whether to create a Forger Cloud account, publish a review, send private feedback, upload backups, pair devices, create remote sessions, connect Gmail, connect an AI account, share files, run automations, or ask an agent to operate an app or tool.</p>
+    <p>You can revoke Google access from your Google Account permissions, disconnect or reconfigure tools in Forger Desktop, delete cloud backups, remove paired devices, and stop using account-based features. Some operational records may be retained as needed for security, legal compliance, abuse prevention, support, and service integrity.</p>
+
+    <h2>Children</h2>
+    <p>Forger is not directed to children. Do not use Forger if you are not old enough to consent to these terms and privacy practices in your jurisdiction.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy as Forger changes. If we materially change how Forger uses Google user data or other personal data, we will update this policy and, where required, ask for consent before using that data in a new way.</p>
 
     <h2>Contact</h2>
     <p>For privacy questions, contact the Forger team through the support channel published in Forger Desktop or on the Forger website.</p>

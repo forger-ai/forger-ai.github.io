@@ -4,37 +4,54 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const lang = 'es';
 ---
 
-<BaseLayout title="Términos y condiciones — Forger" description="Términos de uso de Forger Desktop, Forger Cloud, el catálogo, reviews, feedback y apps locales." lang={lang}>
+<BaseLayout title="Términos y condiciones — Forger" description="Términos de uso de Forger Desktop, Forger Cloud, herramientas de Google/Gmail, catálogo, reviews, feedback, backups, acceso remoto y apps locales." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Términos y condiciones</h1>
-    <p><strong>Última actualización:</strong> 30 de abril de 2026</p>
+    <p><strong>Última actualización:</strong> 9 de mayo de 2026</p>
 
     <h2>Resumen</h2>
-    <p>Estos términos regulan el uso de Forger Desktop, Forger Cloud, el catálogo de apps, descargas, ratings, reviews, feedback y servicios relacionados. Al usar Forger, aceptas estos términos.</p>
+    <p>Estos términos regulan el uso de Forger Desktop, Forger Cloud, el catálogo de apps, descargas y actualizaciones, ratings, reviews, feedback, backups, dispositivos vinculados, sesiones de acceso remoto, herramientas de Google/Gmail, flujos asistidos por IA, automatizaciones y servicios relacionados. Al usar Forger, aceptas estos términos.</p>
 
     <h2>Apps locales</h2>
-    <p>Forger instala apps en un workspace privado en tu computador. Tú eres responsable de los datos que decides cargar, crear, importar, exportar o compartir con cada app instalada.</p>
+    <p>Forger instala apps en un workspace privado en tu computador. Las apps instaladas son código local real con sus propios datos, servicios, interfaces, scripts y capacidades de agente. Tú eres responsable de los datos que decides cargar, crear, importar, exportar, modificar, eliminar o compartir con cada app instalada.</p>
+    <p>No debes usar una app para acceder a archivos, cuentas, sistemas o datos que no tienes permiso para usar. Si una app o agente cambia datos o código local, eres responsable de revisar el resultado antes de confiar en él.</p>
 
     <h2>Cuentas de Forger Cloud</h2>
-    <p>Puedes necesitar una cuenta confirmada de Forger Cloud para usar funciones con cuenta, como publicar reviews, actualizar tus propias reviews, enviar feedback autenticado o acceder a futuras funciones cloud. Eres responsable de mantener seguras tus credenciales.</p>
+    <p>Puedes necesitar una cuenta confirmada de Forger Cloud para usar funciones con cuenta, como publicar reviews, actualizar tus propias reviews, enviar feedback autenticado, subir backups, vincular dispositivos, usar acceso remoto, conectar Gmail u otras funciones respaldadas por la nube. Eres responsable de mantener seguras tus credenciales y de la actividad realizada con tu cuenta.</p>
 
     <h2>Catálogo, descargas y versiones</h2>
-    <p>El catálogo de Forger entrega metadata sobre apps y versiones. Las descargas pueden contarse sin requerir una cuenta. Podemos actualizar, ocultar, remover o revocar versiones cuando sea necesario por calidad, seguridad u operación.</p>
+    <p>El catálogo de Forger entrega metadata sobre apps, versiones, capacidades, plataformas soportadas, servicios requeridos, declaraciones de herramientas, prompts, agentes, notas de versión, tamaños de archivo, checksums y URLs de descarga. Las descargas pueden contarse con o sin una cuenta. Podemos actualizar, ocultar, remover, revocar o reemplazar versiones cuando sea necesario por calidad, seguridad, política, cumplimiento legal u operación.</p>
 
     <h2>Reviews y feedback</h2>
     <p>Puedes enviar ratings, reviews y feedback. Las reviews deben ser honestas, relevantes y legales. Podemos moderar, ocultar o eliminar reviews o feedback que sean abusivos, engañosos, dañinos, spam o ajenos a la experiencia de la app.</p>
 
+    <h2>Backups, dispositivos y acceso remoto</h2>
+    <p>Si usas backups en la nube, eres responsable de los datos de app que decides subir y de eliminar los backups que ya no quieras guardar. Los backups se entregan para conveniencia y recuperación, no como un servicio de archivo garantizado.</p>
+    <p>Si vinculas un dispositivo desktop con Forger Cloud, ese dispositivo puede reportar resúmenes de apps instaladas y estado de runtime para que tu cuenta pueda listar y operar dispositivos vinculados. Las sesiones de acceso remoto están pensadas para que accedas a tu propio desktop vinculado y online y a tus apps instaladas. No debes usar acceso remoto para exponer apps o datos a personas no autorizadas.</p>
+
     <h2>Flujos asistidos por IA</h2>
-    <p>Forger puede ayudarte a usar herramientas de IA para inspeccionar, explicar o modificar apps instaladas. Eres responsable de revisar los cambios antes de confiar en ellos. El resultado generado por IA puede ser incompleto o incorrecto.</p>
+    <p>Forger puede ayudarte a usar herramientas de IA para inspeccionar, explicar, operar o modificar apps instaladas. Esto incluye agentes de apps, tareas de IA, Chat Forger y automatizaciones. El resultado generado por IA puede ser incompleto, incorrecto, inseguro o inadecuado para tu situación. Eres responsable de revisar outputs, cambios propuestos, mensajes enviados, datos importados, archivos generados y resultados de automatizaciones antes de confiar en ellos.</p>
+    <p>Las automatizaciones son no interactivas. Si activas una automatización y le das acceso a apps o herramientas configuradas, puede ejecutarse después sin pedir aprobación por cada herramienta. No actives automatizaciones para acciones que no estás cómodo dejando ejecutar automáticamente.</p>
+
+    <h2>Herramientas de Google y Gmail</h2>
+    <p>Forger puede conectar Gmail cuando decides autorizar acceso de Google. Las funciones de Gmail pueden buscar mensajes, leer mensajes y conversaciones, leer adjuntos seleccionados y enviar correo usando los permisos que otorgas. Eres responsable de la cuenta de Gmail que conectas, los prompts y automatizaciones que creas, y cualquier correo enviado mediante Forger.</p>
+    <p>Forger Cloud soporta el flujo de intercambio y refresh de tokens OAuth para Gmail. Forger Desktop guarda el refresh token de Gmail localmente en el almacén de secretos del desktop. Forger debe usar APIs de Google solo de las formas descritas en la política de privacidad de Forger y de forma consistente con la Google API Services User Data Policy, incluyendo los requisitos de Limited Use.</p>
+    <p>Puedes revocar el acceso de Google desde los permisos de tu Cuenta de Google. Si se revoca el acceso o Gmail se desconecta, las funciones que dependen de Gmail pueden dejar de funcionar.</p>
 
     <h2>Uso aceptable</h2>
-    <p>No puedes usar Forger para infringir leyes, dañar a otros, evadir controles de seguridad, distribuir malware, infringir propiedad intelectual o intentar acceso no autorizado a sistemas de Forger o de terceros.</p>
+    <p>No puedes usar Forger para infringir leyes, dañar a otros, evadir controles de seguridad, distribuir malware, infringir propiedad intelectual, enviar comunicaciones ilegales o abusivas, extraer datos sin permiso, suplantar identidad, interferir con sistemas de Forger o intentar acceso no autorizado a sistemas de Forger, sistemas de terceros, servicios de Google, dispositivos de usuarios o apps instaladas.</p>
+
+    <h2>Servicios de terceros</h2>
+    <p>Forger puede interoperar con servicios de terceros, incluyendo Google, proveedores de IA, proveedores de hosting, proveedores de correo y plataformas de distribución de apps. Tu uso de esos servicios puede estar regulado por sus propios términos y políticas de privacidad. Forger no es responsable por servicios de terceros que no controla.</p>
 
     <h2>Sin garantía</h2>
-    <p>Forger se entrega según disponibilidad. No garantizamos operación ininterrumpida, ausencia de errores ni que una app o flujo de agente cubra todas tus necesidades.</p>
+    <p>Forger se entrega según disponibilidad. No garantizamos operación ininterrumpida, ausencia de errores, disponibilidad continua de Forger Cloud, éxito de backups, éxito de acceso remoto, compatibilidad con cada app o dispositivo, ni que una app, agente, automatización, acción de Gmail o flujo de IA cubra todas tus necesidades.</p>
 
     <h2>Limitación de responsabilidad</h2>
     <p>En la medida máxima permitida por la ley, Forger no será responsable por daños indirectos, incidentales, especiales, consecuenciales o punitivos, ni por pérdida de datos, ganancias u oportunidades comerciales derivadas del uso de la plataforma.</p>
+
+    <h2>Suspensión y terminación</h2>
+    <p>Podemos suspender o restringir acceso a funciones de Forger Cloud cuando sea necesario para proteger usuarios, cumplir la ley, responder a problemas de seguridad, prevenir abuso u operar el servicio. Puedes dejar de usar Forger en cualquier momento y puedes solicitar ayuda sobre cuenta o datos mediante el canal de soporte publicado.</p>
 
     <h2>Cambios</h2>
     <p>Podemos actualizar estos términos a medida que el producto evoluciona. El uso continuo de Forger después de los cambios implica aceptación de los términos actualizados.</p>
