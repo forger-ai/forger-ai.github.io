@@ -23,6 +23,8 @@ export default {
       badges: ['Open-source', 'Local-first', 'AI-powered', 'Cloud-ready'],
       ctaPrimary: 'Descargar Forger',
       ctaSecondary: 'Ver apps',
+      betaNote:
+        'Forger Desktop está en beta. Empieza con Finance OS, y pueden aparecer apps de acceso temprano para pruebas mientras evoluciona el catálogo.',
       windows: 'Descargar para Windows',
       blog: 'Leer el blog',
     },
@@ -80,16 +82,16 @@ export default {
 
     apps: {
       eyebrow: 'Apps disponibles',
-      title: 'Empieza con Finance OS',
+      title: 'Empieza con Finance OS beta',
       body:
-        'Finance OS es la primera app fuerte del ecosistema: una herramienta local para ordenar finanzas personales con revisión asistida, dashboards y presupuestos por periodo.',
-      available: 'Disponible',
+        'Finance OS es la primera app beta del ecosistema: una herramienta local para ordenar finanzas personales con revisión asistida, dashboards y presupuestos por periodo. Está disponible para uso beta mientras el catálogo sigue madurando.',
+      available: 'Beta',
       cardCta: 'Ver landing de Finance OS',
-      nextLabel: 'Ecosistema',
-      nextTitle: 'Más apps personales sobre el mismo stack',
+      nextLabel: 'Próximas y acceso temprano',
+      nextTitle: 'Más apps personales pueden aparecer para pruebas',
       nextBody:
-        'Forger está diseñado para que una misma capa local pueda instalar, operar y adaptar distintas apps abiertas, cada una con sus propios datos.',
-      future: ['Recetas locales', 'CRM personal', 'Inventario del hogar'],
+        'Forger puede mostrar apps próximas o de acceso temprano a medida que se expande la beta de Desktop. Trátalas como experiencias de prueba, no como herramientas estables de producción.',
+      future: ['Recetas locales — acceso temprano', 'CRM personal — próximamente', 'Inventario del hogar — próximamente'],
     },
 
     trust: {
@@ -139,14 +141,14 @@ export default {
 
     beta: {
       tag: 'Beta abierta',
-      title: 'Forger Desktop está en beta temprana y empieza con apps open-source.',
+      title: 'Forger Desktop es software beta y empieza con Finance OS.',
       body:
-        'Hoy el foco está en el core local, la instalación de apps y las primeras experiencias como Finance OS. Para usar capacidades de IA puedes conectar una cuenta compatible cuando la app lo solicite.',
+        'Hoy el foco está en el core local, la instalación de apps y Finance OS beta. Pueden aparecer apps de acceso temprano para pruebas a medida que crece el catálogo. Sirven para feedback, pero no deben tratarse como apps estables de producción.',
       items: [
-        'Apps corriendo localmente',
+        'Finance OS disponible como primera app beta',
         'Workspace privado para apps instaladas',
-        'Primeras apps base open-source',
-        'Forger Cloud se presenta como capa futura opcional',
+        'Pueden aparecer apps de acceso temprano para pruebas',
+        'Forger Cloud se presenta como capa opcional mientras madura',
       ],
     },
 

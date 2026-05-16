@@ -23,6 +23,8 @@ export default {
       badges: ['Open-source', 'Local-first', 'AI-powered', 'Cloud-ready'],
       ctaPrimary: 'Download Forger',
       ctaSecondary: 'View apps',
+      betaNote:
+        'Forger Desktop is in beta. It starts with Finance OS, and early-access apps may appear for testing as the catalog evolves.',
       windows: 'Download for Windows',
       blog: 'Read the blog',
     },
@@ -80,16 +82,16 @@ export default {
 
     apps: {
       eyebrow: 'Available apps',
-      title: 'Start with Finance OS',
+      title: 'Start with Finance OS beta',
       body:
-        'Finance OS is the first strong app in the ecosystem: a local tool for organizing personal finances with assisted review, dashboards, and budgets by period.',
-      available: 'Available',
+        'Finance OS is the first beta app in the ecosystem: a local tool for organizing personal finances with assisted review, dashboards, and budgets by period. It is available for beta use while the catalog continues to mature.',
+      available: 'Beta',
       cardCta: 'View Finance OS landing',
-      nextLabel: 'Ecosystem',
-      nextTitle: 'More personal apps on the same stack',
+      nextLabel: 'Coming and early access',
+      nextTitle: 'More personal apps may appear for testing',
       nextBody:
-        'Forger is designed so one local layer can install, operate, and adapt different open apps, each with its own data.',
-      future: ['Local recipes', 'Personal CRM', 'Home inventory'],
+        'Forger may show upcoming or early-access apps as the desktop beta expands. Treat them as test experiences, not stable production tools.',
+      future: ['Local recipes — early access', 'Personal CRM — coming', 'Home inventory — coming'],
     },
 
     trust: {
@@ -139,14 +141,14 @@ export default {
 
     beta: {
       tag: 'Open beta',
-      title: 'Forger Desktop is in early beta and starts with open-source apps.',
+      title: 'Forger Desktop is beta software and starts with Finance OS.',
       body:
-        'Today the focus is the local core, app installation, and first experiences like Finance OS. To use AI capabilities, you can connect a compatible account when an app asks for it.',
+        'Today the focus is the local core, app installation, and Finance OS beta. Early-access apps may appear for testing as the catalog grows. They are useful for feedback, but they should not be treated as stable production apps.',
       items: [
-        'Apps running locally',
+        'Finance OS available as the starting beta app',
         'Private workspace for installed apps',
-        'First open-source base apps',
-        'Forger Cloud is presented as a future optional layer',
+        'Early-access apps may appear for testing',
+        'Forger Cloud is presented as an optional layer as it matures',
       ],
     },
 
