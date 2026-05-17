@@ -7,17 +7,19 @@ const lang = 'en';
 <BaseLayout title="Terms and Conditions — Forger" description="Terms for using Forger Desktop, Forger Cloud, Google/Gmail tools, the app catalog, reviews, feedback, backups, remote access, and local apps." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Terms and Conditions</h1>
-    <p><strong>Last updated:</strong> May 9, 2026</p>
+    <p><strong>Last updated:</strong> May 17, 2026</p>
 
     <h2>Overview</h2>
     <p>These terms govern your use of Forger Desktop, Forger Cloud, the app catalog, app downloads and updates, ratings, reviews, feedback, backups, paired devices, remote access sessions, Google/Gmail tools, AI-assisted workflows, automations, and related services. By using Forger, you agree to these terms.</p>
 
     <h2>Local apps</h2>
     <p>Forger installs apps into a private workspace on your computer. Installed apps are real local code with their own data, services, interfaces, scripts, and agent capabilities. You are responsible for the data you choose to load, create, import, export, modify, delete, or share with each installed app.</p>
+    <p>You can use Forger locally without sharing local app data with third parties when you do not enable cloud, agent, connected tool, backup, remote access, or other features that send information outside your device.</p>
     <p>You must not use an app to access files, accounts, systems, or data that you do not have permission to use. If an app or agent changes local data or code, you are responsible for reviewing the result before relying on it.</p>
 
     <h2>Forger Cloud accounts</h2>
     <p>You may need a confirmed Forger Cloud account to use account-based features such as publishing reviews, updating your own reviews, sending authenticated feedback, uploading backups, pairing devices, using remote access, connecting Gmail, or using other cloud-backed features. You are responsible for keeping your account credentials secure and for activity under your account.</p>
+    <p>If you create an account or use Forger Cloud, Forger stores the registration, account, device, and cloud feature information needed to provide those services.</p>
 
     <h2>Catalog, downloads, and versions</h2>
     <p>The Forger catalog provides metadata about apps, versions, capabilities, supported platforms, required services, tool declarations, prompts, agents, release notes, file sizes, checksums, and download URLs. Downloads may be counted with or without an account. We may update, hide, remove, revoke, or replace app versions when needed for quality, security, policy, legal, or operational reasons.</p>
@@ -31,7 +33,14 @@ const lang = 'en';
 
     <h2>AI-assisted workflows</h2>
     <p>Forger may help you use AI tools to inspect, explain, operate, or modify installed apps. This includes app agents, AI tasks, Chat Forger, and automations. AI-generated output can be incomplete, incorrect, unsafe, or unsuitable for your situation. You are responsible for reviewing outputs, proposed changes, sent messages, imported data, generated files, and automation results before relying on them.</p>
+    <p>If you connect ChatGPT/Codex, Claude, or another AI provider, the content needed for the task may be sent to that provider under the provider's own terms and privacy policy.</p>
     <p>Automations are non-interactive. If you enable an automation and give it access to apps or configured tools, it may run later without asking for per-tool approval. Do not enable automations for actions you are not comfortable having performed automatically.</p>
+
+    <h2>Usage analytics</h2>
+    <p>Usage analytics are optional. If you enable them, Forger may send product usage events using a random installation identifier. These events do not include personal content, local app data, files, chats, credentials, prompts, file names, or message text. You can disable usage analytics from Forger Desktop Settings.</p>
+
+    <h2>Encrypted user messages</h2>
+    <p>Messages between users are encrypted for devices. Forger Cloud routes and may store encrypted envelopes, but it cannot recover the plaintext content of those messages.</p>
 
     <h2>Google and Gmail tools</h2>
     <p>Forger can connect Gmail when you choose to authorize Google access. Gmail features may search messages, read messages and threads, read selected attachments, and send email using the permissions you grant. You are responsible for the Gmail account you connect, the prompts and automations you create, and any email sent through Forger.</p>

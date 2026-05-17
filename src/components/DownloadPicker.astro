@@ -21,6 +21,7 @@ const copy = {
     windows: 'Download for Windows',
     unsupported: 'Coming soon for this computer',
     available: 'Available',
+    betaNote: 'Forger is in open beta',
   },
   es: {
     detecting: 'Revisando tu computador...',
@@ -33,6 +34,7 @@ const copy = {
     windows: 'Descargar para Windows',
     unsupported: 'Pronto para este computador',
     available: 'Disponible',
+    betaNote: 'Forger está en open beta',
   },
 }[lang];
 
@@ -40,52 +42,59 @@ const macArmUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/d
 const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-windows-x64.exe';
 ---
 
-<div
-  class="download-picker relative z-[100] inline-flex items-stretch"
-  data-lang={lang}
-  data-mac-arm-url={macArmUrl}
-  data-windows-x64-url={windowsX64Url}
-  data-detecting={copy.detecting}
-  data-compact={compact ? 'true' : 'false'}
-  data-nav={copy.nav}
-  data-fallback={copy.fallback}
-  data-soon={copy.soon}
-  data-mac-arm={copy.macArm}
-  data-mac-intel-soon={copy.macIntelSoon}
-  data-windows={copy.windows}
-  data-unsupported={copy.unsupported}
->
-  <a
-    data-download-primary
-    href={macArmUrl}
-    class={`${compact ? 'px-4 py-1.5' : 'px-6 py-3'} inline-flex items-center justify-center gap-2 rounded-l-full bg-brand text-sm font-semibold text-white transition-colors hover:bg-brand-dark`}
+<div class={`${compact ? 'inline-flex' : 'inline-flex flex-col items-center gap-2'}`}>
+  <div
+    class="download-picker relative z-[100] inline-flex items-stretch"
+    data-lang={lang}
+    data-mac-arm-url={macArmUrl}
+    data-windows-x64-url={windowsX64Url}
+    data-detecting={copy.detecting}
+    data-compact={compact ? 'true' : 'false'}
+    data-nav={copy.nav}
+    data-fallback={copy.fallback}
+    data-soon={copy.soon}
+    data-mac-arm={copy.macArm}
+    data-mac-intel-soon={copy.macIntelSoon}
+    data-windows={copy.windows}
+    data-unsupported={copy.unsupported}
   >
-    <Download size={compact ? 15 : 17} />
-    <span data-download-label>{copy.nav}</span>
-  </a>
-
-  <details class="group relative z-[90]" data-download-details>
-    <summary
-      class={`${compact ? 'h-8 w-9' : 'h-full w-12'} inline-flex cursor-pointer list-none items-center justify-center rounded-r-full border-l border-white/20 bg-brand text-white transition-colors hover:bg-brand-dark [&::-webkit-details-marker]:hidden`}
-      aria-label={copy.other}
+    <a
+      data-download-primary
+      href={macArmUrl}
+      class={`${compact ? 'px-4 py-1.5' : 'px-6 py-3'} inline-flex items-center justify-center gap-2 rounded-l-full bg-brand text-sm font-semibold text-white transition-colors hover:bg-brand-dark`}
     >
-      <ChevronDown size={compact ? 15 : 16} class="transition-transform group-open:rotate-180" />
-    </summary>
-    <div class="absolute right-0 z-[100] mt-2 w-72 overflow-hidden rounded-2xl border border-white/10 bg-[#1b2229] shadow-2xl shadow-black/60">
-      <a href={windowsX64Url} class="block px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
-        <span class="block font-semibold">{copy.windows}</span>
-        <span class="mt-1 block text-xs text-zinc-500">Windows x64 · Intel / AMD</span>
-      </a>
-      <a href={macArmUrl} class="block border-t border-white/10 px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
-        <span class="block font-semibold">{copy.macArm}</span>
-        <span class="mt-1 block text-xs text-zinc-500">macOS arm64 · Apple silicon</span>
-      </a>
-      <div class="border-t border-white/10 px-4 py-3 text-sm text-zinc-500">
-        <span class="block font-semibold text-zinc-400">{copy.macIntelSoon}</span>
-        <span class="mt-1 block text-xs">macOS x64 · Intel</span>
+      <Download size={compact ? 15 : 17} />
+      <span data-download-label>{copy.nav}</span>
+    </a>
+
+    <details class="group relative z-[90]" data-download-details>
+      <summary
+        class={`${compact ? 'h-8 w-9' : 'h-full w-12'} inline-flex cursor-pointer list-none items-center justify-center rounded-r-full border-l border-white/20 bg-brand text-white transition-colors hover:bg-brand-dark [&::-webkit-details-marker]:hidden`}
+        aria-label={copy.other}
+      >
+        <ChevronDown size={compact ? 15 : 16} class="transition-transform group-open:rotate-180" />
+      </summary>
+      <div class="absolute right-0 z-[100] mt-2 w-72 overflow-hidden rounded-2xl border border-white/10 bg-[#1b2229] shadow-2xl shadow-black/60">
+        <a href={windowsX64Url} class="block px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
+          <span class="block font-semibold">{copy.windows}</span>
+          <span class="mt-1 block text-xs text-zinc-500">Windows x64 · Intel / AMD</span>
+        </a>
+        <a href={macArmUrl} class="block border-t border-white/10 px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
+          <span class="block font-semibold">{copy.macArm}</span>
+          <span class="mt-1 block text-xs text-zinc-500">macOS arm64 · Apple silicon</span>
+        </a>
+        <div class="border-t border-white/10 px-4 py-3 text-sm text-zinc-500">
+          <span class="block font-semibold text-zinc-400">{copy.macIntelSoon}</span>
+          <span class="mt-1 block text-xs">macOS x64 · Intel</span>
+        </div>
       </div>
-    </div>
-  </details>
+    </details>
+  </div>
+  {!compact && (
+    <span class="rounded-full border border-brand/20 bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
+      {copy.betaNote}
+    </span>
+  )}
 </div>
 
 <script is:inline>
