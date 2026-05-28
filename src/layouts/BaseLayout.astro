@@ -36,6 +36,7 @@ const githubUrl = 'https://github.com/forger-ai';
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={altLang} href={new URL(altPath, Astro.site)} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="google" content="notranslate" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -58,9 +59,9 @@ const githubUrl = 'https://github.com/forger-ai';
   <body class="bg-surface-base text-zinc-100 font-sans antialiased">
     <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-surface-base/80 backdrop-blur-md">
       <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href={localePath(lang, '/')} class="flex items-center gap-2.5">
-          <img src="/icon-dark.svg" alt="Forger" class="w-9 h-9" />
-          <span class="text-white text-xl font-light" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.35em;">FORGER</span>
+        <a href={localePath(lang, '/')} class="flex items-center gap-2.5" translate="no">
+          <img src="/icon-dark.svg" alt="Forger" class="w-9 h-9 notranslate" translate="no" />
+          <span class="notranslate text-white text-xl font-light" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.35em;" translate="no">FORGER</span>
         </a>
         <div class="flex items-center gap-5 text-sm text-zinc-400">
           <a href={`${localePath(lang, '/')}#what`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.what}</a>
@@ -75,7 +76,9 @@ const githubUrl = 'https://github.com/forger-ai';
           >
             {altLang === 'es' ? 'ES' : 'EN'}
           </a>
-          <DownloadPicker lang={lang} compact />
+          <div class="hidden sm:inline-flex">
+            <DownloadPicker lang={lang} compact />
+          </div>
         </div>
       </nav>
     </header>
@@ -90,7 +93,7 @@ const githubUrl = 'https://github.com/forger-ai';
           {i18n.footer.contact}{' '}
           <a href="mailto:hello@forger.cloud" class="font-medium text-brand transition-colors hover:text-brand-dark">hello@forger.cloud</a>
         </p>
-        <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="font-semibold text-zinc-400">FORGER</span>. {i18n.footer.rights}</p>
+        <p>© {new Date().getFullYear()} <span style="font-family: 'Poppins', sans-serif; letter-spacing: 0.25em;" class="notranslate font-semibold text-zinc-400" translate="no">FORGER</span>. {i18n.footer.rights}</p>
         <div class="flex items-center gap-4">
           <a href={localePath(lang, '/privacy')} class="hover:text-zinc-300 transition-colors">{i18n.footer.privacy}</a>
           <a href={localePath(lang, '/terms')} class="hover:text-zinc-300 transition-colors">{i18n.footer.terms}</a>

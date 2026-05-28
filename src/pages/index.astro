@@ -10,8 +10,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lan
 ---
 
 <BaseLayout
-  title="Forger — The app store from the future"
-  description="Open, private, AI-powered apps that run locally on your computer."
+  title="Forger — Create intelligent apps"
+  description="Create local apps that understand your data, save repeated tasks, and work with you through an intelligent agent."
   lang={lang}
 >
   <HomePage lang={lang} posts={posts} />

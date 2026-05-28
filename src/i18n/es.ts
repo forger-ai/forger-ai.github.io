@@ -16,148 +16,150 @@ export default {
   },
   home: {
     hero: {
-      title1: 'La app store',
-      title2: 'del futuro.',
+      title1: 'Crea apps inteligentes',
+      title2: 'para tu vida y tu trabajo.',
       subtitle:
-        'Apps abiertas, privadas y potenciadas por IA. Instala herramientas locales, conversa con sus datos y adáptalas a tu forma de trabajar.',
-      badges: ['Open-source', 'Local-first', 'AI-powered', 'Cloud-ready'],
+        'Forger te permite crear apps propias que entienden tus datos, guardan tareas frecuentes y pueden trabajar contigo mediante un agente inteligente.',
+      badges: ['Apps inteligentes', 'Tareas con agente', 'Espacio privado', 'Compartibles'],
       ctaPrimary: 'Descargar Forger',
-      ctaSecondary: 'Ver apps',
+      ctaSecondary: 'Ver ejemplos',
       betaNote:
-        'Forger Desktop está en beta. Empieza con Finance OS, y pueden aparecer apps de acceso temprano para pruebas mientras evoluciona el catálogo.',
+        'Forger Desktop está en beta. Hoy puedes crear y adaptar apps locales, probar Finance OS como app curada y explorar ejemplos de lo que podrías construir.',
       windows: 'Descargar para Windows',
       blog: 'Leer el blog',
     },
 
     what: {
       eyebrow: 'Qué es Forger',
-      title: 'Apps reales, corriendo en tu computador',
+      title: 'Apps que hacen más que guardar información',
       body:
-        'Forger no es otro dashboard en la nube. Es una forma de instalar y usar aplicaciones abiertas en tu propio espacio local, con una capa de IA que entiende cada app y sus datos.',
+        'En Forger, una app puede organizar datos, mostrar pantallas útiles y ejecutar tareas guardadas con ayuda de un agente inteligente. Puedes crear una app para una necesidad concreta, pedirle cambios y compartirla con personas de confianza.',
       points: [
         {
-          title: 'Apps abiertas',
-          body: 'El core local, el contrato de apps y las primeras apps base parten desde código abierto y verificable.',
+          title: 'Apps propias',
+          body: 'Crea herramientas para tus procesos, datos o ideas, sin partir desde una app genérica.',
         },
         {
-          title: 'Local-first',
-          body: 'Las apps se instalan en un workspace privado y trabajan con los datos que decides cargar en cada una.',
+          title: 'Tareas inteligentes',
+          body: 'Guarda acciones frecuentes para que el agente pueda repetirlas cuando las necesites.',
         },
         {
-          title: 'IA contextual',
-          body: 'La IA no reemplaza la app: ayuda a consultarla, entenderla y adaptarla con cambios concretos.',
+          title: 'Adaptables',
+          body: 'Pide ajustes en lenguaje normal y la app puede evolucionar contigo.',
         },
       ],
     },
 
     chat: {
       eyebrow: 'Adaptación de apps',
-      title: 'Personaliza apps como tú quieras',
+      title: 'Pídele cambios como hablarías con una persona',
       body:
-        'Pídele a Forger un cambio concreto y el asistente trabaja dentro de la app local, en vez de reemplazarla por un chat genérico.',
+        'Puedes pedirle a Forger que agregue una vista, cambie un flujo, revise datos o prepare una tarea nueva dentro de una app. El agente trabaja sobre la app, no en un chat aislado.',
       privacyNote:
-        'Para usar funciones de IA, Forger usa la cuenta o suscripción que tú conectas. Los datos de tus apps se manejan localmente en tu workspace, y Forger no tiene acceso a tus datos financieros.',
+        'Tus apps viven en tu espacio local. Forger trabaja con los datos que decides cargar o compartir con cada app.',
     },
 
     how: {
       eyebrow: 'Cómo funciona',
-      title: 'Una capa de IA para potenciar múltiples apps',
+      title: 'Crea una app, guarda tareas y úsala con un agente',
       body:
-        'Forger Desktop instala apps locales, prepara su entorno y conecta cada app con la suscripción de ChatGPT que tú decidas usar.',
+        'Forger combina una app local con un agente que entiende qué puede hacer esa app. Así puedes usar pantallas normales cuando quieres control visual y pedir tareas inteligentes cuando quieres avanzar más rápido.',
       steps: [
         {
-          title: 'Instala y conecta',
-          body: 'Instala Forger y conecta tu suscripción de ChatGPT para que las apps usen una capa de IA bajo tu control.',
+          title: 'Descarga Forger',
+          body: 'Instala Forger Desktop para crear y ejecutar apps en tu espacio privado.',
         },
         {
-          title: 'Descarga apps',
-          body: 'Elige aplicaciones personales desde el catálogo y ejecútalas localmente en tu workspace privado.',
+          title: 'Crea o abre una app',
+          body: 'Parte desde una idea propia, desde un ejemplo o desde una app curada como Finance OS.',
         },
         {
-          title: 'Conversa y adapta',
-          body: 'Pregunta, revisa información o pide ajustes concretos sobre la app.',
+          title: 'Pide tareas inteligentes',
+          body: 'Guarda tareas frecuentes para que el agente pueda ejecutarlas dentro de la app cuando las necesites.',
         },
       ],
     },
 
-    apps: {
-      eyebrow: 'Apps disponibles',
-      title: 'Empieza con Finance OS beta',
+    examples: {
+      eyebrow: 'Ejemplos',
+      title: 'Ejemplos de apps inteligentes',
       body:
-        'Finance OS es la primera app beta del ecosistema: una herramienta local para ordenar finanzas personales con revisión asistida, dashboards y presupuestos por periodo. Está disponible para uso beta mientras el catálogo sigue madurando.',
+        'Forger sirve para crear apps pequeñas y útiles alrededor de tareas reales. Por ejemplo: una app de entrenamiento de ajedrez, una app de resumen diario de correos, o una app de recetas y macros.',
+    },
+
+    apps: {
+      eyebrow: 'App curada disponible',
+      title: 'Empieza con Finance OS',
+      body:
+        'Finance OS es la app curada disponible hoy: una herramienta local para ordenar finanzas personales con revisión asistida, dashboards y presupuestos por periodo.',
       available: 'Beta',
-      cardCta: 'Ver landing de Finance OS',
-      nextLabel: 'Próximas y acceso temprano',
-      nextTitle: 'Más apps personales pueden aparecer para pruebas',
-      nextBody:
-        'Forger puede mostrar apps próximas o de acceso temprano a medida que se expande la beta de Desktop. Trátalas como experiencias de prueba, no como herramientas estables de producción.',
-      future: ['Recetas locales — acceso temprano', 'CRM personal — próximamente', 'Inventario del hogar — próximamente'],
+      cardCta: 'Ver Finance OS',
     },
 
     trust: {
       cards: [
         {
-          title: 'Tus apps. Tus datos. Tu computador.',
+          title: 'Tus apps en tu espacio privado',
           body:
-            'Las apps instaladas viven en un workspace privado. El acceso a archivos externos ocurre cuando tú los compartes con una app para una tarea concreta.',
+            'Las apps instaladas viven en tu computador y trabajan con los datos que decides cargar.',
         },
         {
-          title: 'Seguridad como base del desktop',
+          title: 'El agente actúa dentro de cada app',
           body:
-            'Forger Desktop está diseñado alrededor de límites locales, permisos explícitos y una separación clara entre la interfaz, el runtime y las apps instaladas.',
+            'Las tareas inteligentes usan el contexto y las capacidades de la app, no instrucciones sueltas sin estructura.',
         },
         {
-          title: 'Un core abierto para apps personales',
+          title: 'Crea, adapta y comparte',
           body:
-            'Forger Desktop, el runtime local, el contrato de apps y las primeras apps base forman el núcleo abierto del ecosistema.',
+            'Cuando una app te sirve, puedes ajustarla para tu forma de trabajar y compartirla con personas cercanas.',
         },
       ],
     },
 
     cloud: {
       eyebrow: 'Forger Cloud',
-      title: 'Cloud cuando tenga sentido, no por defecto',
+      title: 'Cloud para compartir y continuar, no para reemplazar tu espacio local',
       body:
-        'Forger Cloud será la capa opcional para sincronización, hosting administrado, acceso móvil, backups y ejecución remota. El punto de partida sigue siendo local: Forger Desktop y apps abiertas en tu máquina.',
+        'Forger Cloud complementa la experiencia local con cuenta, sincronización, compartir apps y acceso desde más lugares cuando tenga sentido. El punto de partida sigue siendo una app propia en tu espacio privado.',
       items: [
         {
+          title: 'Compartir apps',
+          body: 'Para enviar una app útil a amigos o personas de confianza.',
+        },
+        {
           title: 'Sincronización',
-          body: 'Para llevar tus apps personales a más dispositivos cuando lo necesites.',
-        },
-        {
-          title: 'Hosting administrado',
-          body: 'Para usar apps sin administrar infraestructura local.',
-        },
-        {
-          title: 'Acceso móvil',
-          body: 'Para consultar o operar apps desde el teléfono.',
+          body: 'Para mantener continuidad entre dispositivos cuando lo necesites.',
         },
         {
           title: 'Backups',
-          body: 'Para proteger el workspace sin cambiar el modelo local-first.',
+          body: 'Para proteger tu espacio de apps.',
+        },
+        {
+          title: 'Acceso remoto',
+          body: 'Para usar tus apps desde más lugares cuando esté disponible.',
         },
       ],
     },
 
     beta: {
       tag: 'Beta abierta',
-      title: 'Forger Desktop es software beta y empieza con Finance OS.',
+      title: 'Forger Desktop está en beta y el foco es crear apps inteligentes.',
       body:
-        'Hoy el foco está en el core local, la instalación de apps y Finance OS beta. Pueden aparecer apps de acceso temprano para pruebas a medida que crece el catálogo. Sirven para feedback, pero no deben tratarse como apps estables de producción.',
+        'Hoy Forger permite crear, ejecutar y adaptar apps locales. Finance OS está disponible como app curada, y los ejemplos muestran el tipo de apps inteligentes que puedes construir.',
       items: [
-        'Finance OS disponible como primera app beta',
-        'Workspace privado para apps instaladas',
-        'Pueden aparecer apps de acceso temprano para pruebas',
-        'Forger Cloud se presenta como capa opcional mientras madura',
+        'Crea apps propias',
+        'Guarda tareas para el agente',
+        'Usa Finance OS como app curada',
+        'Comparte apps con personas de confianza',
       ],
     },
 
     finalCta: {
-      title: 'Construye tu propio espacio de apps personales',
+      title: 'Descarga Forger y crea tu primera app inteligente',
       body:
-        'Descarga Forger Desktop, instala las primeras apps open-source y empieza por una experiencia local, privada y adaptable.',
+        'Parte con una idea concreta, convierte tareas repetidas en acciones guardadas y usa un agente para trabajar dentro de tu app.',
       primary: 'Descargar Forger',
-      secondary: 'Ver apps',
+      secondary: 'Ver ejemplos',
     },
 
     fromBlog: 'Del blog',
