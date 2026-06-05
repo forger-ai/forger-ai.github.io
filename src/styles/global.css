@@ -87,6 +87,49 @@
   animation: pulse-line 2.8s ease-in-out infinite;
 }
 
+.docs-prose {
+  color: rgb(212 212 216);
+  line-height: 1.75;
+}
+
+.docs-prose h2 {
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.docs-prose h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.docs-prose p {
+  margin-top: 1rem;
+}
+
+.docs-prose ul {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.docs-prose li {
+  margin-top: 0.4rem;
+}
+
+.docs-prose code {
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.12rem 0.3rem;
+  color: rgb(251 146 60);
+  font-size: 0.9em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -5,6 +5,7 @@ export default {
     privacy: 'Privacidad',
     cloud: 'Cloud',
     blog: 'Blog',
+    docs: 'Docs',
     download: 'Descargar',
   },
   footer: {
