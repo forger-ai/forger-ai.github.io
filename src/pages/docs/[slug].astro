@@ -1,0 +1,15 @@
+---
+import DocsPage from '../../components/DocsPage.astro';
+import { forgerDocsBundle } from '../../data/forger-docs.generated';
+
+export function getStaticPaths() {
+  return forgerDocsBundle.docs.en.map((doc) => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+---
+
+<DocsPage lang="en" doc={doc} />

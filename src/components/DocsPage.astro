@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { forgerDocsBundle, type ForgerDocEntry, type ForgerDocsLanguage } from '../data/forger-docs.generated';
+import { localePath } from '../i18n/utils';
+
+interface Props {
+  lang: ForgerDocsLanguage;
+  doc?: ForgerDocEntry;
+}
+
+const { lang, doc } = Astro.props;
+const docs = [...forgerDocsBundle.docs[lang]].sort((a, b) => a.order - b.order);
+const current = doc ?? docs[0];
+const title = doc
+  ? `${current.title} - ${forgerDocsBundle.title[lang]}`
+  : forgerDocsBundle.title[lang];
+const description = doc?.description ?? forgerDocsBundle.subtitle[lang];
+const docsRoot = localePath(lang, '/docs');
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <section class="pt-28 pb-8 border-b border-white/5 bg-surface-raised/40">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-sm uppercase tracking-[0.28em] text-brand font-semibold">Forger Docs</p>
+      <h1 class="mt-4 text-4xl md:text-5xl font-semibold text-white">{forgerDocsBundle.title[lang]}</h1>
+      <p class="mt-4 max-w-3xl text-lg text-zinc-300">{forgerDocsBundle.subtitle[lang]}</p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <div class="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <aside class="lg:sticky lg:top-24 self-start">
+        <nav class="rounded-lg border border-white/10 bg-white/[0.03] p-2">
+          <a
+            href={docsRoot}
+            class:list={[
+              'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              !doc ? 'bg-white/10 text-white' : 'text-zinc-400 hover:text-white hover:bg-white/5',
+            ]}
+          >
+            {lang === 'es' ? 'Inicio de docs' : 'Docs home'}
+          </a>
+          {docs.map((item) => {
+            const isCurrent = current.slug === item.slug;
+            return (
+              <details class="group mt-1" open={isCurrent}>
+                <summary
+                  class:list={[
+                    'flex cursor-pointer list-none items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    isCurrent ? 'bg-brand/15 text-brand' : 'text-zinc-400 hover:bg-white/5 hover:text-white',
+                  ]}
+                >
+                  <a href={`${docsRoot}/${item.slug}`} class="min-w-0 flex-1 truncate">{item.title}</a>
+                  <span class="ml-2 text-xs text-zinc-500 transition-transform group-open:rotate-90">›</span>
+                </summary>
+                <div class="ml-3 mt-1 border-l border-white/10 pl-2">
+                  {item.headings.map((heading) => (
+                    <a
+                      href={`${docsRoot}/${item.slug}#${heading.id}`}
+                      class="block rounded-md px-2 py-1.5 text-xs text-zinc-500 transition-colors hover:bg-white/5 hover:text-zinc-200"
+                    >
+                      {heading.title}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
+        </nav>
+      </aside>
+
+      <article class="min-w-0">
+        {!doc ? (
+          <div class="grid gap-3 sm:grid-cols-2">
+            {docs.map((item) => (
+              <a href={`${docsRoot}/${item.slug}`} class="rounded-lg border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-brand/50 hover:bg-white/[0.05]">
+                <h2 class="text-lg font-semibold text-white">{item.title}</h2>
+                <p class="mt-2 text-sm text-zinc-400">{item.description}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div class="max-w-3xl">
+            <h1 class="text-3xl md:text-4xl font-semibold text-white">{current.title}</h1>
+            <p class="mt-3 text-lg text-zinc-300">{current.description}</p>
+            <div class="docs-prose mt-8" set:html={current.html} />
+          </div>
+        )}
+      </article>
+    </div>
+  </section>
+</BaseLayout>

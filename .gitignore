@@ -1,5 +1,7 @@
 # build output
 dist/
+src/data/forger-docs.generated.ts
+.forger-docs/
 # generated types
 .astro/
 
