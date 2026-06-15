@@ -24,8 +24,8 @@ export default {
       badges: ['Apps inteligentes', 'Tareas con agente', 'Espacio privado', 'Compartibles'],
       ctaPrimary: 'Descargar Forger',
       ctaSecondary: 'Ver ejemplos',
-      betaNote:
-        'Forger Desktop está en beta. Hoy puedes crear y adaptar apps locales, probar Finance OS como app curada y explorar ejemplos de lo que podrías construir.',
+      experimentalNote:
+        'Forger Desktop es un release experimental. Hoy puedes crear y adaptar apps locales, probar Finance OS como app curada y explorar ejemplos de lo que podrías construir.',
       windows: 'Descargar para Windows',
       blog: 'Leer el blog',
     },
@@ -93,7 +93,7 @@ export default {
       title: 'Empieza con Finance OS',
       body:
         'Finance OS es la app curada disponible hoy: una herramienta local para ordenar finanzas personales con revisión asistida, dashboards y presupuestos por periodo.',
-      available: 'Beta',
+      available: 'Release experimental',
       cardCta: 'Ver Finance OS',
     },
 
@@ -142,9 +142,9 @@ export default {
       ],
     },
 
-    beta: {
-      tag: 'Beta abierta',
-      title: 'Forger Desktop está en beta y el foco es crear apps inteligentes.',
+    experimental: {
+      tag: 'Release experimental',
+      title: 'Forger Desktop es un release experimental enfocado en crear apps inteligentes.',
       body:
         'Hoy Forger permite crear, ejecutar y adaptar apps locales. Finance OS está disponible como app curada, y los ejemplos muestran el tipo de apps inteligentes que puedes construir.',
       items: [

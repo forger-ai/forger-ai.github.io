@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 
 const repo = process.env.FORGER_DESKTOP_REPO ?? 'forger-ai/forger-desktop';
 const outputDir = path.resolve('dist', 'desktop-versions');
@@ -14,10 +15,32 @@ const assetRules = [
     kind: 'dmg',
   },
   {
+    name: 'forger-desktop-macos-x64.dmg',
+    platform: 'darwin',
+    arch: 'x64',
+    kind: 'dmg',
+    experimental: true,
+  },
+  {
     name: 'forger-desktop-windows-x64.exe',
     platform: 'win32',
     arch: 'x64',
     kind: 'nsis',
+    experimental: true,
+  },
+  {
+    name: 'forger-desktop-linux-x64.deb',
+    platform: 'linux',
+    arch: 'x64',
+    kind: 'deb',
+    experimental: true,
+  },
+  {
+    name: 'forger-desktop-windows-arm64.exe',
+    platform: 'win32',
+    arch: 'arm64',
+    kind: 'nsis',
+    experimental: true,
   },
 ];
 
@@ -71,7 +94,7 @@ const parseReleaseNotes = (body, version) => {
   };
 };
 
-const parseSha256 = async (asset) => {
+export const parseSha256 = async (asset) => {
   const checksumAsset = asset.releaseAssets.find((candidate) => candidate.name === `${asset.name}.sha256`);
   if (!checksumAsset?.browser_download_url) {
     return undefined;
@@ -81,7 +104,7 @@ const parseSha256 = async (asset) => {
   return match?.[1]?.toLowerCase();
 };
 
-const metadataForRelease = async (release) => {
+export const metadataForRelease = async (release) => {
   const version = versionFromRelease(release);
   if (!version || !release.published_at) {
     return null;
@@ -93,14 +116,18 @@ const metadataForRelease = async (release) => {
     if (!releaseAsset?.browser_download_url) {
       continue;
     }
-    assets.push({
+    const metadataAsset = {
       platform: rule.platform,
       arch: rule.arch,
       kind: rule.kind,
       url: releaseAsset.browser_download_url,
       sha256: await parseSha256({ ...rule, releaseAssets: release.assets }),
       size: releaseAsset.size,
-    });
+    };
+    if (rule.experimental) {
+      metadataAsset.experimental = true;
+    }
+    assets.push(metadataAsset);
   }
 
   if (assets.length === 0) {
@@ -116,7 +143,7 @@ const metadataForRelease = async (release) => {
   };
 };
 
-const validateMetadata = (metadata) => {
+export const validateMetadata = (metadata) => {
   if (metadata.schemaVersion !== 1) throw new Error(`Invalid schema for ${metadata.version}`);
   if (!/^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/.test(metadata.version)) {
     throw new Error(`Invalid semver for ${metadata.version}`);
@@ -135,10 +162,13 @@ const validateMetadata = (metadata) => {
     if (asset.sha256 && !/^[a-f0-9]{64}$/.test(asset.sha256)) {
       throw new Error(`Invalid checksum for ${metadata.version}: ${asset.url}`);
     }
+    if (asset.experimental !== undefined && asset.experimental !== true) {
+      throw new Error(`Invalid experimental flag for ${metadata.version}: ${asset.url}`);
+    }
   }
 };
 
-const main = async () => {
+export const main = async () => {
   const releases = await fetchJson(releaseApiUrl);
   if (!Array.isArray(releases)) {
     throw new Error('GitHub releases response is not an array');
@@ -176,4 +206,6 @@ const main = async () => {
   console.log(`Generated ${metadataEntries.length} desktop version metadata file(s).`);
 };
 
-await main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await main();
+}
