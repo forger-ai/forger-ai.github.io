@@ -17,11 +17,16 @@ const copy = {
     soon: 'Coming soon',
     other: 'Other downloads',
     macArm: 'Download for macOS Apple silicon',
-    macIntelSoon: 'macOS Intel coming soon',
-    windows: 'Download for Windows',
+    macIntel: 'Download for macOS Intel',
+    windowsX64: 'Download for Windows x64',
+    windowsArm: 'Download for Windows ARM',
+    linuxX64: 'Download for Ubuntu/Linux x64',
     unsupported: 'Coming soon for this computer',
     available: 'Available',
-    betaNote: 'Forger is in open beta',
+    stable: 'Stable release',
+    experimental: 'Experimental release',
+    experimentalNote:
+      'macOS Intel, Windows, and Linux releases are experimental, untested on those devices, and tester feedback is appreciated.',
   },
   es: {
     detecting: 'Revisando tu computador...',
@@ -30,16 +35,67 @@ const copy = {
     soon: 'Pronto',
     other: 'Otras descargas',
     macArm: 'Descargar para macOS Apple silicon',
-    macIntelSoon: 'macOS Intel pronto',
-    windows: 'Descargar para Windows',
+    macIntel: 'Descargar para macOS Intel',
+    windowsX64: 'Descargar para Windows x64',
+    windowsArm: 'Descargar para Windows ARM',
+    linuxX64: 'Descargar para Ubuntu/Linux x64',
     unsupported: 'Pronto para este computador',
     available: 'Disponible',
-    betaNote: 'Forger está en open beta',
+    stable: 'Release estable',
+    experimental: 'Release experimental',
+    experimentalNote:
+      'Las versiones para macOS Intel, Windows y Linux son experimentales, no están probadas en esos dispositivos y agradecemos feedback de testers.',
   },
 }[lang];
 
 const macArmUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-arm64.dmg';
+const macIntelUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-macos-x64.dmg';
 const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-windows-x64.exe';
+const windowsArmUrl = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-windows-arm64.exe';
+const linuxX64Url = 'https://github.com/forger-ai/forger-desktop/releases/latest/download/forger-desktop-linux-x64.deb';
+
+const downloadOptions = [
+  {
+    key: 'mac-arm',
+    href: macArmUrl,
+    label: copy.macArm,
+    meta: 'macOS arm64 · Apple silicon',
+    status: copy.stable,
+  },
+  {
+    key: 'mac-intel',
+    href: macIntelUrl,
+    label: copy.macIntel,
+    meta: 'macOS x64 · Intel',
+    status: copy.experimental,
+    experimental: true,
+  },
+  {
+    key: 'windows-x64',
+    href: windowsX64Url,
+    label: copy.windowsX64,
+    meta: 'Windows x64 · Intel / AMD',
+    status: copy.experimental,
+    experimental: true,
+  },
+  {
+    key: 'linux-x64',
+    href: linuxX64Url,
+    label: copy.linuxX64,
+    meta: 'Ubuntu/Linux x64 · .deb',
+    status: copy.experimental,
+    experimental: true,
+  },
+  {
+    key: 'windows-arm',
+    href: windowsArmUrl,
+    label: copy.windowsArm,
+    meta: 'Windows arm64',
+    status: copy.experimental,
+    experimental: true,
+    metadataOnly: true,
+  },
+];
 ---
 
 <div class={`${compact ? 'inline-flex' : 'inline-flex flex-col items-center gap-2'}`}>
@@ -47,15 +103,20 @@ const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/late
     class="download-picker relative z-[100] inline-flex items-stretch"
     data-lang={lang}
     data-mac-arm-url={macArmUrl}
+    data-mac-intel-url={macIntelUrl}
     data-windows-x64-url={windowsX64Url}
+    data-windows-arm-url={windowsArmUrl}
+    data-linux-x64-url={linuxX64Url}
     data-detecting={copy.detecting}
     data-compact={compact ? 'true' : 'false'}
     data-nav={copy.nav}
     data-fallback={copy.fallback}
     data-soon={copy.soon}
     data-mac-arm={copy.macArm}
-    data-mac-intel-soon={copy.macIntelSoon}
-    data-windows={copy.windows}
+    data-mac-intel={copy.macIntel}
+    data-windows-x64={copy.windowsX64}
+    data-windows-arm={copy.windowsArm}
+    data-linux-x64={copy.linuxX64}
     data-unsupported={copy.unsupported}
   >
     <a
@@ -75,24 +136,29 @@ const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/late
         <ChevronDown size={compact ? 15 : 16} class="transition-transform group-open:rotate-180" />
       </summary>
       <div class="absolute right-0 z-[100] mt-2 w-72 overflow-hidden rounded-2xl border border-white/10 bg-[#1b2229] shadow-2xl shadow-black/60">
-        <a href={windowsX64Url} class="block px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
-          <span class="block font-semibold">{copy.windows}</span>
-          <span class="mt-1 block text-xs text-zinc-500">Windows x64 · Intel / AMD</span>
-        </a>
-        <a href={macArmUrl} class="block border-t border-white/10 px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]">
-          <span class="block font-semibold">{copy.macArm}</span>
-          <span class="mt-1 block text-xs text-zinc-500">macOS arm64 · Apple silicon</span>
-        </a>
-        <div class="border-t border-white/10 px-4 py-3 text-sm text-zinc-500">
-          <span class="block font-semibold text-zinc-400">{copy.macIntelSoon}</span>
-          <span class="mt-1 block text-xs">macOS x64 · Intel</span>
-        </div>
+        {downloadOptions.map((option) => (
+          <a
+            href={option.href}
+            class={`${option.key === 'mac-arm' ? '' : 'border-t border-white/10'} ${option.metadataOnly ? 'hidden' : 'block'} px-4 py-3 text-sm text-zinc-200 transition-colors hover:bg-white/[0.05]`}
+            data-download-option={option.key}
+            data-metadata-only={option.metadataOnly ? 'true' : 'false'}
+          >
+            <span class="block font-semibold">{option.label}</span>
+            <span class="mt-1 block text-xs text-zinc-500">{option.meta}</span>
+            <span class={`mt-2 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold ${option.experimental ? 'border-amber-300/25 bg-amber-300/10 text-amber-200' : 'border-emerald-300/25 bg-emerald-300/10 text-emerald-200'}`}>
+              {option.status}
+            </span>
+          </a>
+        ))}
+        <p class="border-t border-white/10 px-4 py-3 text-xs leading-relaxed text-zinc-400">
+          {copy.experimentalNote}
+        </p>
       </div>
     </details>
   </div>
   {!compact && (
-    <span class="rounded-full border border-brand/20 bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
-      {copy.betaNote}
+    <span class="max-w-md rounded-2xl border border-amber-300/25 bg-amber-300/10 px-3 py-2 text-center text-xs font-semibold leading-relaxed text-amber-100">
+      {copy.experimentalNote}
     </span>
   )}
 </div>
@@ -113,7 +179,27 @@ const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/late
     for (const details of downloadDetails) details.removeAttribute('open');
   });
 
-  async function detectDownloadTarget() {
+  async function loadDesktopMetadataAssets() {
+    try {
+      const response = await fetch('/desktop-versions/latest.json', { cache: 'no-store' });
+      if (!response.ok) return new Map();
+      const metadata = await response.json();
+      if (!Array.isArray(metadata.assets)) return new Map();
+      return new Map(
+        metadata.assets
+          .filter((asset) => asset?.url && asset?.platform && asset?.arch)
+          .map((asset) => [`${asset.platform}:${asset.arch}`, asset]),
+      );
+    } catch {
+      return new Map();
+    }
+  }
+
+  function hasAsset(metadataAssets, platform, arch, options = {}) {
+    return (options.allowWithoutMetadata && metadataAssets.size === 0) || metadataAssets.has(`${platform}:${arch}`);
+  }
+
+  async function detectDownloadTarget(metadataAssets) {
     const nav = window.navigator;
     const ua = nav.userAgent || '';
     const platform = nav.userAgentData?.platform || nav.platform || '';
@@ -130,13 +216,16 @@ const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/late
 
     const isWindows = /Windows/i.test(platform) || /Windows/i.test(ua);
     const isMac = /Mac/i.test(platform) || /Mac OS X/i.test(ua);
+    const isLinux = /Linux|Ubuntu/i.test(platform) || /Linux|Ubuntu/i.test(ua);
     const isArm = /arm|aarch64/i.test(architecture);
     const isIntel = /x86|x64|amd64/i.test(architecture);
 
-    if (isWindows) return { kind: 'windows' };
-    if (isMac && isIntel) return { kind: 'mac-intel' };
+    if (isWindows && isArm && hasAsset(metadataAssets, 'win32', 'arm64')) return { kind: 'windows-arm' };
+    if (isWindows && hasAsset(metadataAssets, 'win32', 'x64', { allowWithoutMetadata: true })) return { kind: 'windows-x64' };
+    if (isMac && isIntel && hasAsset(metadataAssets, 'darwin', 'x64', { allowWithoutMetadata: true })) return { kind: 'mac-intel' };
     if (isMac && isArm) return { kind: 'mac-arm' };
     if (isMac) return { kind: 'mac-arm' };
+    if (isLinux && hasAsset(metadataAssets, 'linux', 'x64', { allowWithoutMetadata: true })) return { kind: 'linux-x64' };
     return { kind: 'unsupported' };
   }
 
@@ -148,20 +237,55 @@ const windowsX64Url = 'https://github.com/forger-ai/forger-desktop/releases/late
     label.textContent = text;
   }
 
-  const target = await detectDownloadTarget();
+  function updateOptionUrls(picker, metadataAssets) {
+    const optionAssetKeys = {
+      'mac-arm': 'darwin:arm64',
+      'mac-intel': 'darwin:x64',
+      'windows-x64': 'win32:x64',
+      'linux-x64': 'linux:x64',
+      'windows-arm': 'win32:arm64',
+    };
+
+    for (const [optionKey, assetKey] of Object.entries(optionAssetKeys)) {
+      const option = picker.querySelector(`[data-download-option="${optionKey}"]`);
+      const asset = metadataAssets.get(assetKey);
+      if (!option || !asset?.url) continue;
+      option.href = asset.url;
+      if (option.dataset.metadataOnly === 'true') {
+        option.classList.remove('hidden');
+        option.classList.add('block');
+      }
+    }
+  }
+
+  function metadataUrl(metadataAssets, key, fallback) {
+    return metadataAssets.get(key)?.url || fallback;
+  }
+
+  const metadataAssets = await loadDesktopMetadataAssets();
+  const target = await detectDownloadTarget(metadataAssets);
     for (const picker of downloadPickers) {
+      updateOptionUrls(picker, metadataAssets);
+
       const link = picker.querySelector('[data-download-primary]');
       const label = picker.querySelector('[data-download-label]');
       if (!link || !label) continue;
 
-      if (target.kind === 'windows') {
-        link.href = picker.dataset.windowsX64Url;
+      if (target.kind === 'windows-arm') {
+        link.href = metadataUrl(metadataAssets, 'win32:arm64', picker.dataset.windowsArmUrl);
+        label.textContent = picker.dataset.nav;
+      } else if (target.kind === 'windows-x64') {
+        link.href = metadataUrl(metadataAssets, 'win32:x64', picker.dataset.windowsX64Url);
+        label.textContent = picker.dataset.nav;
+      } else if (target.kind === 'linux-x64') {
+        link.href = metadataUrl(metadataAssets, 'linux:x64', picker.dataset.linuxX64Url);
         label.textContent = picker.dataset.nav;
       } else if (target.kind === 'mac-arm') {
-        link.href = picker.dataset.macArmUrl;
+        link.href = metadataUrl(metadataAssets, 'darwin:arm64', picker.dataset.macArmUrl);
         label.textContent = picker.dataset.nav;
       } else if (target.kind === 'mac-intel') {
-        setUnsupported(link, label, picker.dataset.macIntelSoon);
+        link.href = metadataUrl(metadataAssets, 'darwin:x64', picker.dataset.macIntelUrl);
+        label.textContent = picker.dataset.nav;
       } else {
         setUnsupported(link, label, picker.dataset.unsupported);
       }
