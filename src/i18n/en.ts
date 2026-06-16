@@ -23,7 +23,6 @@ export default {
         'Forger lets you create your own apps that understand your data, save repeated tasks, and work with you through an intelligent agent.',
       badges: ['Intelligent apps', 'Agent tasks', 'Private workspace', 'Shareable'],
       ctaPrimary: 'Download Forger',
-      ctaSecondary: 'View examples',
       experimentalNote:
         'Forger Desktop is an experimental release. Today you can create and adapt local apps, try Finance OS as a curated app, and explore examples of what you could build.',
       windows: 'Download for Windows',
@@ -160,7 +159,6 @@ export default {
       body:
         'Start with a concrete idea, turn repeated work into saved actions, and use an agent to work inside your app.',
       primary: 'Download Forger',
-      secondary: 'View examples',
     },
 
     fromBlog: 'From the blog',

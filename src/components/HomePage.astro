@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import {
-  ArrowRight,
   Blocks,
   Bot,
   Check,
@@ -53,13 +52,6 @@ const trustIcons = [LockKeyhole, ShieldCheck, Code2];
         </p>
         <div id="download" class="animate-fade-up delay-300 relative z-[80] mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <DownloadPicker lang={lang} />
-          <a
-            href="#examples"
-            class="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-brand/40 hover:bg-white/[0.06]"
-          >
-            {i18n.home.hero.ctaSecondary}
-            <ArrowRight size={17} />
-          </a>
         </div>
         <p class="animate-fade-up delay-400 mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-zinc-500">
           {i18n.home.hero.experimentalNote}
@@ -239,10 +231,6 @@ const trustIcons = [LockKeyhole, ShieldCheck, Code2];
     <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400">{i18n.home.finalCta.body}</p>
     <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
       <DownloadPicker lang={lang} />
-      <a href="#examples" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-brand/40">
-        {i18n.home.finalCta.secondary}
-        <ArrowRight size={17} />
-      </a>
     </div>
   </section>
 </div>
