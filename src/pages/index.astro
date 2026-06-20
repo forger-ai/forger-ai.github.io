@@ -1,18 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import HomePage from '../components/HomePage.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const lang = 'en';
-const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === lang))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
 ---
 
 <BaseLayout
   title="Forger — Create intelligent apps"
-  description="Create local apps that understand your data, save repeated tasks, and work with you through an intelligent agent."
+  description="Create local intelligent apps with Codex, Claude Code, or Antigravity running on your computer."
   lang={lang}
 >
-  <HomePage lang={lang} posts={posts} />
+  <HomePage lang={lang} />
 </BaseLayout>

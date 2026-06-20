@@ -1,9 +1,9 @@
 export default {
   nav: {
-    what: 'What it is',
-    apps: 'Apps',
+    how: 'How it works',
+    agents: 'Agents',
+    social: 'Social',
     privacy: 'Privacy',
-    cloud: 'Cloud',
     blog: 'Blog',
     docs: 'Docs',
     download: 'Download',
@@ -20,148 +20,106 @@ export default {
       title1: 'Create intelligent apps',
       title2: 'for life and work.',
       subtitle:
-        'Forger lets you create your own apps that understand your data, save repeated tasks, and work with you through an intelligent agent.',
-      badges: ['Intelligent apps', 'Agent tasks', 'Private workspace', 'Shareable'],
+        'Forger installs AI tools like Codex, Claude Code, and Antigravity on your computer to turn everyday ideas into local, private apps that are ready to use.',
+      badges: ['Local apps', 'Built-in agents', 'Use your accounts', 'Share with friends'],
       ctaPrimary: 'Download Forger',
-      experimentalNote:
-        'Forger Desktop is an experimental release. Today you can create and adapt local apps, try Finance OS as a curated app, and explore examples of what you could build.',
       windows: 'Download for Windows',
-      blog: 'Read the blog',
-    },
-
-    what: {
-      eyebrow: 'What is Forger',
-      title: 'Apps that do more than store information',
-      body:
-        'In Forger, an app can organize data, show useful screens, and run saved tasks with help from an intelligent agent. You can create an app for a specific need, ask for changes, and share it with people you trust.',
-      points: [
-        {
-          title: 'Your own apps',
-          body: 'Create tools for your processes, data, or ideas instead of starting from a generic app.',
-        },
-        {
-          title: 'Intelligent tasks',
-          body: 'Save frequent actions so the agent can repeat them when you need them.',
-        },
-        {
-          title: 'Adaptable',
-          body: 'Ask for changes in normal language and let the app evolve with you.',
-        },
-      ],
-    },
-
-    chat: {
-      eyebrow: 'App adaptation',
-      title: 'Ask for changes like you would ask a person',
-      body:
-        'You can ask Forger to add a view, change a flow, review data, or prepare a new task inside an app. The agent works on the app, not in an isolated chat.',
-      privacyNote:
-        'Your apps live in your local space. Forger works with the data you choose to load or share with each app.',
     },
 
     how: {
       eyebrow: 'How it works',
-      title: 'Create an app, save tasks, and use it with an agent',
+      title: 'From an idea to an app that works with you',
       body:
-        'Forger combines a local app with an agent that understands what the app can do. Use normal screens when you want visual control, and ask for intelligent tasks when you want to move faster.',
+        'Forger connects a real app on your computer with agents that can create it, change it, and run tasks inside its own workflows.',
       steps: [
         {
-          title: 'Download Forger',
-          body: 'Install Forger Desktop to create and run apps in your private space.',
+          title: 'Connect your AI',
+          body: 'Use Codex, Claude Code, or Antigravity with accounts you already have, and switch providers whenever you need to.',
         },
         {
-          title: 'Create or open an app',
-          body: 'Start from your own idea, from an example, or from a curated app like Finance OS.',
+          title: 'Describe the app',
+          body: 'Ask for a tool for recipes, spending, routines, clients, or any process you want to organize.',
         },
         {
-          title: 'Ask for intelligent tasks',
-          body: 'Save frequent tasks so the agent can run them inside the app when you need them.',
+          title: 'Use agent flows',
+          body: 'Your apps can have buttons that call an agent, like discovering new recipes and saving them to your library.',
         },
       ],
     },
 
-    examples: {
-      eyebrow: 'Examples',
-      title: 'Examples of intelligent apps',
+    agents: {
+      eyebrow: 'Your agents',
+      title: 'Forger operates the tools developers already use',
       body:
-        'Forger is for creating small, useful apps around real tasks. For example: a chess training app, a daily email summary app, or a recipes and macros app.',
+        'You do not need to learn commands or set up a project. Forger downloads, configures, and uses these tools for you inside an experience built for personal apps.',
+      providers: [
+        {
+          title: 'Codex',
+          body:
+            'Works with your ChatGPT account. The free plan can be enough to try it, though limits run out faster.',
+        },
+        {
+          title: 'Claude Code',
+          body:
+            'Works with your Claude account and is best suited for people with an active paid subscription.',
+        },
+        {
+          title: 'Antigravity',
+          body:
+            'Works with your Google Gemini account and is usually the option with the most generous free layer.',
+        },
+      ],
+      note:
+        'Choose the provider you prefer, switch whenever you want, and Forger will keep adding options when they help create better apps.',
     },
 
-    apps: {
-      eyebrow: 'Curated app available',
-      title: 'Start with Finance OS',
+    social: {
+      eyebrow: 'Forger Social',
+      title: 'Share the apps that help you',
       body:
-        'Finance OS is the curated app available today: a local tool for organizing personal finances with assisted review, dashboards, and budgets by period.',
-      available: 'Experimental release',
-      cardCta: 'View Finance OS',
+        'Creating an account lets you upload your apps, store them in Forger Cloud, and share them with friends who use Forger while keeping the local computer experience at the center.',
+      items: [
+        {
+          title: 'Apps for friends',
+          body: 'Publish your own app or send it through Social so trusted people can install it.',
+        },
+        {
+          title: '3 GB free in Cloud',
+          body: 'Using Forger on your computer is free, and an account includes starting space to store apps in the cloud.',
+        },
+      ],
     },
 
-    trust: {
+    privacy: {
+      eyebrow: 'Local first',
+      title: 'Your apps live on your computer',
+      body:
+        'Forger uses the cloud for accounts, storage, and sharing when you choose it. The center of the experience is still a local app that works with the data you decide to use.',
       cards: [
         {
-          title: 'Your apps in your private space',
+          title: 'Private space',
           body:
-            'Installed apps live on your computer and work with the data you choose to load.',
+            'Installed apps run in your local workspace and should not read external files unless you share them.',
         },
         {
-          title: 'The agent acts inside each app',
+          title: 'Agents inside the app',
           body:
-            'Intelligent tasks use the app context and capabilities, not loose instructions without structure.',
+            'Smart buttons and tasks use each app context, not a generic chat disconnected from your workflow.',
         },
         {
-          title: 'Create, adapt, and share',
+          title: 'Provider control',
           body:
-            'When an app helps you, you can adjust it to the way you work and share it with people close to you.',
+            'When you connect an AI tool, you choose which account to use and can change it from Forger.',
         },
-      ],
-    },
-
-    cloud: {
-      eyebrow: 'Forger Cloud',
-      title: 'Cloud to share and continue, not to replace your local space',
-      body:
-        'Forger Cloud complements the local experience with accounts, sync, app sharing, and access from more places when it makes sense. The starting point is still your own app in your private space.',
-      items: [
-        {
-          title: 'App sharing',
-          body: 'To send a useful app to friends or people you trust.',
-        },
-        {
-          title: 'Sync',
-          body: 'To keep continuity across devices when you need it.',
-        },
-        {
-          title: 'Backups',
-          body: 'To protect your app space.',
-        },
-        {
-          title: 'Remote access',
-          body: 'To use your apps from more places when available.',
-        },
-      ],
-    },
-
-    experimental: {
-      tag: 'Experimental release',
-      title: 'Forger Desktop is an experimental release focused on creating intelligent apps.',
-      body:
-        'Today Forger lets you create, run, and adapt local apps. Finance OS is available as a curated app, and the examples show the kind of intelligent apps you can build.',
-      items: [
-        'Create your own apps',
-        'Save tasks for the agent',
-        'Use Finance OS as a curated app',
-        'Share apps with people you trust',
       ],
     },
 
     finalCta: {
       title: 'Download Forger and create your first intelligent app',
       body:
-        'Start with a concrete idea, turn repeated work into saved actions, and use an agent to work inside your app.',
+        'Start with a concrete need, turn it into a local app, and add agents where they actually save you work.',
       primary: 'Download Forger',
     },
-
-    fromBlog: 'From the blog',
   },
   blog: {
     title: 'Blog',
