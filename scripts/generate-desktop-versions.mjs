@@ -143,6 +143,13 @@ export const metadataForRelease = async (release) => {
   };
 };
 
+export const indexEntryForMetadata = (metadata) => ({
+  version: metadata.version,
+  publishedAt: metadata.publishedAt,
+  summary: metadata.releaseNotes?.summary ?? `Forger Desktop v${metadata.version}`,
+  assets: metadata.assets,
+});
+
 export const validateMetadata = (metadata) => {
   if (metadata.schemaVersion !== 1) throw new Error(`Invalid schema for ${metadata.version}`);
   if (!/^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/.test(metadata.version)) {
@@ -164,6 +171,25 @@ export const validateMetadata = (metadata) => {
     }
     if (asset.experimental !== undefined && asset.experimental !== true) {
       throw new Error(`Invalid experimental flag for ${metadata.version}: ${asset.url}`);
+    }
+  }
+};
+
+export const validateMetadataIndex = (metadataIndex) => {
+  if (metadataIndex.schemaVersion !== 1) throw new Error('Invalid desktop version index schema');
+  if (!Array.isArray(metadataIndex.releases) || metadataIndex.releases.length === 0) {
+    throw new Error('Desktop version index has no releases');
+  }
+  for (const release of metadataIndex.releases) {
+    validateMetadata({
+      schemaVersion: 1,
+      version: release.version,
+      publishedAt: release.publishedAt,
+      releaseNotes: { summary: release.summary, changes: [] },
+      assets: release.assets,
+    });
+    if (typeof release.summary !== 'string' || !release.summary.trim()) {
+      throw new Error(`Invalid summary for ${release.version}`);
     }
   }
 };
@@ -201,6 +227,16 @@ export const main = async () => {
   await fs.writeFile(
     path.join(outputDir, 'latest.json'),
     `${JSON.stringify(metadataEntries[0], null, 2)}\n`,
+    'utf8',
+  );
+  const metadataIndex = {
+    schemaVersion: 1,
+    releases: metadataEntries.map(indexEntryForMetadata),
+  };
+  validateMetadataIndex(metadataIndex);
+  await fs.writeFile(
+    path.join(outputDir, 'index.json'),
+    `${JSON.stringify(metadataIndex, null, 2)}\n`,
     'utf8',
   );
   console.log(`Generated ${metadataEntries.length} desktop version metadata file(s).`);

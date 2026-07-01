@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { metadataForRelease, validateMetadata } from '../scripts/generate-desktop-versions.mjs';
+import {
+  indexEntryForMetadata,
+  metadataForRelease,
+  validateMetadata,
+  validateMetadataIndex,
+} from '../scripts/generate-desktop-versions.mjs';
 
 const releaseAsset = (name, size = 1024) => ({
   name,
@@ -58,4 +63,34 @@ test('omits Windows ARM metadata when the release asset does not exist', async (
     metadata.assets.some((asset) => asset.platform === 'win32' && asset.arch === 'arm64'),
     false,
   );
+});
+
+test('generates compact desktop version index entries with release summaries', async () => {
+  const metadata = await metadataForRelease(
+    release([
+      releaseAsset('forger-desktop-macos-arm64.dmg'),
+    ]),
+  );
+
+  const metadataIndex = {
+    schemaVersion: 1,
+    releases: [indexEntryForMetadata(metadata)],
+  };
+
+  validateMetadataIndex(metadataIndex);
+  assert.deepEqual(metadataIndex.releases[0], {
+    version: '1.2.3',
+    publishedAt: '2026-06-15T12:00:00Z',
+    summary: 'Forger Desktop v1.2.3',
+    assets: metadata.assets,
+  });
+});
+
+test('parses first non-heading release body line as desktop update markdown summary', async () => {
+  const metadata = await metadataForRelease({
+    ...release([releaseAsset('forger-desktop-macos-arm64.dmg')]),
+    body: ['# Release', '', '**Improves** updates and [local runtimes](https://forger.cloud).', '', '- Hidden detail'].join('\n'),
+  });
+
+  assert.equal(indexEntryForMetadata(metadata).summary, '**Improves** updates and [local runtimes](https://forger.cloud).');
 });
