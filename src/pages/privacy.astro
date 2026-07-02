@@ -7,7 +7,7 @@ const lang = 'en';
 <BaseLayout title="Data Privacy — Forger" description="How Forger handles local app data, Forger Cloud account data, Google/Gmail data, reviews, feedback, backups, devices, and support information." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Data Privacy</h1>
-    <p><strong>Last updated:</strong> May 17, 2026</p>
+    <p><strong>Last updated:</strong> July 2, 2026</p>
 
     <h2>Summary</h2>
     <p>Forger is built around local apps. Apps installed through Forger run in a private workspace on your computer. Forger Cloud supports account features, the app catalog, app downloads and updates, ratings, reviews, private feedback, backups, paired devices, remote access sessions, Google OAuth support for Gmail, and product support.</p>
@@ -20,11 +20,11 @@ const lang = 'en';
 
     <h2>Data sent to Forger Cloud</h2>
     <p>Forger Cloud may receive account data such as first name, optional last name, email, password authentication data, account confirmation data, optional country, optional age, optional gender, registration IP, inferred registration country, subscription tier, session metadata, and password reset or confirmation metadata.</p>
-    <p>Forger Cloud may also receive catalog and product data such as installed app summaries reported by paired devices, download events, platform, user agent, device identifier, country code, ratings, reviews, private feedback, desktop version, app version, operational logs, error reports, backup metadata, device pairing records, device heartbeats, and remote session metadata.</p>
-    <p>If you create an account or use Forger Cloud, Forger stores the information needed for registration, account access, authentication, device pairing, cloud backups, remote access, support, and other cloud-backed features you choose to use.</p>
+    <p>Forger Cloud may also receive catalog and product data such as installed app summaries reported by signed-in devices, download events, platform, user agent, device identifier, country code, ratings, reviews, private feedback, desktop version, app version, operational logs, error reports, backup metadata, device records, device heartbeats, and remote session metadata.</p>
+    <p>If you create an account or use Forger Cloud, Forger stores the information needed for registration, account access, authentication, device registration, cloud backups, remote access, support, and other cloud-backed features you choose to use. When you use Forger Desktop with a Forger Cloud session, Desktop registers the current device and sends session and heartbeat metadata needed to keep the account, device list, online status, remote access, support, security, and service integrity working. This account and heartbeat metadata is required for signed-in cloud use and is not controlled by the optional usage analytics setting.</p>
 
     <h2>Optional usage analytics</h2>
-    <p>Forger Desktop can collect optional usage analytics when you enable “Help improve Forger.” These events use a random installation identifier so we can understand aggregate usage patterns, such as which product surfaces are opened or whether an install flow succeeds.</p>
+    <p>Forger Desktop can collect optional usage analytics when you enable “Help improve Forger.” These events use a random installation identifier, not your Forger Cloud account, so we can understand aggregate usage patterns, such as which product surfaces are opened or whether an install flow succeeds.</p>
     <p>Usage analytics do not include personal content, local app data, files, chats, credentials, prompts, file names, Gmail metadata, message text, or stack traces. You can turn this setting off from Forger Desktop Settings. Consent and preference change events may still be recorded so Forger can remember and respect your decision.</p>
 
     <h2>Reviews and feedback</h2>
@@ -33,7 +33,7 @@ const lang = 'en';
 
     <h2>Backups, devices, and remote access</h2>
     <p>If you use cloud backups, Forger Cloud stores the backup files and metadata needed to list, download, verify, and delete those backups. Backup metadata can include app ID, app name, app version, backup type, source, checksum, file count, size, and timestamps.</p>
-    <p>If you pair a device with Forger Cloud, Forger Cloud stores device identifiers, a hashed device secret, device name, platform, paired status, installed app summaries, runtime status summaries, and heartbeat timestamps. Remote access sessions use Forger Cloud to route an authenticated browser session to a paired online desktop. Remote session metadata is stored by Forger Cloud; app content is relayed only as needed to provide the remote session.</p>
+    <p>When you use Forger Desktop with a Forger Cloud session, Forger Cloud stores device identifiers, a hashed device secret, device name, platform, signed-in status, installed app summaries, runtime status summaries, and heartbeat timestamps. Remote access sessions use Forger Cloud to route an authenticated browser session to a signed-in online desktop. Remote session metadata is stored by Forger Cloud; app content is relayed only as needed to provide the remote session.</p>
     <p>Messages between users are encrypted for devices. Forger Cloud routes and may store encrypted envelopes, but it cannot recover the plaintext content of those messages.</p>
 
     <h2>Agents, tasks, automations, and AI</h2>
