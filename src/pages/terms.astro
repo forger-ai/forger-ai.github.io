@@ -7,7 +7,7 @@ const lang = 'en';
 <BaseLayout title="Terms and Conditions — Forger" description="Terms for using Forger Desktop, Forger Cloud, Google/Gmail tools, the app catalog, reviews, feedback, backups, remote access, and local apps." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Terms and Conditions</h1>
-    <p><strong>Last updated:</strong> May 17, 2026</p>
+    <p><strong>Last updated:</strong> July 2, 2026</p>
 
     <h2>Overview</h2>
     <p>These terms govern your use of Forger Desktop, Forger Cloud, the app catalog, app downloads and updates, ratings, reviews, feedback, backups, paired devices, remote access sessions, Google/Gmail tools, AI-assisted workflows, automations, and related services. By using Forger, you agree to these terms.</p>
@@ -19,7 +19,7 @@ const lang = 'en';
 
     <h2>Forger Cloud accounts</h2>
     <p>You may need a confirmed Forger Cloud account to use account-based features such as publishing reviews, updating your own reviews, sending authenticated feedback, uploading backups, pairing devices, using remote access, connecting Gmail, or using other cloud-backed features. You are responsible for keeping your account credentials secure and for activity under your account.</p>
-    <p>If you create an account or use Forger Cloud, Forger stores the registration, account, device, and cloud feature information needed to provide those services.</p>
+    <p>If you create an account or use Forger Cloud, Forger stores the registration, account, device, and cloud feature information needed to provide those services. When Forger Desktop is signed in to Forger Cloud, it registers the current device and sends required session and heartbeat metadata so account access, device lists, online status, remote access, support, security, and service integrity can work.</p>
 
     <h2>Catalog, downloads, and versions</h2>
     <p>The Forger catalog provides metadata about apps, versions, capabilities, supported platforms, required services, tool declarations, prompts, agents, release notes, file sizes, checksums, and download URLs. Downloads may be counted with or without an account. We may update, hide, remove, revoke, or replace app versions when needed for quality, security, policy, legal, or operational reasons.</p>
@@ -29,7 +29,7 @@ const lang = 'en';
 
     <h2>Backups, devices, and remote access</h2>
     <p>If you use cloud backups, you are responsible for the app data you choose to upload and for deleting backups you no longer want stored. Backups are provided for convenience and recovery, not as a guaranteed archival service.</p>
-    <p>If you pair a desktop device with Forger Cloud, that device may report installed app summaries and runtime status so your account can list and operate paired devices. Remote access sessions are intended to let you access your own paired online desktop and installed apps. You must not use remote access to expose apps or data to unauthorized people.</p>
+    <p>If you use Forger Desktop with a Forger Cloud session, that device may report installed app summaries, runtime status, and heartbeat timestamps so your account can list and operate signed-in devices. This cloud session and heartbeat reporting is required for signed-in cloud use and is separate from optional usage analytics. Remote access sessions are intended to let you access your own signed-in online desktop and installed apps. You must not use remote access to expose apps or data to unauthorized people.</p>
 
     <h2>AI-assisted workflows</h2>
     <p>Forger may help you use AI tools to inspect, explain, operate, or modify installed apps. This includes app agents, AI tasks, Chat Forger, and automations. AI-generated output can be incomplete, incorrect, unsafe, or unsuitable for your situation. You are responsible for reviewing outputs, proposed changes, sent messages, imported data, generated files, and automation results before relying on them.</p>
@@ -37,7 +37,7 @@ const lang = 'en';
     <p>Automations are non-interactive. If you enable an automation and give it access to apps or configured tools, it may run later without asking for per-tool approval. Do not enable automations for actions you are not comfortable having performed automatically.</p>
 
     <h2>Usage analytics</h2>
-    <p>Usage analytics are optional. If you enable them, Forger may send product usage events using a random installation identifier. These events do not include personal content, local app data, files, chats, credentials, prompts, file names, or message text. You can disable usage analytics from Forger Desktop Settings.</p>
+    <p>Usage analytics are optional. If you enable them, Forger may send product usage events using a random installation identifier instead of your Forger Cloud account. These events do not include personal content, local app data, files, chats, credentials, prompts, file names, or message text. You can disable usage analytics from Forger Desktop Settings.</p>
 
     <h2>Encrypted user messages</h2>
     <p>Messages between users are encrypted for devices. Forger Cloud routes and may store encrypted envelopes, but it cannot recover the plaintext content of those messages.</p>

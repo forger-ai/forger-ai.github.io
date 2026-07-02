@@ -7,7 +7,7 @@ const lang = 'es';
 <BaseLayout title="Privacidad de datos — Forger" description="Cómo Forger maneja datos locales, cuentas de Forger Cloud, datos de Google/Gmail, reviews, feedback, backups, dispositivos e información de soporte." lang={lang}>
   <article class="max-w-3xl mx-auto px-6 pt-32 pb-24 prose prose-invert prose-zinc prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
     <h1>Privacidad de datos</h1>
-    <p><strong>Última actualización:</strong> 17 de mayo de 2026</p>
+    <p><strong>Última actualización:</strong> 2 de julio de 2026</p>
 
     <h2>Resumen</h2>
     <p>Forger está construido alrededor de apps locales. Las apps instaladas mediante Forger corren en un workspace privado en tu computador. Forger Cloud soporta funciones de cuenta, catálogo de apps, descargas y actualizaciones, ratings, reviews, feedback privado, backups, dispositivos vinculados, sesiones de acceso remoto, soporte OAuth de Google para Gmail y soporte del producto.</p>
@@ -20,11 +20,11 @@ const lang = 'es';
 
     <h2>Datos enviados a Forger Cloud</h2>
     <p>Forger Cloud puede recibir datos de cuenta como nombre, apellido opcional, correo, datos de autenticación de contraseña, datos de confirmación de cuenta, país opcional, edad opcional, género opcional, IP de registro, país de registro inferido, tipo de suscripción, metadata de sesión y metadata de recuperación o confirmación de cuenta.</p>
-    <p>Forger Cloud también puede recibir datos de catálogo y producto como resúmenes de apps instaladas reportados por dispositivos vinculados, eventos de descarga, plataforma, user agent, identificador de dispositivo, código de país, ratings, reviews, feedback privado, versión de desktop, versión de app, logs operacionales, reportes de error, metadata de backups, registros de vinculación de dispositivos, heartbeats de dispositivos y metadata de sesiones remotas.</p>
-    <p>Si creas una cuenta o usas Forger Cloud, Forger guarda la información necesaria para registro, acceso a cuenta, autenticación, vinculación de dispositivos, backups cloud, acceso remoto, soporte y otras funciones respaldadas por la nube que decidas usar.</p>
+    <p>Forger Cloud también puede recibir datos de catálogo y producto como resúmenes de apps instaladas reportados por dispositivos con sesión, eventos de descarga, plataforma, user agent, identificador de dispositivo, código de país, ratings, reviews, feedback privado, versión de desktop, versión de app, logs operacionales, reportes de error, metadata de backups, registros de dispositivos, heartbeats de dispositivos y metadata de sesiones remotas.</p>
+    <p>Si creas una cuenta o usas Forger Cloud, Forger guarda la información necesaria para registro, acceso a cuenta, autenticación, registro de dispositivos, backups cloud, acceso remoto, soporte y otras funciones respaldadas por la nube que decidas usar. Cuando usas Forger Desktop con una sesión de Forger Cloud, Desktop registra el dispositivo actual y envía metadata de sesión y heartbeat necesaria para que funcionen la cuenta, lista de dispositivos, estado online, acceso remoto, soporte, seguridad e integridad del servicio. Esta metadata de cuenta y heartbeat es requerida para el uso cloud con sesión y no depende de la configuración opcional de analítica de uso.</p>
 
     <h2>Analítica de uso opcional</h2>
-    <p>Forger Desktop puede recopilar analítica de uso opcional cuando activas “Ayudar a mejorar Forger”. Estos eventos usan un identificador aleatorio de instalación para entender patrones agregados de uso, como qué superficies del producto se abren o si un flujo de instalación resulta exitoso.</p>
+    <p>Forger Desktop puede recopilar analítica de uso opcional cuando activas “Ayudar a mejorar Forger”. Estos eventos usan un identificador aleatorio de instalación, no tu cuenta de Forger Cloud, para entender patrones agregados de uso, como qué superficies del producto se abren o si un flujo de instalación resulta exitoso.</p>
     <p>La analítica de uso no incluye contenido personal, datos locales de apps, archivos, chats, credenciales, prompts, nombres de archivos, metadata de Gmail, texto de mensajes ni stack traces. Puedes desactivar esta configuración desde Settings en Forger Desktop. Los eventos de consentimiento y cambios de preferencia pueden registrarse para que Forger recuerde y respete tu decisión.</p>
 
     <h2>Reviews y feedback</h2>
@@ -33,7 +33,7 @@ const lang = 'es';
 
     <h2>Backups, dispositivos y acceso remoto</h2>
     <p>Si usas backups en la nube, Forger Cloud guarda los archivos de backup y la metadata necesaria para listar, descargar, verificar y eliminar esos backups. La metadata de backup puede incluir ID de app, nombre de app, versión de app, tipo de backup, origen, checksum, cantidad de archivos, tamaño y timestamps.</p>
-    <p>Si vinculas un dispositivo con Forger Cloud, Forger Cloud guarda identificadores de dispositivo, un secreto de dispositivo hasheado, nombre de dispositivo, plataforma, estado de vinculación, resúmenes de apps instaladas, resúmenes de estado de runtime y timestamps de heartbeat. Las sesiones de acceso remoto usan Forger Cloud para enrutar una sesión autenticada del navegador hacia un desktop vinculado y online. Forger Cloud guarda metadata de la sesión remota; el contenido de la app se retransmite solo en la medida necesaria para entregar la sesión remota.</p>
+    <p>Cuando usas Forger Desktop con una sesión de Forger Cloud, Forger Cloud guarda identificadores de dispositivo, un secreto de dispositivo hasheado, nombre de dispositivo, plataforma, estado de sesión, resúmenes de apps instaladas, resúmenes de estado de runtime y timestamps de heartbeat. Las sesiones de acceso remoto usan Forger Cloud para enrutar una sesión autenticada del navegador hacia un desktop con sesión y online. Forger Cloud guarda metadata de la sesión remota; el contenido de la app se retransmite solo en la medida necesaria para entregar la sesión remota.</p>
     <p>Los mensajes entre usuarios están cifrados para los dispositivos. Forger Cloud enruta y puede guardar envelopes cifrados, pero no puede recuperar el contenido en texto plano de esos mensajes.</p>
 
     <h2>Agentes, tareas, automatizaciones e IA</h2>
