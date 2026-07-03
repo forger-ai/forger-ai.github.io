@@ -79,17 +79,32 @@ const versionFromRelease = (release) => {
 };
 
 const parseReleaseNotes = (body, version) => {
-  const lines = String(body ?? '')
+  const rawLines = String(body ?? '')
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean);
-  const changes = lines
-    .filter((line) => /^[-*]\s+/.test(line))
-    .map((line) => line.replace(/^[-*]\s+/, '').trim())
-    .filter(Boolean);
-  const summary = lines.find((line) => !/^#{1,6}\s+/.test(line) && !/^[-*]\s+/.test(line));
+  let section = '';
+  const proseLines = [];
+  const changes = [];
+  for (const line of rawLines) {
+    const heading = /^#{1,6}\s+(.+)$/.exec(line);
+    if (heading) {
+      section = heading[1].trim().toLowerCase();
+      continue;
+    }
+    const bullet = /^[-*]\s+(.+)$/.exec(line);
+    if (bullet) {
+      if (section !== 'verification') {
+        const change = bullet[1].trim();
+        if (change) changes.push(change);
+      }
+      continue;
+    }
+    proseLines.push(line);
+  }
+  const summary = proseLines.find((line) => line !== `Forger Desktop v${version}`);
   return {
-    summary: summary && summary !== `Forger Desktop v${version}` ? summary : `Forger Desktop v${version}`,
+    summary: summary ?? changes[0] ?? `Forger Desktop v${version}`,
     changes,
   };
 };
@@ -194,6 +209,14 @@ export const validateMetadataIndex = (metadataIndex) => {
   }
 };
 
+export const validateLatestReleaseNotes = (metadata) => {
+  const fallbackSummary = `Forger Desktop v${metadata.version}`;
+  const summary = metadata.releaseNotes?.summary?.trim();
+  if (!summary || summary === fallbackSummary) {
+    throw new Error(`Latest desktop release ${metadata.version} is missing changelog text`);
+  }
+};
+
 export const main = async () => {
   const releases = await fetchJson(releaseApiUrl);
   if (!Array.isArray(releases)) {
@@ -213,6 +236,7 @@ export const main = async () => {
   if (metadataEntries.length === 0) {
     throw new Error(`No desktop releases with supported assets found in ${repo}`);
   }
+  validateLatestReleaseNotes(metadataEntries[0]);
 
   await fs.mkdir(outputDir, { recursive: true });
   for (const metadata of metadataEntries) {

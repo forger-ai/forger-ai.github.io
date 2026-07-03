@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   indexEntryForMetadata,
   metadataForRelease,
+  validateLatestReleaseNotes,
   validateMetadata,
   validateMetadataIndex,
 } from '../scripts/generate-desktop-versions.mjs';
@@ -81,7 +82,7 @@ test('generates compact desktop version index entries with release summaries', a
   assert.deepEqual(metadataIndex.releases[0], {
     version: '1.2.3',
     publishedAt: '2026-06-15T12:00:00Z',
-    summary: 'Forger Desktop v1.2.3',
+    summary: 'Adds experimental downloads',
     assets: metadata.assets,
   });
 });
@@ -93,4 +94,37 @@ test('parses first non-heading release body line as desktop update markdown summ
   });
 
   assert.equal(indexEntryForMetadata(metadata).summary, '**Improves** updates and [local runtimes](https://forger.cloud).');
+});
+
+test('uses first visible change as desktop update summary when release body has only change bullets', async () => {
+  const metadata = await metadataForRelease({
+    ...release([releaseAsset('forger-desktop-macos-arm64.dmg')]),
+    body: [
+      '## Changes',
+      '- Fix app MCP startup for apps with declared secrets.',
+      '- Harden lifecycle and IPC dependency wiring.',
+      '',
+      '## Verification',
+      '- npm run lint',
+      '- npm run build:electron',
+    ].join('\n'),
+  });
+
+  assert.equal(indexEntryForMetadata(metadata).summary, 'Fix app MCP startup for apps with declared secrets.');
+  assert.deepEqual(metadata.releaseNotes.changes, [
+    'Fix app MCP startup for apps with declared secrets.',
+    'Harden lifecycle and IPC dependency wiring.',
+  ]);
+});
+
+test('rejects latest desktop metadata when release notes are the generic fallback', async () => {
+  const metadata = await metadataForRelease({
+    ...release([releaseAsset('forger-desktop-macos-arm64.dmg')]),
+    body: 'Forger Desktop v1.2.3',
+  });
+
+  assert.throws(
+    () => validateLatestReleaseNotes(metadata),
+    /Latest desktop release 1\.2\.3 is missing changelog text/,
+  );
 });
