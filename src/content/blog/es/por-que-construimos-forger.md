@@ -25,8 +25,8 @@ Estamos en un punto de inflexión extraño. La IA es suficientemente capaz como 
 
 Entonces estamos construyendo ahora. Temprano, con bordes rugosos, pero apuntando a algo real.
 
-## Qué hay en el catálogo hoy
+## Qué significaba el catálogo al inicio
 
-La primera app que viene con Forger es **Finance OS Lite** — un gestor de finanzas personales. Vienen más en camino.
+Al inicio usamos una app de ejemplo para probar cómo debía sentirse una app nativa de Forger. Esa app ya no está disponible públicamente.
 
-Si quieres ver cómo se ve y se siente una app nativa de Forger, ese es el lugar para empezar.
+El punto de fondo sigue igual: Forger está construido alrededor de apps locales que una persona puede instalar, usar y adaptar a su propio flujo.
