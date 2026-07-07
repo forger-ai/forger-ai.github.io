@@ -25,8 +25,8 @@ We're at a weird inflection point. AI is capable enough to understand intent and
 
 So we're building now. Early, rough around the edges, but pointed at something real.
 
-## What's in the catalog today
+## What the catalog meant at launch
 
-The first app shipping with Forger is **Finance OS Lite** — a personal finance tracker. More are on the way.
+At launch, we used an early example app to test what a Forger-native app should feel like. That app is no longer available publicly.
 
-If you want to see what a Forger-native app looks and feels like, that's the place to start.
+The larger point still stands: Forger is built around local apps that can be installed, used, and adapted around one person's workflow.

@@ -58,11 +58,11 @@ Si una vista no te sirve, puedes pedir un cambio. Si descubres una tarea repetid
 
 Ese es el tipo de software que queremos hacer posible con Forger: apps pequeñas, útiles, propias y adaptables. Apps que no nacen para ser una plataforma gigante, sino para resolver una necesidad real de alguien.
 
-## Finance OS es un ejemplo, no el límite
+## Un ejemplo histórico, no el límite
 
-Hoy Finance OS muestra una de las formas que puede tomar una app en Forger: una herramienta local para ordenar finanzas personales, revisar movimientos y trabajar con datos propios.
+En etapas tempranas usamos una app de ejemplo para probar las formas que podía tomar una app en Forger. Esa app ya no está disponible públicamente.
 
-Pero el punto más importante no es que exista una app curada. El punto es que Forger está pensado para que puedas crear nuevas apps inteligentes alrededor de tus propias tareas.
+El punto más importante no es que exista una app curada. El punto es que Forger está pensado para que puedas crear nuevas apps inteligentes alrededor de tus propias tareas.
 
 Una app de entrenamiento de ajedrez. Una app de resumen diario de correos. Una app de recetas y macros. O cualquier herramienta pequeña que hoy haces con una mezcla de planillas, notas, mensajes y pasos repetidos.
 
