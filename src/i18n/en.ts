@@ -4,6 +4,7 @@ export default {
     agents: 'Agents',
     social: 'Social',
     privacy: 'Privacy',
+    teams: 'Teams',
     blog: 'Blog',
     docs: 'Docs',
     download: 'Download',
@@ -112,6 +113,27 @@ export default {
             'When you connect an AI tool, you choose which account to use and can change it from Forger.',
         },
       ],
+    },
+
+    teams: {
+      eyebrow: 'Forger Teams',
+      title: 'Build work software with your team, live',
+      body:
+        'In a demo, we build a backend and an app with you, connected to your team data, files, and permissions.',
+      points: [
+        'Local apps for each member with a shared cloud layer.',
+        'Your company chooses and connects the AI provider.',
+        'Backend, database, files, and audit managed from Forger.',
+      ],
+      fields: {
+        name: 'Name',
+        email: 'Work email',
+        phone: 'Contact phone',
+        useCase: 'What process or report do you want to build?',
+      },
+      consent: 'We use this information only to respond to your Forger Teams request.',
+      privacy: 'Read our privacy policy.',
+      submit: 'Request a demo',
     },
 
     finalCta: {
