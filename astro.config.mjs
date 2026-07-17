@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://forger-ai.github.io',
+  site: 'https://forger.cloud',
   vite: {
     plugins: [tailwindcss()]
   }

@@ -13,6 +13,7 @@ import {
 } from 'lucide-astro';
 import DesktopMockup from './DesktopMockup.astro';
 import DownloadPicker from './DownloadPicker.astro';
+import TeamsTeaser from './TeamsTeaser.astro';
 import { t, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -150,6 +151,8 @@ const trustIcons = [HardDrive, ShieldCheck, LockKeyhole];
       })}
     </div>
   </section>
+
+  <TeamsTeaser lang={lang} />
 
   <section class="mx-auto max-w-4xl px-6 py-24 text-center">
     <h2 class="text-3xl font-bold leading-tight text-white sm:text-5xl">{i18n.home.finalCta.title}</h2>

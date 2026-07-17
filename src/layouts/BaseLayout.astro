@@ -8,6 +8,10 @@ interface Props {
   description?: string;
   ogImage?: string;
   lang?: Lang;
+  headerCta?: {
+    label: string;
+    href: string;
+  };
 }
 
 const {
@@ -15,6 +19,7 @@ const {
   description = 'Forger — Build and run local AI-powered apps, no cloud required.',
   ogImage = '/og.png',
   lang: langProp,
+  headerCta,
 } = Astro.props;
 
 const lang: Lang = langProp ?? getLang(Astro.url);
@@ -68,6 +73,7 @@ const githubUrl = 'https://github.com/forger-ai';
           <a href={`${localePath(lang, '/')}#agents`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.agents}</a>
           <a href={`${localePath(lang, '/')}#social`} class="hover:text-white transition-colors hidden md:block">{i18n.nav.social}</a>
           <a href={`${localePath(lang, '/')}#privacy`} class="hover:text-white transition-colors hidden md:block">{i18n.nav.privacy}</a>
+          <a href={localePath(lang, '/teams')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.teams}</a>
           <a href={localePath(lang, '/docs')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.docs}</a>
           <a href={localePath(lang, '/blog')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.blog}</a>
           <a
@@ -77,9 +83,15 @@ const githubUrl = 'https://github.com/forger-ai';
           >
             {altLang === 'es' ? 'ES' : 'EN'}
           </a>
-          <div class="hidden sm:inline-flex">
-            <DownloadPicker lang={lang} compact />
-          </div>
+          {headerCta ? (
+            <a href={headerCta.href} class="hidden min-h-10 items-center rounded-xl bg-brand px-4 py-2 font-semibold text-black transition hover:bg-brand-dark sm:inline-flex">
+              {headerCta.label}
+            </a>
+          ) : (
+            <div class="hidden sm:inline-flex">
+              <DownloadPicker lang={lang} compact />
+            </div>
+          )}
         </div>
       </nav>
     </header>

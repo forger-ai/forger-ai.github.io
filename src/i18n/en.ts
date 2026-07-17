@@ -4,6 +4,7 @@ export default {
     agents: 'Agents',
     social: 'Social',
     privacy: 'Privacy',
+    teams: 'Teams',
     blog: 'Blog',
     docs: 'Docs',
     download: 'Download',
@@ -114,11 +115,111 @@ export default {
       ],
     },
 
+    teamsTeaser: {
+      eyebrow: 'Forger Teams',
+      title: 'Turn a real team process into software you own',
+      body:
+        'Local apps for each teammate, connected to a shared backend, database, files, and permissions. Meet the Forger Teams private beta.',
+      items: ['Local apps', 'Shared cloud', 'Role-based access'],
+      cta: 'Meet Forger Teams',
+    },
+
     finalCta: {
       title: 'Download Forger and create your first intelligent app',
       body:
         'Start with a concrete need, turn it into a local app, and add agents where they actually save you work.',
       primary: 'Download Forger',
+    },
+  },
+  teams: {
+    meta: {
+      title: 'Forger Teams — Work software built with your team',
+      description:
+        'Create local apps connected to a shared backend, database, files, and permissions. Request access to the Forger Teams private beta.',
+    },
+    hero: {
+      eyebrow: 'Forger Teams · Private beta',
+      title: 'Turn a real company process into software your team can use',
+      body:
+        'Forger Teams combines local apps for each teammate with a shared backend, database, files, and permissions. During the beta, we design and build the first workflow with you.',
+      note: 'Forger Teams keeps your personal workspace separate.',
+      primaryCta: 'Request beta access',
+      secondaryCta: 'See how it works',
+      badges: ['Live build', 'Local apps', 'Shared cloud'],
+      workspace: {
+        eyebrow: 'The space we prepare',
+        title: 'Team workspace',
+        status: 'Private beta',
+        resources: [
+          { title: 'Shared backend', detail: 'Included' },
+          { title: 'Database', detail: 'Included' },
+          { title: 'Team files', detail: '20 GB' },
+          { title: 'Roles and audit', detail: 'Included' },
+        ],
+      },
+    },
+    promise: {
+      eyebrow: 'One shared foundation, local experiences',
+      title: 'The software adapts to the team, not the other way around',
+      body:
+        'Each person works from their computer with a real app. Information that needs to be shared lives in the team cloud layer with controlled access.',
+      items: [
+        { title: 'Apps for each role', body: 'Each teammate installs and adapts the app they need without losing the version shared by the team.' },
+        { title: 'Shared resources', body: 'The backend, database, and files create a central layer for reports, operations, and internal workflows.' },
+        { title: 'Company-controlled AI', body: 'The organization chooses the AI provider and each person connects an approved account.' },
+      ],
+    },
+    how: {
+      eyebrow: 'How it starts',
+      title: 'We start from a real use case and leave with something usable',
+      steps: [
+        { title: 'Choose the first workflow', body: 'Tell us which process, report, or internal tool currently consumes time or lives across spreadsheets.' },
+        { title: 'Build it with us', body: 'In a working session, we create the backend and first app while you see how agents understand your operation.' },
+        { title: 'Let the team try it', body: 'We publish a beta version for approved users and keep iterating from real feedback.' },
+      ],
+    },
+    capabilities: {
+      eyebrow: 'The team shared layer',
+      title: 'Everything an internal app needs to move beyond a prototype',
+      body:
+        'Forger Teams brings each person’s local work together with the services that require coordination, security, and continuity.',
+      cards: [
+        { title: 'Apps and agents', body: 'Local apps connected to team context, with agents and workflows that can operate them.' },
+        { title: 'Backend and database', body: 'A shared API and database for centralizing rules, models, and operational data.' },
+        { title: 'Team files', body: 'A common space for reports, exports, and documents that apps and workflows can also use.' },
+        { title: 'Permissions and audit', body: 'Clear roles and a record of who performed each important action in the workspace.' },
+      ],
+    },
+    provider: {
+      eyebrow: 'Your provider, your rules',
+      title: 'Your company keeps control of AI',
+      body:
+        'Forger does not force you into a bundled model subscription. The team uses the provider approved by the organization while credentials remain separated.',
+      points: [
+        'Works with the providers already integrated into Forger Desktop.',
+        'Credentials are never shared with team web apps.',
+        'Agents receive the team backend context and contracts.',
+      ],
+    },
+    beta: {
+      eyebrow: 'Guided access',
+      title: 'Request beta access',
+      body:
+        'Tell us what your team needs. We will review the use case with you and choose one concrete workflow to build during the beta.',
+      points: [
+        'A direct conversation with the founding team.',
+        'A first build session around a real use case.',
+        'Personalized onboarding for team users.',
+      ],
+      fields: {
+        name: 'Name',
+        email: 'Work email',
+        phone: 'Contact phone',
+        useCase: 'What process, report, or tool do you want to build?',
+      },
+      consent: 'We use this information only to respond to your Forger Teams request.',
+      privacy: 'Read our privacy policy.',
+      submit: 'Request beta access',
     },
   },
   blog: {

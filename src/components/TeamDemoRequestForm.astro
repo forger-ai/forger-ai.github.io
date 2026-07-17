@@ -1,0 +1,106 @@
+---
+import { localePath, t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = t(lang).teams.beta;
+const privacyPath = localePath(lang, '/privacy');
+const apiBaseUrl = import.meta.env.PUBLIC_FORGER_API_URL ?? 'https://platform.forger.cloud';
+---
+
+<section id="beta" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
+  <div class="grid gap-10 rounded-[2rem] border border-brand/25 bg-brand/[0.06] p-6 sm:p-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand">{content.eyebrow}</p>
+      <h2 class="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">{content.title}</h2>
+      <p class="mt-5 text-lg leading-relaxed text-zinc-300">{content.body}</p>
+      <ul class="mt-7 space-y-3 text-sm leading-relaxed text-zinc-400">
+        {content.points.map((point) => <li class="flex gap-3"><span class="text-brand">✓</span><span>{point}</span></li>)}
+      </ul>
+    </div>
+
+    <form
+      class="rounded-[1.5rem] border border-white/10 bg-zinc-950/55 p-5 sm:p-6"
+      data-team-demo-form
+      data-api-base-url={apiBaseUrl}
+      data-source={`website_${lang}`}
+      novalidate
+    >
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="grid gap-2 text-sm text-zinc-300">
+          <span>{content.fields.name}</span>
+          <input name="name" autocomplete="name" required maxlength="120" class="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-brand" />
+        </label>
+        <label class="grid gap-2 text-sm text-zinc-300">
+          <span>{content.fields.email}</span>
+          <input name="email" type="email" autocomplete="email" required maxlength="254" class="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-brand" />
+        </label>
+        <label class="grid gap-2 text-sm text-zinc-300 sm:col-span-2">
+          <span>{content.fields.phone}</span>
+          <input name="phone" type="tel" autocomplete="tel" required maxlength="40" class="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-brand" />
+        </label>
+        <label class="grid gap-2 text-sm text-zinc-300 sm:col-span-2">
+          <span>{content.fields.useCase}</span>
+          <textarea name="use_case" required minlength="20" maxlength="2000" rows="5" class="resize-y rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none transition focus:border-brand"></textarea>
+        </label>
+        <label class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+          Website
+          <input name="website" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+      <p class="mt-4 text-xs leading-relaxed text-zinc-500">{content.consent} <a href={privacyPath} class="text-brand hover:underline">{content.privacy}</a></p>
+      <button type="submit" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-black transition hover:bg-brand-dark disabled:cursor-wait disabled:opacity-60">
+        {content.submit}
+      </button>
+      <p class="mt-4 hidden rounded-xl border px-4 py-3 text-sm" data-team-demo-status role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { submitTeamDemoRequest } from '../lib/team-demo-request.mjs';
+
+  document.querySelectorAll('[data-team-demo-form]').forEach((element) => {
+    if (!(element instanceof HTMLFormElement)) return;
+    const form = element;
+    const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('[data-team-demo-status]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity() || !(button instanceof HTMLButtonElement) || !(status instanceof HTMLElement)) return;
+      button.disabled = true;
+      status.classList.add('hidden');
+
+      const data = new FormData(form);
+      try {
+        await submitTeamDemoRequest({
+          apiBaseUrl: form.dataset.apiBaseUrl,
+          payload: {
+            name: data.get('name'),
+            email: data.get('email'),
+            phone: data.get('phone'),
+            useCase: data.get('use_case'),
+            website: data.get('website'),
+            source: form.dataset.source,
+          },
+        });
+        form.reset();
+        status.textContent = document.documentElement.lang === 'es'
+          ? 'Recibimos tu solicitud. Revisaremos tu caso y te contactaremos para coordinar la beta.'
+          : 'We received your request. We will review your use case and contact you about the beta.';
+        status.className = 'mt-4 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200';
+      } catch {
+        status.textContent = document.documentElement.lang === 'es'
+          ? 'No pudimos enviar la solicitud. Espera un momento e inténtalo nuevamente.'
+          : 'We could not send the request. Wait a moment and try again.';
+        status.className = 'mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>

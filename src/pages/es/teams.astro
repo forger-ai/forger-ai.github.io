@@ -1,0 +1,17 @@
+---
+import TeamsPage from '../../components/TeamsPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n/utils';
+
+const lang = 'es';
+const content = t(lang).teams;
+---
+
+<BaseLayout
+  title={content.meta.title}
+  description={content.meta.description}
+  lang={lang}
+  headerCta={{ label: content.hero.primaryCta, href: '#beta' }}
+>
+  <TeamsPage lang={lang} />
+</BaseLayout>
