@@ -75,12 +75,35 @@ test('does not disclose whether a contact already exists', async () => {
   assert.deepEqual(response, { accepted: true });
 });
 
-test('homepage exposes an accessible Teams section and privacy link', async () => {
+test('standalone Teams landing owns the accessible beta form and privacy link', async () => {
   const source = await readFile(new URL('../src/components/TeamDemoRequestForm.astro', import.meta.url), 'utf8');
-  assert.match(source, /id="teams"/);
+  assert.match(source, /id="beta"/);
   assert.match(source, /name="email"/);
   assert.match(source, /name="phone"/);
   assert.match(source, /name="use_case"/);
   assert.match(source, /href=\{privacyPath\}/);
   assert.match(source, /name="website"/);
+});
+
+test('homepage links to Teams instead of embedding the beta form', async () => {
+  const home = await readFile(new URL('../src/components/HomePage.astro', import.meta.url), 'utf8');
+  const teaser = await readFile(new URL('../src/components/TeamsTeaser.astro', import.meta.url), 'utf8');
+  const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
+
+  assert.doesNotMatch(home, /TeamDemoRequestForm/);
+  assert.match(home, /TeamsTeaser/);
+  assert.match(teaser, /localePath\(lang, '\/teams'\)/);
+  assert.match(layout, /localePath\(lang, '\/teams'\)/);
+  assert.doesNotMatch(layout, /#teams/);
+});
+
+test('English and Spanish expose dedicated Teams routes backed by one landing component', async () => {
+  const englishRoute = await readFile(new URL('../src/pages/teams.astro', import.meta.url), 'utf8');
+  const spanishRoute = await readFile(new URL('../src/pages/es/teams.astro', import.meta.url), 'utf8');
+  const landing = await readFile(new URL('../src/components/TeamsPage.astro', import.meta.url), 'utf8');
+
+  assert.match(englishRoute, /<TeamsPage lang=\{lang\}/);
+  assert.match(spanishRoute, /<TeamsPage lang=\{lang\}/);
+  assert.match(landing, /TeamDemoRequestForm/);
+  assert.match(landing, /href="#beta"/);
 });
