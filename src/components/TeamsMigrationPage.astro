@@ -1,0 +1,92 @@
+---
+import { TEAMS_SITE_URLS, teamsSiteUrl } from '../lib/teams-site';
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const englishUrl = TEAMS_SITE_URLS.en;
+const spanishUrl = TEAMS_SITE_URLS.es;
+const targetUrl = teamsSiteUrl(lang);
+const alternateLang = lang === 'es' ? 'en' : 'es';
+const alternateUrl = lang === 'es' ? englishUrl : spanishUrl;
+const content = lang === 'es'
+  ? {
+      title: 'Forger Teams se cambió de sitio',
+      message: 'Te estamos llevando al nuevo sitio de Forger Teams.',
+      link: 'Continuar a Forger Teams',
+      noScript: 'JavaScript está desactivado. Usa este enlace para continuar.',
+    }
+  : {
+      title: 'Forger Teams has moved',
+      message: 'We are taking you to the new Forger Teams site.',
+      link: 'Continue to Forger Teams',
+      noScript: 'JavaScript is disabled. Use this link to continue.',
+    };
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{content.title}</title>
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href={targetUrl} />
+    <link rel="alternate" hreflang={lang} href={targetUrl} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <meta http-equiv="refresh" content={`0;url=${targetUrl}`} />
+    <script is:inline define:vars={{ targetUrl }}>
+      window.location.replace(targetUrl);
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: #09090b;
+        color: #f4f4f5;
+      }
+
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+      }
+
+      main {
+        max-width: 38rem;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        line-height: 1.05;
+      }
+
+      p {
+        color: #d4d4d8;
+        line-height: 1.6;
+      }
+
+      a {
+        color: #2dd4bf;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="migration-title">
+      <h1 id="migration-title">{content.title}</h1>
+      <p role="status">{content.message}</p>
+      <p><a href={targetUrl}>{content.link}</a></p>
+      <noscript>
+        <p>{content.noScript} <a href={targetUrl}>{content.link}</a></p>
+      </noscript>
+    </main>
+  </body>
+</html>
