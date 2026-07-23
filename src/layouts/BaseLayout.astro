@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import DownloadPicker from '../components/DownloadPicker.astro';
 import { getLang, t, localePath, type Lang } from '../i18n/utils';
+import { teamsSiteUrl } from '../lib/teams-site';
 
 interface Props {
   title: string;
@@ -30,6 +31,7 @@ const altPath = altLang === 'es'
   ? `/es${Astro.url.pathname}`
   : Astro.url.pathname.replace(/^\/es/, '') || '/';
 const githubUrl = 'https://github.com/forger-ai';
+const teamsUrl = teamsSiteUrl(lang);
 ---
 
 <!doctype html>
@@ -73,7 +75,7 @@ const githubUrl = 'https://github.com/forger-ai';
           <a href={`${localePath(lang, '/')}#agents`} class="hover:text-white transition-colors hidden sm:block">{i18n.nav.agents}</a>
           <a href={`${localePath(lang, '/')}#social`} class="hover:text-white transition-colors hidden md:block">{i18n.nav.social}</a>
           <a href={`${localePath(lang, '/')}#privacy`} class="hover:text-white transition-colors hidden md:block">{i18n.nav.privacy}</a>
-          <a href={localePath(lang, '/teams')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.teams}</a>
+          <a href={teamsUrl} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.teams}</a>
           <a href={localePath(lang, '/docs')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.docs}</a>
           <a href={localePath(lang, '/blog')} class="hover:text-white transition-colors hidden lg:block">{i18n.nav.blog}</a>
           <a
