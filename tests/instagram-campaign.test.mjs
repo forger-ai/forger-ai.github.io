@@ -3,6 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const campaignRoute = new URL('../src/pages/es/instagram.astro', import.meta.url);
+const englishCampaignRoute = new URL('../src/pages/instagram.astro', import.meta.url);
 const campaignPage = new URL('../src/components/InstagramCampaignPage.astro', import.meta.url);
 
 async function readCampaignPage() {
@@ -17,6 +18,17 @@ test('Instagram campaign has a standalone Spanish entry point with an acquisitio
   assert.match(route, /Crea apps locales con la IA que ya usas/);
 });
 
+test('Instagram campaign has a standalone English entry point that uses the shared bilingual component', async () => {
+  const route = await readFile(englishCampaignRoute, 'utf8');
+  const spanishRoute = await readFile(campaignRoute, 'utf8');
+
+  assert.match(route, /InstagramCampaignPage/);
+  assert.match(route, /Forger is free for people/);
+  assert.match(route, /Create local apps with the AI you already use/);
+  assert.match(route, /lang="en"/);
+  assert.match(spanishRoute, /lang="es"/);
+});
+
 test('campaign clearly states the free, no-additional-subscription, provider-terms, and local-control promises', async () => {
   const page = await readCampaignPage();
 
@@ -28,6 +40,9 @@ test('campaign clearly states the free, no-additional-subscription, provider-ter
   assert.match(page, /l[ií]mites, condiciones y posibles costos/i);
   assert.match(page, /workspace local/i);
   assert.match(page, /t[uú] decides qu[eé] compartir/i);
+  assert.match(page, /Forger is free for people/);
+  assert.match(page, /does not charge an additional subscription/i);
+  assert.match(page, /Cloud services are used only when you choose features that need them/i);
 });
 
 test('campaign only presents genuine Forger screenshots from the checked-in screenshots directory', async () => {

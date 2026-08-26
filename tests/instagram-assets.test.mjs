@@ -32,4 +32,20 @@ test('Instagram asset copy retains the free, provider-terms, and local-control p
   assert.match(source, /Sin suscripci[oó]n adicional de Forger/);
   assert.match(source, /Aplican los l[ií]mites y condiciones de tu proveedor de IA/);
   assert.match(source, /Tus apps viven[\s\S]*en tu computador/);
+  assert.match(source, /Forger is free for people/);
+  assert.match(source, /No extra Forger subscription/);
+  assert.match(source, /Your AI provider’s limits and terms still apply/);
+  assert.match(source, /Your apps live[\s\S]*on your computer/);
+});
+
+test('English Instagram story variants are generated alongside the Spanish versions', async () => {
+  const expectedExports = [
+    '01-free-use-your-account.png',
+    '02-local-under-your-control.png',
+    '03-create-an-app-that-helps.png',
+  ];
+
+  for (const exportName of expectedExports) {
+    await access(new URL(`../marketing/instagram/exports/${exportName}`, import.meta.url));
+  }
 });

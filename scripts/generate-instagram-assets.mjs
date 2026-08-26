@@ -37,6 +37,33 @@ const stories = [
     footer: 'Descarga Forger gratis · link en bio',
     note: 'Tus apps, tu computador, tu control.',
   },
+  {
+    filename: '01-free-use-your-account.png',
+    screenshot: 'forger-new-experience.png',
+    eyebrow: 'FORGER · FREE FOR PEOPLE',
+    title: ['Your AI. Your apps.', 'Your computer.'],
+    body: ['Use ChatGPT, Claude, or Antigravity', 'with the account you already have.'],
+    footer: 'No extra Forger subscription',
+    note: 'Your AI provider’s limits and terms still apply.',
+  },
+  {
+    filename: '02-local-under-your-control.png',
+    screenshot: 'forger-my-apps.png',
+    eyebrow: 'LOCAL-FIRST',
+    title: ['Your apps live', 'on your computer.'],
+    body: ['Create tools that work with you', 'in a private, local workspace.'],
+    footer: 'You choose which files to use and share',
+    note: 'Forger is free for people.',
+  },
+  {
+    filename: '03-create-an-app-that-helps.png',
+    screenshot: 'forger-catalog.png',
+    eyebrow: 'FOR LIFE AND WORK',
+    title: ['Create an app that', 'actually helps you.'],
+    body: ['Start with a specific need.', 'Make it yours with the AI you already know.'],
+    footer: 'Download Forger free · link in bio',
+    note: 'Your apps, your computer, your control.',
+  },
 ];
 
 const escapeXml = (value) =>
