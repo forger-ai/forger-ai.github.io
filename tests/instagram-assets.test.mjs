@@ -91,6 +91,12 @@ test('future Instagram feed campaign schedules two posts a week for four weeks i
   assert.equal(calendar.timezone, 'America/Santiago');
   assert.equal(calendar.cadence, '2 posts per week for 4 weeks');
   assert.equal(calendar.posts.length, 8);
+  assert.equal(calendar.measurement.installerDownloadCount, 38);
+  assert.equal(
+    Object.values(calendar.measurement.installerDownloadsByAsset).reduce((total, count) => total + count, 0),
+    calendar.measurement.installerDownloadCount,
+  );
+  assert.match(calendar.measurement.limitation, /downloads, not completed installations/i);
   assert.deepEqual(
     calendar.posts.map(({ scheduledLocal }) => scheduledLocal),
     [

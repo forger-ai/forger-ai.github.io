@@ -11,6 +11,18 @@
     "verifiedLocalDate": "2026-08-26",
     "paidSpendUsd": 0
   },
+  "measurement": {
+    "baselineCapturedUtc": "2026-08-27T01:52:11Z",
+    "releaseTag": "forger-desktop/v0.5.17",
+    "installerDownloadCount": 38,
+    "installerDownloadsByAsset": {
+      "forger-desktop-linux-x64.deb": 8,
+      "forger-desktop-macos-arm64.dmg": 11,
+      "forger-desktop-macos-x64.dmg": 7,
+      "forger-desktop-windows-x64.exe": 12
+    },
+    "limitation": "GitHub release counters measure installer downloads, not completed installations. New release baselines must be added rather than replacing this one."
+  },
   "posts": [
     {
       "week": 1,
