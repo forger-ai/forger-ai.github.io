@@ -1,0 +1,150 @@
+{
+  "campaign": "Forger — useful apps and workflows",
+  "channel": "Instagram feed",
+  "format": "1080x1350",
+  "timezone": "America/Santiago",
+  "cadence": "2 posts per week for 4 weeks",
+  "posts": [
+    {
+      "week": 1,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-08-27 13:00",
+      "filename": "04-start-with-one-need.png",
+      "layout": "full-bleed-bottom",
+      "hook": "Start with one need. Build around it.",
+      "visualCopy": {
+        "eyebrow": "BUILD FROM THE NEED",
+        "title": ["Start with", "one need."],
+        "body": ["Describe the outcome.", "Build the workflow around it."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Start with one need. Build around it.\n\nOpen a conversation, describe the outcome you want, and use that need as the starting point for a useful app.\n\nDownload Forger at forger.cloud.\n\n#Forger #BuildWithAI #PersonalSoftware",
+      "screenshotSources": ["campaign-2026-08/chat-blank.png"]
+    },
+    {
+      "week": 1,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-08-30 11:00",
+      "filename": "05-a-real-app-you-can-open.png",
+      "layout": "asymmetric-split",
+      "hook": "Not another chat tab. A real app you can open.",
+      "visualCopy": {
+        "eyebrow": "A WORKING INTERFACE",
+        "title": ["A real app", "you can open."],
+        "body": ["A focused interface.", "Actions you can return to."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Not another chat tab. A real app you can open.\n\nForger apps have interfaces and actions you can return to—like this public LEGO Collection app.\n\nSee Forger at forger.cloud.\n\n#Forger #AIApps #UsefulSoftware",
+      "screenshotSources": ["campaign-2026-08/apps-lego-public.png"]
+    },
+    {
+      "week": 2,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-03 13:00",
+      "filename": "06-personal-agents.png",
+      "layout": "wide-agent-card",
+      "hook": "Personal agents for focused work.",
+      "visualCopy": {
+        "eyebrow": "A ROLE FOR EACH WORKFLOW",
+        "title": ["Personal agents.", "Focused work."],
+        "body": ["Give each agent a clear role", "and only the access it needs."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Personal agents for focused work.\n\nCreate a personal agent with a clear role and selected access. Keep each workflow focused on the context it actually needs.\n\nDownload Forger at forger.cloud.\n\n#Forger #PersonalAgents #AIWorkflow",
+      "screenshotSources": ["campaign-2026-08/agents-forger-marketer.png"]
+    },
+    {
+      "week": 2,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-06 11:00",
+      "filename": "07-schedule-local-workflows.png",
+      "layout": "schedule-board",
+      "hook": "Schedule local workflows.",
+      "visualCopy": {
+        "eyebrow": "AUTOMATE WITH CONTEXT",
+        "title": ["Schedule local", "workflows."],
+        "body": ["Choose the agent.", "Review every run."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Schedule local workflows.\n\nCreate an automation with a chosen agent and explicit app context, then review its runs and reported result.\n\nExplore Forger at forger.cloud.\n\n#Forger #LocalAutomation #AIWorkflow",
+      "screenshotSources": ["campaign-2026-08/automations-empty.png"]
+    },
+    {
+      "week": 3,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-10 13:00",
+      "filename": "08-share-files-explicitly.png",
+      "layout": "header-crop",
+      "hook": "Share files explicitly.",
+      "visualCopy": {
+        "eyebrow": "YOU CHOOSE THE INPUT",
+        "title": ["Share files", "explicitly."],
+        "body": ["Choose what to share.", "Manage it from one view."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Share files explicitly.\n\nFiles outside your private Forger workspace are not accessed unless you explicitly share them. Choose what to share, then manage it from the Files view.\n\nDownload Forger at forger.cloud.\n\n#Forger #PrivateWorkspace #UserControl",
+      "screenshotSources": ["campaign-2026-08/files-header.png"]
+    },
+    {
+      "week": 3,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-13 11:00",
+      "filename": "09-backups-by-choice.png",
+      "layout": "choice-split",
+      "hook": "Backups, by your choice.",
+      "visualCopy": {
+        "eyebrow": "LOCAL OR CLOUD",
+        "title": ["Backups,", "by your choice."],
+        "body": ["Keep a local copy.", "Choose cloud when it fits."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "Backups, by your choice.\n\nCreate local backups on your computer, or select Forger Cloud when that is the workflow you want. You choose the backup destination available for each app.\n\nExplore Forger at forger.cloud.\n\n#Forger #Backups #UserControl",
+      "screenshotSources": ["campaign-2026-08/backups-lego-public.png"]
+    },
+    {
+      "week": 4,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-17 13:00",
+      "filename": "10-one-workspace-many-workflows.png",
+      "layout": "workspace-mosaic",
+      "hook": "One workspace. Many workflows.",
+      "visualCopy": {
+        "eyebrow": "YOUR FORGER WORKSPACE",
+        "title": ["One workspace.", "Many workflows."],
+        "body": ["Apps, agents, automations,", "files, and backups."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "One workspace. Many workflows.\n\nApps, personal agents, automations, files, and backups meet in one Forger workspace—each with a focused job.\n\nDownload Forger at forger.cloud.\n\n#Forger #PersonalComputing #AIWorkflow",
+      "screenshotSources": [
+        "campaign-2026-08/apps-lego-public.png",
+        "campaign-2026-08/agents-forger-marketer.png",
+        "campaign-2026-08/automations-empty.png",
+        "campaign-2026-08/backups-lego-public.png"
+      ]
+    },
+    {
+      "week": 4,
+      "status": "planned",
+      "assetStatus": "ready",
+      "scheduledLocal": "2026-09-20 11:00",
+      "filename": "11-what-should-your-computer-do.png",
+      "layout": "full-bleed-question",
+      "hook": "What should your computer do for you?",
+      "visualCopy": {
+        "eyebrow": "START WITH ONE TASK",
+        "title": ["What should your", "computer do", "for you?"],
+        "body": ["Describe the result.", "Build the app around it."],
+        "footer": "FORGER.CLOUD"
+      },
+      "caption": "What should your computer do for you?\n\nStart with one repetitive task, describe the result you want, and build an app around it.\n\nDownload Forger at forger.cloud.\n\n#Forger #BuildWithAI #PersonalComputing",
+      "screenshotSources": ["campaign-2026-08/chat-blank.png"]
+    }
+  ]
+}
