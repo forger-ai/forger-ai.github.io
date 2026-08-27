@@ -14,11 +14,13 @@ test('Instagram generator uses only current checked-in Forger screenshots as vis
   const source = await readFile(generator, 'utf8');
   const screenshots = [
     'campaign-2026-08/chat-blank.png',
-    'campaign-2026-08/apps-lego-public.png',
+    'campaign-2026-08/daily-compass-dashboard.png',
+    'campaign-2026-08/daily-compass-week.png',
+    'campaign-2026-08/daily-compass-focus.png',
+    'campaign-2026-08/daily-compass-completed.png',
     'campaign-2026-08/agents-forger-marketer.png',
     'campaign-2026-08/automations-empty.png',
     'campaign-2026-08/files-header.png',
-    'campaign-2026-08/backups-lego-public.png',
   ];
 
   assert.match(source, /public\/assets\/screenshots/);
@@ -28,6 +30,7 @@ test('Instagram generator uses only current checked-in Forger screenshots as vis
   }
 
   assert.doesNotMatch(source, /(?:imagegen|mockup|unsplash|pexels)/i);
+  assert.doesNotMatch(source, /lego/i, 'future campaign generation must not use LEGO examples');
   assert.doesNotMatch(
     source,
     /forger-(?:catalog|my-apps|chat-load|chat-categorize)\.png/,
@@ -57,11 +60,13 @@ test('the six existing Instagram story exports remain intact', async () => {
 test('campaign screenshots contain only reviewed safe crops from the current product', async () => {
   const expectedScreenshots = new Map([
     ['chat-blank.png', [1272, 768]],
-    ['apps-lego-public.png', [480, 445]],
+    ['daily-compass-dashboard.png', [1280, 720]],
+    ['daily-compass-week.png', [1280, 720]],
+    ['daily-compass-focus.png', [1280, 720]],
+    ['daily-compass-completed.png', [1280, 720]],
     ['agents-forger-marketer.png', [1272, 300]],
     ['automations-empty.png', [1272, 768]],
     ['files-header.png', [1272, 205]],
-    ['backups-lego-public.png', [1272, 768]],
   ]);
 
   for (const [filename, [expectedWidth, expectedHeight]] of expectedScreenshots) {
@@ -121,11 +126,13 @@ test('future feed posts use the approved hooks, checked-in screenshots, and safe
   const calendar = JSON.parse(await readFile(campaignCalendar, 'utf8'));
   const approvedScreenshots = new Set([
     'campaign-2026-08/chat-blank.png',
-    'campaign-2026-08/apps-lego-public.png',
+    'campaign-2026-08/daily-compass-dashboard.png',
+    'campaign-2026-08/daily-compass-week.png',
+    'campaign-2026-08/daily-compass-focus.png',
+    'campaign-2026-08/daily-compass-completed.png',
     'campaign-2026-08/agents-forger-marketer.png',
     'campaign-2026-08/automations-empty.png',
     'campaign-2026-08/files-header.png',
-    'campaign-2026-08/backups-lego-public.png',
   ]);
   const expectedHooks = [
     'Start with one need. Build around it.',
@@ -133,7 +140,7 @@ test('future feed posts use the approved hooks, checked-in screenshots, and safe
     'Personal agents for focused work.',
     'Schedule local workflows.',
     'Share files explicitly.',
-    'Backups, by your choice.',
+    'One action becomes visible progress.',
     'One workspace. Many workflows.',
     'What should your computer do for you?',
   ];
@@ -161,6 +168,9 @@ test('future feed posts use the approved hooks, checked-in screenshots, and safe
       assert.ok(post.screenshotRequirement.length > 20);
     }
   }
+
+  assert.doesNotMatch(JSON.stringify(calendar), /lego/i);
+  assert.match(calendar.posts[1].caption, /Daily Compass/i);
 
   const filePost = calendar.posts[4];
   assert.match(filePost.caption, /not accessed unless you explicitly share them/i);

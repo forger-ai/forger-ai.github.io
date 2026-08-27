@@ -16,10 +16,10 @@ const packageUrl = new URL('../package.json', import.meta.url);
 
 const approvedSources = new Set([
   'campaign-2026-08/chat-blank.png',
-  'campaign-2026-08/apps-lego-public.png',
-  'campaign-2026-08/lego-news-public.png',
-  'campaign-2026-08/lego-news-filter-open.png',
-  'campaign-2026-08/lego-news-price-drops.png',
+  'campaign-2026-08/daily-compass-dashboard.png',
+  'campaign-2026-08/daily-compass-week.png',
+  'campaign-2026-08/daily-compass-focus.png',
+  'campaign-2026-08/daily-compass-completed.png',
 ]);
 
 const readBoxes = (buffer, start = 0, end = buffer.length) => {
@@ -87,6 +87,7 @@ test('professional pilot is reproducible and uses only real current Forger scree
   assert.equal(manifest.mockProductUi, false);
   assert.equal(packageJson.scripts['generate:instagram-pilot'], 'node scripts/generate-instagram-professional-pilot.mjs');
   assert.doesNotMatch(generator, /(?:imagegen|unsplash|pexels|mock product ui)/i);
+  assert.doesNotMatch(`${generator}\n${JSON.stringify(manifest)}`, /lego/i);
 
   for (const source of manifest.sourceScreenshots) {
     assert.ok(approvedSources.has(source), `${source} must be an approved current screenshot`);
@@ -116,7 +117,7 @@ test('carousel contains three distinct 1080 by 1350 slides with concise safe cop
   assert.equal(digests.size, 3, 'carousel slides must be visually distinct files');
 });
 
-test('Reel is a ten-second vertical H.264 video built from the captured real interaction', async () => {
+test('Reel is a ten-second vertical H.264 video built from the captured Daily Compass interaction', async () => {
   const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
   const reel = manifest.reel;
   const reelUrl = new URL(`../marketing/instagram/pilot/exports/${reel.filename}`, import.meta.url);
@@ -126,11 +127,11 @@ test('Reel is a ten-second vertical H.264 video built from the captured real int
   assert.deepEqual(reel.dimensions, { width: 1080, height: 1920 });
   assert.equal(reel.durationSeconds, 10);
   assert.equal(reel.framesPerSecond, 30);
-  assert.equal(reel.interaction, 'open news filter and choose price drops');
+  assert.equal(reel.interaction, 'open the weekly board, apply Focus, and complete a task');
   assert.deepEqual(reel.screenshotSequence, [
-    'campaign-2026-08/lego-news-public.png',
-    'campaign-2026-08/lego-news-filter-open.png',
-    'campaign-2026-08/lego-news-price-drops.png',
+    'campaign-2026-08/daily-compass-week.png',
+    'campaign-2026-08/daily-compass-focus.png',
+    'campaign-2026-08/daily-compass-completed.png',
   ]);
   assert.ok(metadata.duration >= 9.9 && metadata.duration <= 10.1, `unexpected duration ${metadata.duration}`);
   assert.equal(metadata.width, 1080);

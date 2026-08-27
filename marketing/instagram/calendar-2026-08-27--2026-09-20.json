@@ -55,8 +55,8 @@
         "body": ["A focused interface.", "Actions you can return to."],
         "footer": "FORGER.CLOUD"
       },
-      "caption": "Not another chat tab. A real app you can open.\n\nForger apps have interfaces and actions you can return to—like this public LEGO Collection app.\n\nSee Forger at forger.cloud.\n\n#Forger #AIApps #UsefulSoftware",
-      "screenshotSources": ["campaign-2026-08/apps-lego-public.png"]
+      "caption": "Not another chat tab. A real app you can open.\n\nDaily Compass is a purpose-built Forger demo with a weekly plan, real actions, and synthetic data only. It shows what a focused local app can feel like.\n\nSee Forger at forger.cloud.\n\n#Forger #AIApps #UsefulSoftware",
+      "screenshotSources": ["campaign-2026-08/daily-compass-dashboard.png"]
     },
     {
       "week": 2,
@@ -114,17 +114,17 @@
       "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-13 11:00",
-      "filename": "09-backups-by-choice.png",
-      "layout": "choice-split",
-      "hook": "Backups, by your choice.",
+      "filename": "09-visible-progress.png",
+      "layout": "progress-proof",
+      "hook": "One action becomes visible progress.",
       "visualCopy": {
-        "eyebrow": "LOCAL OR CLOUD",
-        "title": ["Backups,", "by your choice."],
-        "body": ["Keep a local copy.", "Choose cloud when it fits."],
+        "eyebrow": "A WORKFLOW YOU CAN SEE",
+        "title": ["One action.", "Visible progress."],
+        "body": ["Complete a task.", "See the weekly plan update."],
         "footer": "FORGER.CLOUD"
       },
-      "caption": "Backups, by your choice.\n\nCreate local backups on your computer, or select Forger Cloud when that is the workflow you want. You choose the backup destination available for each app.\n\nExplore Forger at forger.cloud.\n\n#Forger #Backups #UserControl",
-      "screenshotSources": ["campaign-2026-08/backups-lego-public.png"]
+      "caption": "One action becomes visible progress.\n\nComplete a task in Daily Compass and the weekly summary updates inside the real local app. The data shown here is synthetic and created for this public demo.\n\nExplore Forger at forger.cloud.\n\n#Forger #LocalFirst #UsefulSoftware",
+      "screenshotSources": ["campaign-2026-08/daily-compass-completed.png"]
     },
     {
       "week": 4,
@@ -142,10 +142,10 @@
       },
       "caption": "One workspace. Many workflows.\n\nApps, personal agents, automations, files, and backups meet in one Forger workspace—each with a focused job.\n\nDownload Forger at forger.cloud.\n\n#Forger #PersonalComputing #AIWorkflow",
       "screenshotSources": [
-        "campaign-2026-08/apps-lego-public.png",
+        "campaign-2026-08/daily-compass-dashboard.png",
         "campaign-2026-08/agents-forger-marketer.png",
         "campaign-2026-08/automations-empty.png",
-        "campaign-2026-08/backups-lego-public.png"
+        "campaign-2026-08/daily-compass-completed.png"
       ]
     },
     {

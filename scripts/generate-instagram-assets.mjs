@@ -16,11 +16,13 @@ const height = 1350;
 
 const currentScreenshotNames = new Set([
   'campaign-2026-08/chat-blank.png',
-  'campaign-2026-08/apps-lego-public.png',
+  'campaign-2026-08/daily-compass-dashboard.png',
+  'campaign-2026-08/daily-compass-week.png',
+  'campaign-2026-08/daily-compass-focus.png',
+  'campaign-2026-08/daily-compass-completed.png',
   'campaign-2026-08/agents-forger-marketer.png',
   'campaign-2026-08/automations-empty.png',
   'campaign-2026-08/files-header.png',
-  'campaign-2026-08/backups-lego-public.png',
 ]);
 
 const escapeXml = (value) =>
@@ -163,7 +165,7 @@ const layouts = {
   },
 
   'asymmetric-split': async (post) => {
-    const screenshot = { x: 518, y: 270, width: 502, height: 820 };
+    const screenshot = { x: 420, y: 372, width: 620, height: 349 };
     return {
       base: baseSvg,
       layers: [
@@ -174,7 +176,7 @@ const layouts = {
             titleY: 224,
             titleSize: 58,
             titleLineHeight: 66,
-            bodyY: 846,
+            bodyY: 900,
             bodySize: 27,
             bodyLineHeight: 38,
           }),
@@ -258,8 +260,8 @@ const layouts = {
     };
   },
 
-  'choice-split': async (post) => {
-    const screenshot = { x: 66, y: 470, width: 948, height: 572 };
+  'progress-proof': async (post) => {
+    const screenshot = { x: 66, y: 470, width: 948, height: 534 };
     return {
       base: baseSvg,
       layers: [
@@ -276,8 +278,8 @@ const layouts = {
           }),
         },
         { input: frameSvg({ x: screenshot.x, y: screenshot.y, frameWidth: screenshot.width, frameHeight: screenshot.height, radius: 30 }) },
-        { input: await roundedScreenshot(post.screenshotSources[0], screenshot.width, screenshot.height, { radius: 30 }), left: screenshot.x, top: screenshot.y },
-        { input: canvasSvg(`<rect x="70" y="390" width="246" height="74" rx="37" fill="#D97832"/><text x="193" y="437" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">LOCAL</text><rect x="332" y="390" width="246" height="74" rx="37" fill="#FFFFFF" fill-opacity="0.09" stroke="#FFFFFF" stroke-opacity="0.28"/><text x="455" y="437" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">CLOUD</text><text x="924" y="430" text-anchor="end" fill="#F1B27A" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">YOU CHOOSE</text>`) },
+        { input: await roundedScreenshot(post.screenshotSources[0], screenshot.width, screenshot.height, { fit: 'contain', radius: 30 }), left: screenshot.x, top: screenshot.y },
+        { input: canvasSvg(`<rect x="70" y="390" width="294" height="74" rx="37" fill="#D97832"/><text x="217" y="437" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">TASK COMPLETE</text><path d="M398 427h276" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="3"/><circle cx="704" cy="427" r="16" fill="#68C891"/><text x="744" y="436" fill="#F1B27A" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">PLAN UPDATED</text>`) },
       ],
     };
   },
@@ -287,7 +289,7 @@ const layouts = {
       { x: 54, y: 392, width: 460, height: 390, source: 0, fit: 'contain' },
       { x: 540, y: 392, width: 486, height: 220, source: 1, fit: 'contain' },
       { x: 540, y: 636, width: 486, height: 300, source: 2, fit: 'cover' },
-      { x: 54, y: 806, width: 460, height: 300, source: 3, fit: 'cover' },
+      { x: 54, y: 806, width: 460, height: 300, source: 3, fit: 'contain' },
     ];
     const layers = [
       {

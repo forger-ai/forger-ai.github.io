@@ -19,10 +19,10 @@ const reelSize = { width: 1080, height: 1920 };
 
 const approvedSources = new Set([
   'campaign-2026-08/chat-blank.png',
-  'campaign-2026-08/apps-lego-public.png',
-  'campaign-2026-08/lego-news-public.png',
-  'campaign-2026-08/lego-news-filter-open.png',
-  'campaign-2026-08/lego-news-price-drops.png',
+  'campaign-2026-08/daily-compass-dashboard.png',
+  'campaign-2026-08/daily-compass-week.png',
+  'campaign-2026-08/daily-compass-focus.png',
+  'campaign-2026-08/daily-compass-completed.png',
 ]);
 
 const escapeXml = (value) =>
@@ -155,15 +155,15 @@ const renderCarouselSlide = async (slide, logo) => {
     });
   } else if (slide.layout === 'focused-app-card') {
     base = backgroundSvg(carouselSize.width, carouselSize.height, { variant: 'cool' });
-    const screen = { x: 174, y: 418, width: 732, height: 678 };
+    const screen = { x: 80, y: 434, width: 920, height: 518 };
     layers.push({ input: carouselHeadline(slide, { y: 134, size: 64, lineHeight: 70 }) });
     layers.push({
       input: svg(
         carouselSize.width,
         carouselSize.height,
         `<text x="980" y="1000" text-anchor="end" fill="#FFFFFF" fill-opacity="0.035" font-family="Arial, Helvetica, sans-serif" font-size="540" font-weight="700">2</text>
-         <circle cx="540" cy="770" r="408" fill="none" stroke="#759DD0" stroke-opacity="0.25" stroke-width="2"/>
-         <circle cx="540" cy="770" r="350" fill="#759DD0" fill-opacity="0.05"/>`,
+         <circle cx="540" cy="700" r="390" fill="none" stroke="#759DD0" stroke-opacity="0.25" stroke-width="2"/>
+         <circle cx="540" cy="700" r="330" fill="#759DD0" fill-opacity="0.05"/>`,
       ),
     });
     layers.push({ input: frameSvg({ ...screen, accent: '#759DD0' }) });
@@ -179,8 +179,8 @@ const renderCarouselSlide = async (slide, logo) => {
       input: svg(
         carouselSize.width,
         carouselSize.height,
-        `<rect x="356" y="1130" width="368" height="58" rx="29" fill="#759DD0"/>
-         <text x="540" y="1167" text-anchor="middle" fill="#071018" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1.8">OPEN · USE · RETURN</text>`,
+        `<rect x="320" y="1046" width="440" height="58" rx="29" fill="#759DD0"/>
+         <text x="540" y="1083" text-anchor="middle" fill="#071018" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="1.8">REAL APP · REAL WORKFLOW</text>`,
       ),
     });
   } else if (slide.layout === 'real-result') {
@@ -220,11 +220,11 @@ const renderCarouselSlide = async (slide, logo) => {
 const reelSceneOverlay = (scene, index) => {
   const isCta = Boolean(scene.cta);
   const focusMarkup =
-    index === 1 || index === 2
-      ? `<rect x="722" y="374" width="306" height="82" rx="18" fill="none" stroke="#F1B27A" stroke-width="5"/>
-         <circle cx="952" cy="446" r="22" fill="#D97832" fill-opacity="0.95"/><circle cx="952" cy="446" r="40" fill="none" stroke="#D97832" stroke-opacity="0.42" stroke-width="5"/>`
+    index === 2
+      ? `<rect x="812" y="830" width="194" height="76" rx="18" fill="none" stroke="#F1B27A" stroke-width="5"/>
+         <circle cx="985" cy="890" r="20" fill="#D97832" fill-opacity="0.95"/><circle cx="985" cy="890" r="38" fill="none" stroke="#D97832" stroke-opacity="0.42" stroke-width="5"/>`
       : index === 3
-        ? `<rect x="76" y="688" width="928" height="196" rx="22" fill="none" stroke="#68C891" stroke-width="5"/>`
+        ? `<rect x="260" y="804" width="560" height="130" rx="22" fill="none" stroke="#68C891" stroke-width="5"/>`
         : '';
   return svg(
     reelSize.width,
@@ -252,11 +252,23 @@ const renderReelScene = async (scene, index, logo) => {
     radius: 0,
     blur: 26,
   });
-  const product = await approvedScreenshot(scene.source, 1000, 1120, {
-    fit: 'cover',
-    position: 'right top',
-    radius: 40,
+  const productScreenshot = await approvedScreenshot(scene.source, 1000, 563, {
+    fit: 'contain',
+    position: 'centre',
+    radius: 24,
+    background: '#F8F3E6',
   });
+  const productBackground = await approvedScreenshot(scene.source, 1000, 1120, {
+    fit: 'cover',
+    position: 'centre',
+    radius: 40,
+    blur: 28,
+  });
+  const product = await sharp(productBackground)
+    .modulate({ brightness: 0.42, saturation: 0.58 })
+    .composite([{ input: productScreenshot, left: 0, top: 279 }])
+    .png()
+    .toBuffer();
   return sharp(background)
     .modulate({ brightness: 0.38, saturation: 0.62 })
     .composite([
@@ -265,6 +277,7 @@ const renderReelScene = async (scene, index, logo) => {
       { input: reelSceneOverlay(scene, index) },
       { input: logo, left: 20, top: 60 },
     ])
+    .flatten({ background: '#090D12' })
     .png()
     .toBuffer();
 };
