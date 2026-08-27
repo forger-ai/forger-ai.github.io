@@ -1,0 +1,136 @@
+{
+  "campaign": "Forger professional content pilot",
+  "language": "English",
+  "status": "ready-for-review",
+  "sourceAuthenticity": "real-current-product-screenshots",
+  "mockProductUi": false,
+  "sourceScreenshots": [
+    "campaign-2026-08/chat-blank.png",
+    "campaign-2026-08/apps-lego-public.png",
+    "campaign-2026-08/lego-news-public.png",
+    "campaign-2026-08/lego-news-filter-open.png",
+    "campaign-2026-08/lego-news-price-drops.png"
+  ],
+  "positioning": [
+    "Forger is free for people.",
+    "There is no added Forger subscription.",
+    "Provider terms and costs may apply.",
+    "Forger is local-first and external files are used only when the person explicitly shares them."
+  ],
+  "carousel": {
+    "dimensions": {
+      "width": 1080,
+      "height": 1350
+    },
+    "finalCta": "Free for people · forger.cloud",
+    "caption": "Start with one repetitive task. Shape a real app around it, use it, and adapt it to your workflow. Forger is free for people, with no added Forger subscription. Provider terms and costs may apply. Download at forger.cloud.\n\n#Forger #PersonalSoftware #BuildWithAI",
+    "slides": [
+      {
+        "filename": "carousel-01-start-with-the-need.png",
+        "layout": "immersive-prompt",
+        "step": "01 / 03",
+        "eyebrow": "START WITH THE NEED",
+        "hook": "Start with one repetitive task.",
+        "hookLines": ["Start with one", "repetitive task."],
+        "body": "Describe the result you want.",
+        "screenshot": "campaign-2026-08/chat-blank.png",
+        "footer": "SWIPE TO SEE THE FLOW"
+      },
+      {
+        "filename": "carousel-02-shape-a-real-app.png",
+        "layout": "focused-app-card",
+        "step": "02 / 03",
+        "eyebrow": "MAKE IT REUSABLE",
+        "hook": "Shape a real app around it.",
+        "hookLines": ["Shape a real app", "around it."],
+        "body": "A focused interface you can reopen.",
+        "screenshot": "campaign-2026-08/apps-lego-public.png",
+        "footer": "REAL APP · REAL INTERFACE"
+      },
+      {
+        "filename": "carousel-03-use-adapt-keep.png",
+        "layout": "real-result",
+        "step": "03 / 03",
+        "eyebrow": "YOUR WORKFLOW, IN SOFTWARE",
+        "hook": "Use it. Adapt it. Keep it yours.",
+        "hookLines": ["Use it. Adapt it.", "Keep it yours."],
+        "body": "Local-first software built around your workflow.",
+        "screenshot": "campaign-2026-08/lego-news-public.png",
+        "footer": "FREE FOR PEOPLE · FORGER.CLOUD"
+      }
+    ]
+  },
+  "reel": {
+    "filename": "reel-01-real-filter.mp4",
+    "coverFilename": "reel-01-real-filter-cover.png",
+    "storyboardFilename": "reel-01-real-filter-storyboard.png",
+    "dimensions": {
+      "width": 1080,
+      "height": 1920
+    },
+    "durationSeconds": 10,
+    "framesPerSecond": 30,
+    "interaction": "open news filter and choose price drops",
+    "screenshotSequence": [
+      "campaign-2026-08/lego-news-public.png",
+      "campaign-2026-08/lego-news-filter-open.png",
+      "campaign-2026-08/lego-news-price-drops.png"
+    ],
+    "audio": "silent master",
+    "publishingNote": "Add one royalty-free track from Meta Sound Collection when publishing; keep the silent master as the reusable source.",
+    "caption": "A real Forger app. One useful action. Filter the changes that matter and return to the same focused workflow whenever you need it. Forger is local-first and free for people, with no added Forger subscription. Provider terms and costs may apply. Download at forger.cloud.\n\n#Forger #LocalFirst #PersonalSoftware",
+    "scenes": [
+      {
+        "startFrame": 0,
+        "endFrame": 41,
+        "source": "campaign-2026-08/lego-news-public.png",
+        "eyebrow": "A REAL FORGER APP",
+        "headline": ["One useful view.", "One real workflow."],
+        "support": "The app runs locally on your computer.",
+        "accent": "READY"
+      },
+      {
+        "startFrame": 42,
+        "endFrame": 95,
+        "source": "campaign-2026-08/lego-news-public.png",
+        "eyebrow": "1 · OPEN THE FILTER",
+        "headline": ["See what", "changed."],
+        "support": "Focus the view without leaving the app.",
+        "accent": "CLICK"
+      },
+      {
+        "startFrame": 96,
+        "endFrame": 155,
+        "source": "campaign-2026-08/lego-news-filter-open.png",
+        "eyebrow": "2 · CHOOSE THE SIGNAL",
+        "headline": ["Choose what", "matters."],
+        "support": "This is the real filter from the installed app.",
+        "accent": "SELECT"
+      },
+      {
+        "startFrame": 156,
+        "endFrame": 233,
+        "source": "campaign-2026-08/lego-news-price-drops.png",
+        "eyebrow": "3 · GET A FOCUSED RESULT",
+        "headline": ["A useful answer,", "inside the app."],
+        "support": "Price drops now have their own focused view.",
+        "accent": "DONE"
+      },
+      {
+        "startFrame": 234,
+        "endFrame": 299,
+        "source": "campaign-2026-08/lego-news-price-drops.png",
+        "eyebrow": "FORGER",
+        "headline": ["Local-first apps.", "Free for people."],
+        "support": "No added Forger subscription. Provider terms and costs may apply.",
+        "accent": "FORGER.CLOUD",
+        "cta": true
+      }
+    ]
+  },
+  "canva": {
+    "plan": "Canva Free",
+    "status": "pending-user-connection",
+    "handoff": "Import the finished PNG and MP4 masters only; use free assets and avoid Pro elements that add a watermark or license cost."
+  }
+}
