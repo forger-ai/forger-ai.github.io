@@ -1,0 +1,375 @@
+---
+import {
+  Check,
+  Copy,
+  Download,
+  HardDrive,
+  LockKeyhole,
+  MonitorDown,
+  Share2,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-astro';
+import DownloadPicker from './DownloadPicker.astro';
+import ScreenshotFrame from './ScreenshotFrame.astro';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props as Props;
+
+const copy = {
+  en: {
+    hero: {
+      eyebrow: 'Free for people',
+      title: ['Your AI. Your apps.', 'Your computer.'],
+      description: 'Create an app for your life or work with the AI account you already use. Forger is free for people and does not charge an additional subscription.',
+      points: ['ChatGPT, Claude, or Antigravity', 'No extra Forger plan', 'Local-first by default'],
+      download: 'Download Forger free',
+      note: 'No credit card required. The limits, terms, and possible costs of your AI provider still apply to the account you already have.',
+      screenshotAlt: 'A real Forger Desktop screenshot showing a local app and the conversation panel.',
+      screenshotLabel: 'Forger Desktop · real screenshot',
+    },
+    install: {
+      eyebrow: 'Install it where you will create',
+      title: 'Forger installs on your computer.',
+      description: 'If you came from Instagram on your phone, send yourself this link. When you open it on your computer, it will keep the campaign attribution and show the right download.',
+      phoneTitle: 'Are you on your phone?',
+      phoneDescription: 'Send yourself this link however you prefer, then open it from your computer.',
+      linkLabel: 'Forger download link',
+      share: 'Share link',
+      copy: 'Copy link',
+      computerTitle: 'Already on your computer?',
+      computerDescription: 'Choose a download. macOS Apple silicon is stable; macOS Intel, Windows, and Linux options are experimental.',
+    },
+    provider: {
+      eyebrow: 'Use the AI you already know',
+      title: 'You do not need another subscription.',
+      description: 'Connect ChatGPT, Claude, or Antigravity with the account you already have. Forger prepares a space where you can turn a specific need into an app.',
+      note: 'Forger does not replace your AI service: each provider keeps its own limits, terms, and possible costs. You choose the account and provider you want to use.',
+      screenshotAlt: 'A real screenshot of the local catalog of apps available in Forger.',
+      screenshotLabel: 'Explore apps inside Forger · real screenshot',
+    },
+    privacy: {
+      eyebrow: 'Private by design',
+      title: 'Your space, under your control.',
+      description: 'Apps install and run in a local workspace on your computer. You decide which files to use and what to share.',
+      localTitle: 'Local-first',
+      localDescription: 'Installed apps live on your computer and must not read external files unless you share them.',
+      sharingTitle: 'You choose what to share',
+      sharingDescription: 'Cloud services are used only when you choose features that need them, such as an account, backup, or sharing.',
+      screenshotAlt: 'A real screenshot of Forger showing apps installed on a person’s computer.',
+      screenshotLabel: 'Your apps in Forger · real screenshot',
+    },
+    closing: {
+      title: 'Create an app that actually helps you.',
+      description: 'Free for people. Use the AI you already have. Keep your apps on your computer.',
+      download: 'Download Forger free',
+    },
+    campaignPath: 'forger.cloud/instagram',
+    shareTitle: 'Forger free for people',
+    shareText: 'Create local apps with the AI you already use.',
+    copied: 'Link copied. Open it from your computer to download Forger.',
+    manualCopy: 'Select and copy this link to open it on your computer.',
+    shared: 'Done: share the link and open it from your computer.',
+    shareFallback: 'You can copy the link and send it to yourself however you prefer.',
+  },
+  es: {
+    hero: {
+      eyebrow: 'Gratis para personas',
+      title: ['Tu IA. Tus apps.', 'Tu computador.'],
+      description: 'Crea una app para tu vida o trabajo con la cuenta de IA que ya usas. Forger es gratis para personas y no cobra una suscripción adicional.',
+      points: ['ChatGPT, Claude o Antigravity', 'Sin otro plan de Forger', 'Local por defecto'],
+      download: 'Descargar Forger gratis',
+      note: 'No pedimos tarjeta. Los límites, condiciones y posibles costos de tu proveedor de IA siguen aplicando según la cuenta que ya tienes.',
+      screenshotAlt: 'Captura real de Forger Desktop mostrando una app local y el panel de conversación.',
+      screenshotLabel: 'Forger Desktop · captura real',
+    },
+    install: {
+      eyebrow: 'Instálalo donde crearás',
+      title: 'Forger se instala en tu computador.',
+      description: 'Si llegaste desde Instagram en tu teléfono, compártete este enlace. Al abrirlo en tu computador conservará la campaña y mostrará la descarga correcta.',
+      phoneTitle: '¿Estás en tu teléfono?',
+      phoneDescription: 'Envíate este enlace por el medio que prefieras y ábrelo desde tu computador.',
+      linkLabel: 'Enlace de descarga de Forger',
+      share: 'Compartir enlace',
+      copy: 'Copiar enlace',
+      computerTitle: '¿Ya estás en tu computador?',
+      computerDescription: 'Elige una descarga. macOS Apple silicon es estable; las opciones para macOS Intel, Windows y Linux son experimentales.',
+    },
+    provider: {
+      eyebrow: 'Usa la IA que ya conoces',
+      title: 'No necesitas pagar otra suscripción.',
+      description: 'Conecta ChatGPT, Claude o Antigravity con la cuenta que ya tienes. Forger prepara el espacio para que puedas transformar una necesidad concreta en una app.',
+      note: 'Forger no reemplaza el servicio de IA: cada proveedor mantiene sus propios límites, condiciones y posibles costos. Tú eliges la cuenta y el proveedor que quieres usar.',
+      screenshotAlt: 'Captura real del catálogo local de apps disponibles en Forger.',
+      screenshotLabel: 'Explora apps dentro de Forger · captura real',
+    },
+    privacy: {
+      eyebrow: 'Privado por diseño',
+      title: 'Tu espacio, bajo tu control.',
+      description: 'Las apps se instalan y corren en un workspace local de tu computador. Tú decides qué archivos usar y qué compartir.',
+      localTitle: 'Local primero',
+      localDescription: 'Las apps instaladas viven en tu computador y no deben leer archivos externos salvo que tú los compartas.',
+      sharingTitle: 'Tú decides qué compartir',
+      sharingDescription: 'La nube se usa sólo si eliges funciones que la necesitan, como cuenta, respaldo o compartir.',
+      screenshotAlt: 'Captura real de Forger mostrando las apps instaladas en el computador de una persona.',
+      screenshotLabel: 'Tus apps en Forger · captura real',
+    },
+    closing: {
+      title: 'Crea una app que realmente te sirva.',
+      description: 'Gratis para personas. Usa la IA que ya tienes. Mantén tus apps en tu computador.',
+      download: 'Descargar Forger gratis',
+    },
+    campaignPath: 'forger.cloud/es/instagram',
+    shareTitle: 'Forger gratis para personas',
+    shareText: 'Crea apps locales con la IA que ya usas.',
+    copied: 'Enlace copiado. Ábrelo desde tu computador para descargar Forger.',
+    manualCopy: 'Selecciona y copia este enlace para abrirlo en tu computador.',
+    shared: 'Listo: comparte el enlace y ábrelo desde tu computador.',
+    shareFallback: 'Puedes copiar el enlace y enviártelo por el medio que prefieras.',
+  },
+}[lang];
+---
+
+<div class="overflow-hidden">
+  <section class="relative px-5 pb-12 pt-24 sm:px-6 sm:pt-28">
+    <div class="orbital-field absolute inset-x-0 top-0 -z-10 h-[780px] opacity-80"></div>
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div class="max-w-2xl">
+        <p class="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand">
+          <Sparkles size={14} aria-hidden="true" />
+          {copy.hero.eyebrow}
+        </p>
+        <h1 class="mt-5 text-4xl font-bold leading-[1.04] tracking-tight text-white sm:text-6xl">
+          {copy.hero.title[0]}<br />
+          <span class="text-brand">{copy.hero.title[1]}</span>
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-zinc-300 sm:text-xl">
+          {copy.hero.description}
+        </p>
+        <ul class="mt-6 grid gap-3 text-sm text-zinc-300 sm:grid-cols-3">
+          {copy.hero.points.map((point) => <li class="flex items-start gap-2"><Check class="mt-0.5 shrink-0 text-brand" size={17} aria-hidden="true" />{point}</li>)}
+        </ul>
+        <a href="#instalar" class="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+          <Download size={18} aria-hidden="true" />
+          {copy.hero.download}
+        </a>
+        <p class="mt-3 text-xs leading-relaxed text-zinc-500">{copy.hero.note}</p>
+      </div>
+
+      <ScreenshotFrame
+        src="/assets/screenshots/forger-new-experience.png"
+        alt={copy.hero.screenshotAlt}
+        label={copy.hero.screenshotLabel}
+        class="mx-auto w-full max-w-3xl"
+      />
+    </div>
+  </section>
+
+  <section id="instalar" class="mx-auto max-w-5xl scroll-mt-24 px-5 py-12 sm:px-6 sm:py-20">
+    <div
+      class="rounded-[2rem] border border-brand/30 bg-brand/[0.08] p-5 shadow-2xl shadow-black/20 sm:p-9"
+      data-campaign-handoff
+      data-campaign-copied={copy.copied}
+      data-campaign-manual-copy={copy.manualCopy}
+      data-campaign-shared={copy.shared}
+      data-campaign-share-fallback={copy.shareFallback}
+      data-campaign-share-title={copy.shareTitle}
+      data-campaign-share-text={copy.shareText}
+    >
+      <div class="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand">{copy.install.eyebrow}</p>
+          <h2 class="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">{copy.install.title}</h2>
+          <p class="mt-4 leading-relaxed text-zinc-300">{copy.install.description}</p>
+        </div>
+
+        <div class="grid gap-4">
+          <div class="rounded-2xl border border-white/10 bg-zinc-950/45 p-5" data-campaign-mobile-handoff>
+            <div class="flex items-start gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand"><MonitorDown size={20} aria-hidden="true" /></div>
+              <div>
+                <h3 class="font-semibold text-white">{copy.install.phoneTitle}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-zinc-400">{copy.install.phoneDescription}</p>
+              </div>
+            </div>
+            <label class="sr-only" for="campaign-link">{copy.install.linkLabel}</label>
+            <input id="campaign-link" data-campaign-link readonly class="mt-4 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-zinc-300 outline-none" value={copy.campaignPath} />
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <button type="button" data-campaign-share class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+                <Share2 size={16} aria-hidden="true" /> {copy.install.share}
+              </button>
+              <button type="button" data-campaign-copy class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-colors hover:bg-white/[0.08]">
+                <Copy size={16} aria-hidden="true" /> {copy.install.copy}
+              </button>
+            </div>
+            <p data-campaign-status class="mt-3 min-h-5 text-xs text-zinc-400" aria-live="polite"></p>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-zinc-950/45 p-5" data-campaign-download>
+            <div class="flex items-start gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand"><Download size={20} aria-hidden="true" /></div>
+              <div>
+                <h3 class="font-semibold text-white">{copy.install.computerTitle}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-zinc-400">{copy.install.computerDescription}</p>
+              </div>
+            </div>
+            <div class="mt-4"><DownloadPicker lang={lang} /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-20">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand">{copy.provider.eyebrow}</p>
+        <h2 class="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">{copy.provider.title}</h2>
+        <p class="mt-5 text-lg leading-relaxed text-zinc-400">{copy.provider.description}</p>
+        <p class="mt-4 text-sm leading-relaxed text-zinc-500">{copy.provider.note}</p>
+      </div>
+      <ScreenshotFrame
+        src="/assets/screenshots/forger-catalog.png"
+        alt={copy.provider.screenshotAlt}
+        label={copy.provider.screenshotLabel}
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-20">
+    <div class="grid gap-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand">{copy.privacy.eyebrow}</p>
+        <h2 class="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">{copy.privacy.title}</h2>
+        <p class="mt-5 text-lg leading-relaxed text-zinc-400">{copy.privacy.description}</p>
+        <div class="mt-7 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-zinc-950/45 p-4">
+            <HardDrive class="text-brand" size={20} aria-hidden="true" />
+            <h3 class="mt-3 font-semibold text-white">{copy.privacy.localTitle}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-zinc-400">{copy.privacy.localDescription}</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-zinc-950/45 p-4">
+            <LockKeyhole class="text-brand" size={20} aria-hidden="true" />
+            <h3 class="mt-3 font-semibold text-white">{copy.privacy.sharingTitle}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-zinc-400">{copy.privacy.sharingDescription}</p>
+          </div>
+        </div>
+      </div>
+      <ScreenshotFrame
+        src="/assets/screenshots/forger-my-apps.png"
+        alt={copy.privacy.screenshotAlt}
+        label={copy.privacy.screenshotLabel}
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-5 py-16 text-center sm:px-6 sm:py-24">
+    <ShieldCheck class="mx-auto text-brand" size={30} aria-hidden="true" />
+    <h2 class="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">{copy.closing.title}</h2>
+    <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400">{copy.closing.description}</p>
+    <a href="#instalar" class="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+      <Download size={18} aria-hidden="true" /> {copy.closing.download}
+    </a>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const handoff = document.querySelector('[data-campaign-handoff]');
+    const linkInput = document.querySelector('[data-campaign-link]');
+    const status = document.querySelector('[data-campaign-status]');
+    const shareButton = document.querySelector('[data-campaign-share]');
+    const copyButton = document.querySelector('[data-campaign-copy]');
+
+    if (!handoff || !linkInput) return;
+
+    const messages = {
+      copied: handoff.dataset.campaignCopied,
+      manualCopy: handoff.dataset.campaignManualCopy,
+      shared: handoff.dataset.campaignShared,
+      shareFallback: handoff.dataset.campaignShareFallback,
+      shareTitle: handoff.dataset.campaignShareTitle,
+      shareText: handoff.dataset.campaignShareText,
+    };
+
+    function campaignUrl() {
+      const url = new URL(window.location.href);
+      for (const key of [...url.searchParams.keys()]) {
+        if (!key.startsWith('utm_')) url.searchParams.delete(key);
+      }
+      if (!url.searchParams.has('utm_source')) url.searchParams.set('utm_source', 'instagram');
+      return url.toString();
+    }
+
+    function setStatus(message) {
+      if (status) status.textContent = message;
+    }
+
+    async function copyCampaignLink() {
+      const url = campaignUrl();
+      linkInput.value = url;
+
+      try {
+        await navigator.clipboard.writeText(url);
+        setStatus(messages.copied);
+      } catch {
+        linkInput.focus();
+        linkInput.select();
+        setStatus(messages.manualCopy);
+      }
+    }
+
+    linkInput.value = campaignUrl();
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    handoff.dataset.device = isMobile ? 'mobile' : 'desktop';
+
+    copyButton?.addEventListener('click', copyCampaignLink);
+    shareButton?.addEventListener('click', async () => {
+      const url = campaignUrl();
+      if (!navigator.share) {
+        await copyCampaignLink();
+        return;
+      }
+
+      try {
+        await navigator.share({
+          title: messages.shareTitle,
+          text: messages.shareText,
+          url,
+        });
+        setStatus(messages.shared);
+      } catch {
+        setStatus(messages.shareFallback);
+      }
+    });
+
+    document.querySelectorAll('[data-campaign-download]').forEach((container) => {
+      container.addEventListener('click', (event) => {
+        const link = event.target.closest('a[href]');
+        if (!link) return;
+
+        const option = link.closest('[data-download-option]');
+        const attributionUrl = new URL(campaignUrl());
+        const utm = Object.fromEntries(attributionUrl.searchParams.entries());
+        const intent = {
+          campaign: 'instagram',
+          action: 'download_intent',
+          platform: option?.dataset.downloadOption || 'automatic',
+          utm,
+        };
+
+        try {
+          sessionStorage.setItem('forger-campaign-download-intent', JSON.stringify(intent));
+        } catch {
+          // This local handoff continues even when browser storage is unavailable.
+        }
+
+        window.dispatchEvent(new CustomEvent('forger:download-intent', { detail: intent }));
+      });
+    });
+  })();
+</script>
