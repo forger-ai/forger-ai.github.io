@@ -4,10 +4,17 @@
   "format": "1080x1350",
   "timezone": "America/Santiago",
   "cadence": "2 posts per week for 4 weeks",
+  "execution": {
+    "status": "scheduled",
+    "platforms": ["Instagram feed", "Facebook feed"],
+    "scheduledVia": "Meta Business Suite",
+    "verifiedLocalDate": "2026-08-26",
+    "paidSpendUsd": 0
+  },
   "posts": [
     {
       "week": 1,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-08-27 13:00",
       "filename": "04-start-with-one-need.png",
@@ -24,7 +31,7 @@
     },
     {
       "week": 1,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-08-30 11:00",
       "filename": "05-a-real-app-you-can-open.png",
@@ -41,7 +48,7 @@
     },
     {
       "week": 2,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-03 13:00",
       "filename": "06-personal-agents.png",
@@ -58,7 +65,7 @@
     },
     {
       "week": 2,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-06 11:00",
       "filename": "07-schedule-local-workflows.png",
@@ -75,7 +82,7 @@
     },
     {
       "week": 3,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-10 13:00",
       "filename": "08-share-files-explicitly.png",
@@ -92,7 +99,7 @@
     },
     {
       "week": 3,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-13 11:00",
       "filename": "09-backups-by-choice.png",
@@ -109,7 +116,7 @@
     },
     {
       "week": 4,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-17 13:00",
       "filename": "10-one-workspace-many-workflows.png",
@@ -131,7 +138,7 @@
     },
     {
       "week": 4,
-      "status": "planned",
+      "status": "scheduled",
       "assetStatus": "ready",
       "scheduledLocal": "2026-09-20 11:00",
       "filename": "11-what-should-your-computer-do.png",

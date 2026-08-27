@@ -107,7 +107,7 @@ test('future Instagram feed campaign schedules two posts a week for four weeks i
 
   for (const [index, post] of calendar.posts.entries()) {
     assert.equal(post.week, Math.floor(index / 2) + 1);
-    assert.equal(post.status, 'planned');
+    assert.equal(post.status, 'scheduled');
   }
 });
 
