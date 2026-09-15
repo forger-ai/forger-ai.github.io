@@ -11,6 +11,8 @@
     "dev": "npm run prepare:docs && astro dev",
     "build": "npm run prepare:docs && astro build",
     "generate:desktop-versions": "node scripts/generate-desktop-versions.mjs",
+    "generate:instagram-pilot": "node scripts/generate-instagram-professional-pilot.mjs",
+    "generate:instagram-followup": "node scripts/generate-instagram-followup.mjs",
     "test": "node --test",
     "preview": "astro preview",
     "astro": "astro"
