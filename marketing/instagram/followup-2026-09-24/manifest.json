@@ -1,0 +1,375 @@
+{
+  "campaign": "Forger organic follow-up",
+  "language": "English",
+  "status": "ready-for-review",
+  "timeZone": "America/Santiago",
+  "sourceAuthenticity": "real-current-product-screenshots",
+  "mockProductUi": false,
+  "sourceScreenshots": [
+    "campaign-2026-08/daily-compass-dashboard.png",
+    "campaign-2026-08/daily-compass-week.png",
+    "campaign-2026-08/daily-compass-focus.png",
+    "campaign-2026-08/daily-compass-completed.png",
+    "campaign-2026-08/agents-forger-marketer.png",
+    "campaign-2026-08/automations-empty.png"
+  ],
+  "publishing": {
+    "scope": "organic",
+    "spendUsd": 0,
+    "narrativeCta": "Turn your idea into an app you actually use.",
+    "commonCta": "Download free at forger.cloud",
+    "providerCaveat": "Provider terms and costs may apply.",
+    "reviewState": "Assets must be reviewed before any public scheduling action."
+  },
+  "posts": [
+    {
+      "id": "2026-09-24-free-private-local",
+      "scheduledLocal": "2026-09-24 13:00",
+      "channels": ["Instagram", "Facebook"],
+      "format": "reel",
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "headline": "FREE. PRIVATE. LOCAL.",
+      "filename": "reel-2026-09-24-free-private-local.mp4",
+      "coverFilename": "reel-2026-09-24-free-private-local-cover.png",
+      "storyboardFilename": "reel-2026-09-24-free-private-local-storyboard.png",
+      "coverSceneIndex": 4,
+      "dimensions": { "width": 1080, "height": 1920 },
+      "durationSeconds": 13,
+      "framesPerSecond": 30,
+      "audio": "silent master",
+      "publishingNote": "Add one royalty-free track from Meta Sound Collection only when publishing; keep the silent master as the reusable source.",
+      "captions": {
+        "instagram": {
+          "text": "Free for people. Private by design. Local-first. Turn your idea into an app you actually use. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #LocalFirst #PersonalSoftware",
+          "bioUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=free_private_local"
+        },
+        "facebook": {
+          "text": "Free for people. Private by design. Local-first. Turn your idea into an app you actually use. Create your first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=free_private_local",
+          "destinationUrl": "https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=free_private_local"
+        }
+      },
+      "screenshotSequence": [
+        "campaign-2026-08/daily-compass-dashboard.png",
+        "campaign-2026-08/agents-forger-marketer.png",
+        "campaign-2026-08/automations-empty.png",
+        "campaign-2026-08/daily-compass-completed.png"
+      ],
+      "scenes": [
+        {
+          "startFrame": 0,
+          "endFrame": 77,
+          "source": "campaign-2026-08/daily-compass-dashboard.png",
+          "eyebrow": "FORGER",
+          "headline": ["FREE."],
+          "support": "Free for people. No added Forger subscription.",
+          "accent": "START"
+        },
+        {
+          "startFrame": 78,
+          "endFrame": 155,
+          "source": "campaign-2026-08/agents-forger-marketer.png",
+          "eyebrow": "YOUR WORKSPACE",
+          "headline": ["PRIVATE."],
+          "support": "Personal agents and conversations in your workspace.",
+          "accent": "YOUR CHOICE"
+        },
+        {
+          "startFrame": 156,
+          "endFrame": 233,
+          "source": "campaign-2026-08/automations-empty.png",
+          "eyebrow": "LOCAL-FIRST",
+          "headline": ["LOCAL."],
+          "support": "Apps and scheduled workflows run from your computer.",
+          "accent": "ON YOUR MACHINE"
+        },
+        {
+          "startFrame": 234,
+          "endFrame": 311,
+          "source": "campaign-2026-08/daily-compass-completed.png",
+          "eyebrow": "REAL APPS",
+          "headline": ["Useful software.", "Visible progress."],
+          "support": "Built around the work you actually want to do.",
+          "accent": "KEEP MOVING"
+        },
+        {
+          "startFrame": 312,
+          "endFrame": 389,
+          "source": "campaign-2026-08/daily-compass-completed.png",
+          "eyebrow": "FORGER",
+          "headline": ["FREE. PRIVATE.", "LOCAL."],
+          "support": "Turn your idea into an app you actually use.",
+          "accent": "DOWNLOAD FREE",
+          "cta": true
+        }
+      ]
+    },
+    {
+      "id": "2026-09-27-use-your-provider",
+      "scheduledLocal": "2026-09-27 11:00",
+      "channels": ["Instagram", "Facebook"],
+      "format": "carousel",
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "headline": "Use the provider you already have",
+      "dimensions": { "width": 1080, "height": 1350 },
+      "captions": {
+        "instagram": {
+          "text": "Use Codex, Claude Code, or Antigravity with accounts you already have. Turn your idea into an app you actually use, without an added Forger subscription. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #Codex #ClaudeCode #LocalFirst",
+          "bioUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=existing_provider"
+        },
+        "facebook": {
+          "text": "Use Codex, Claude Code, or Antigravity with accounts you already have. Turn your idea into an app you actually use, without an added Forger subscription. Create your first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=existing_provider",
+          "destinationUrl": "https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=existing_provider"
+        }
+      },
+      "slides": [
+        {
+          "filename": "carousel-2026-09-27-01-use-your-provider.png",
+          "step": "01 / 04",
+          "eyebrow": "BRING YOUR PROVIDER",
+          "hook": "Use the provider you already have.",
+          "hookLines": ["Use the provider", "you already have."],
+          "body": "Supported access from Codex, Claude Code, or Antigravity.",
+          "screenshot": "campaign-2026-08/agents-forger-marketer.png",
+          "layout": "wide-agent",
+          "footer": "SWIPE TO SEE HOW"
+        },
+        {
+          "filename": "carousel-2026-09-27-02-keep-your-plan.png",
+          "step": "02 / 04",
+          "eyebrow": "YOUR EXISTING ACCESS",
+          "hook": "Use accounts you already have.",
+          "hookLines": ["Use accounts", "you already have."],
+          "body": "Choose a supported provider inside your Forger agent.",
+          "screenshot": "campaign-2026-08/agents-forger-marketer.png",
+          "layout": "agent-detail",
+          "footer": "SUPPORTED PROVIDER ACCESS"
+        },
+        {
+          "filename": "carousel-2026-09-27-03-no-added-subscription.png",
+          "step": "03 / 04",
+          "eyebrow": "FORGER FOR PEOPLE",
+          "hook": "No added Forger subscription.",
+          "hookLines": ["No added Forger", "subscription."],
+          "body": "Build and use personal local-first apps with Forger.",
+          "screenshot": "campaign-2026-08/daily-compass-dashboard.png",
+          "layout": "app-window",
+          "footer": "PROVIDER TERMS AND COSTS MAY APPLY"
+        },
+        {
+          "filename": "carousel-2026-09-27-04-download-free.png",
+          "step": "04 / 04",
+          "eyebrow": "START WITH ONE WORKFLOW",
+          "hook": "Turn your idea into an app you actually use.",
+          "hookLines": ["Turn your idea into", "an app you actually use."],
+          "body": "Free for people. Local-first by design.",
+          "screenshot": "campaign-2026-08/daily-compass-completed.png",
+          "layout": "final-cta",
+          "footer": "DOWNLOAD FREE · FORGER.CLOUD"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-01-daily-compass",
+      "scheduledLocal": "2026-10-01 13:00",
+      "channels": ["Instagram", "Facebook"],
+      "format": "reel",
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "headline": "Open. Focus. Complete.",
+      "filename": "reel-2026-10-01-daily-compass.mp4",
+      "coverFilename": "reel-2026-10-01-daily-compass-cover.png",
+      "storyboardFilename": "reel-2026-10-01-daily-compass-storyboard.png",
+      "coverSceneIndex": 4,
+      "dimensions": { "width": 1080, "height": 1920 },
+      "durationSeconds": 13,
+      "framesPerSecond": 30,
+      "interaction": "Open the real Daily Compass app, apply Focus, and Complete a task.",
+      "audio": "silent master",
+      "publishingNote": "Add one royalty-free track from Meta Sound Collection only when publishing; keep the silent master as the reusable source.",
+      "captions": {
+        "instagram": {
+          "text": "Turn your idea into an app you actually use. Open the week, focus on what matters, and complete one task in Daily Compass. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #DailyCompass #PersonalSoftware",
+          "bioUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass"
+        },
+        "facebook": {
+          "text": "Turn your idea into an app you actually use. Open the week, focus on what matters, and complete one task in Daily Compass. Create your first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass",
+          "destinationUrl": "https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass"
+        }
+      },
+      "screenshotSequence": [
+        "campaign-2026-08/daily-compass-completed.png",
+        "campaign-2026-08/daily-compass-week.png",
+        "campaign-2026-08/daily-compass-focus.png",
+        "campaign-2026-08/daily-compass-completed.png"
+      ],
+      "scenes": [
+        {
+          "startFrame": 0,
+          "endFrame": 77,
+          "source": "campaign-2026-08/daily-compass-completed.png",
+          "eyebrow": "THE RESULT",
+          "headline": ["An app you", "actually use."],
+          "support": "Daily Compass turns one idea into a visible workflow.",
+          "accent": "REAL APP"
+        },
+        {
+          "startFrame": 78,
+          "endFrame": 155,
+          "source": "campaign-2026-08/daily-compass-week.png",
+          "eyebrow": "1 · OPEN",
+          "headline": ["See the", "whole week."],
+          "support": "Open one view for the plan and its progress.",
+          "accent": "OPEN"
+        },
+        {
+          "startFrame": 156,
+          "endFrame": 233,
+          "source": "campaign-2026-08/daily-compass-focus.png",
+          "eyebrow": "2 · FOCUS",
+          "headline": ["Show only", "what matters."],
+          "support": "Use the real Focus control to narrow the week.",
+          "accent": "FOCUS"
+        },
+        {
+          "startFrame": 234,
+          "endFrame": 311,
+          "source": "campaign-2026-08/daily-compass-completed.png",
+          "eyebrow": "3 · COMPLETE",
+          "headline": ["One action.", "Visible progress."],
+          "support": "Complete a task and the weekly summary updates.",
+          "accent": "COMPLETE"
+        },
+        {
+          "startFrame": 312,
+          "endFrame": 389,
+          "source": "campaign-2026-08/daily-compass-completed.png",
+          "eyebrow": "FORGER",
+          "headline": ["Open. Focus.", "Complete."],
+          "support": "Turn your idea into an app you actually use.",
+          "accent": "DOWNLOAD FREE",
+          "cta": true
+        }
+      ]
+    },
+    {
+      "id": "2026-10-04-local-data-sharing",
+      "scheduledLocal": "2026-10-04 11:00",
+      "channels": ["Instagram", "Facebook"],
+      "format": "carousel",
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "headline": "Local data. Explicit sharing.",
+      "dimensions": { "width": 1080, "height": 1350 },
+      "captions": {
+        "instagram": {
+          "text": "Turn your idea into an app you actually use. Forger apps live in your private workspace and keep their app data local. External files are used only when you explicitly share them for the task. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #LocalFirst #PrivacyByDesign",
+          "bioUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=local_data_sharing"
+        },
+        "facebook": {
+          "text": "Turn your idea into an app you actually use. Forger apps live in your private workspace and keep their app data local. External files are used only when you explicitly share them for the task. Create your first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=local_data_sharing",
+          "destinationUrl": "https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=local_data_sharing"
+        }
+      },
+      "slides": [
+        {
+          "filename": "carousel-2026-10-04-01-your-workspace.png",
+          "step": "01 / 04",
+          "eyebrow": "YOUR WORKSPACE",
+          "hook": "Your apps live on your computer.",
+          "hookLines": ["Your apps live", "on your computer."],
+          "body": "Forger installs personal apps in your private workspace.",
+          "screenshot": "campaign-2026-08/daily-compass-dashboard.png",
+          "layout": "app-window",
+          "footer": "LOCAL-FIRST BY DESIGN"
+        },
+        {
+          "filename": "carousel-2026-10-04-02-local-data.png",
+          "step": "02 / 04",
+          "eyebrow": "LOCAL APP DATA",
+          "hook": "App data stays with the local app.",
+          "hookLines": ["App data stays", "with the local app."],
+          "body": "Daily Compass stores its synthetic demo data locally.",
+          "screenshot": "campaign-2026-08/daily-compass-week.png",
+          "layout": "data-detail",
+          "footer": "REAL APP · REAL LOCAL WORKFLOW"
+        },
+        {
+          "filename": "carousel-2026-10-04-03-explicit-sharing.png",
+          "step": "03 / 04",
+          "eyebrow": "EXTERNAL FILES",
+          "hook": "You decide what to share.",
+          "hookLines": ["You decide", "what to share."],
+          "body": "An external file is used only when you explicitly share it.",
+          "screenshot": "campaign-2026-08/automations-empty.png",
+          "layout": "control-window",
+          "footer": "EXPLICIT INPUT · CLEAR CONTEXT"
+        },
+        {
+          "filename": "carousel-2026-10-04-04-keep-control.png",
+          "step": "04 / 04",
+          "eyebrow": "YOUR CHOICE",
+          "hook": "Turn your idea into an app you actually use.",
+          "hookLines": ["Turn your idea into", "an app you actually use."],
+          "body": "Local-first software built around your workflow.",
+          "screenshot": "campaign-2026-08/agents-forger-marketer.png",
+          "layout": "final-cta",
+          "footer": "DOWNLOAD FREE · FORGER.CLOUD"
+        }
+      ]
+    }
+  ],
+  "paidVariants": [
+    {
+      "id": "paid-free-private-local",
+      "format": "reel",
+      "channels": ["Instagram"],
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "spendUsd": 0,
+      "sourceReelId": "2026-09-24-free-private-local",
+      "sourceMaster": "reel-2026-09-24-free-private-local.mp4",
+      "filename": "paid-reel-free-private-local.mp4",
+      "coverFilename": "paid-reel-free-private-local-cover.png",
+      "dimensions": { "width": 1080, "height": 1920 },
+      "durationSeconds": 13,
+      "framesPerSecond": 30,
+      "audio": "silent master",
+      "macCompatibilityLabel": "FOR MAC WITH APPLE SILICON",
+      "primaryText": "Using Forger on your computer is free. Create your first app with a supported provider account you already have. Provider terms and costs may apply.",
+      "headline": "Free. Private. Local.",
+      "destinationUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_2026_09&utm_content=reel_01",
+      "endCard": {
+        "source": "campaign-2026-08/daily-compass-completed.png",
+        "eyebrow": "FORGER · MAC",
+        "headline": ["FREE. PRIVATE.", "LOCAL."],
+        "support": "FOR MAC WITH APPLE SILICON",
+        "accent": "CREATE YOUR FIRST APP",
+        "cta": true
+      }
+    },
+    {
+      "id": "paid-daily-compass",
+      "format": "reel",
+      "channels": ["Instagram"],
+      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "spendUsd": 0,
+      "sourceReelId": "2026-10-01-daily-compass",
+      "sourceMaster": "reel-2026-10-01-daily-compass.mp4",
+      "filename": "paid-reel-daily-compass.mp4",
+      "coverFilename": "paid-reel-daily-compass-cover.png",
+      "dimensions": { "width": 1080, "height": 1920 },
+      "durationSeconds": 13,
+      "framesPerSecond": 30,
+      "audio": "silent master",
+      "macCompatibilityLabel": "FOR MAC WITH APPLE SILICON",
+      "primaryText": "Turn your idea into an app you actually use. Open, focus, and complete a real workflow in Daily Compass. Provider terms and costs may apply.",
+      "headline": "Open. Focus. Complete.",
+      "destinationUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_2026_09&utm_content=reel_02",
+      "endCard": {
+        "source": "campaign-2026-08/daily-compass-completed.png",
+        "eyebrow": "DAILY COMPASS · MAC",
+        "headline": ["Open. Focus.", "Complete."],
+        "support": "FOR MAC WITH APPLE SILICON",
+        "accent": "CREATE YOUR FIRST APP",
+        "cta": true
+      }
+    }
+  ]
+}
