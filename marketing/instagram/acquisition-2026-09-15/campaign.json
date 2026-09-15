@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-09-15",
+  "snapshot_source": "Coordinating task observations; external state requires a fresh prelaunch check.",
+  "campaign_key": "first_app_2026_09",
+  "status": "blocked",
+  "ready_to_activate": false,
+  "spend_incurred_by_this_task": false,
+  "goal": "Help people who already use AI create their first private or shareable app with Forger.",
+  "secondary_outcome": "Instagram followers",
+  "audience": {
+    "countries": [
+      "US"
+    ],
+    "country_choice_status": "hypothesis",
+    "language": "en",
+    "description": "People who already use AI and are starting to automate or program.",
+    "required_desktop_platform": "macOS Apple silicon",
+    "hardware_requirement_must_appear_in_creative": true,
+    "hardware_targeting_verified": false,
+    "meta_targeting_configuration": null,
+    "proposed_adset_count": 1
+  },
+  "identity": {
+    "instagram_handle": "forger.cloud",
+    "instagram_account_id": null,
+    "facebook_page_id": null,
+    "ad_account_name": "Forger Cloud — Instagram",
+    "ad_account_id": null,
+    "ad_account_status": "not_created",
+    "creation_form_status": "prepared_pending_user_legal_acceptance",
+    "proposed_currency": "USD",
+    "proposed_timezone": "America/Santiago",
+    "legal_terms_accepted_by_user": false,
+    "connected_identity_verified": false
+  },
+  "budget": {
+    "currency": "USD",
+    "monthly_all_in_ceiling_usd": 100,
+    "monthly_period": "calendar_month",
+    "proposed_trial_all_in_ceiling_usd": 30,
+    "trial_is_part_of_monthly_ceiling": true,
+    "includes": [
+      "media",
+      "taxes",
+      "fees",
+      "other_approved_campaign_costs"
+    ],
+    "trial_media_allowance_usd": null,
+    "verified_tax_rate": null,
+    "verified_fees_usd": null,
+    "verified_other_campaign_costs_usd": null,
+    "billing_evidence_reference": null,
+    "media_allowance_rule": "Set only after the verified billing treatment establishes that media plus all taxes, fees and other campaign costs fit within the approved trial total.",
+    "delivery_limit_configuration": null,
+    "delivery_limit_verified": false,
+    "trial_payment_approval_status": "pending",
+    "trial_payment_approval_reference": null,
+    "additional_monthly_spend_approved": false,
+    "recurring_spend_authorized": false
+  },
+  "schedule": {
+    "starts_at": null,
+    "ends_at": null,
+    "timezone": "America/Santiago",
+    "start_rule": "After all readiness gates pass and explicit approval of the concrete all-in trial charge is recorded.",
+    "review_cadence_after_authorized_launch": "daily during the trial",
+    "review_automation_configured": false
+  },
+  "destination": {
+    "base_url": "https://forger.cloud/instagram",
+    "public_status": "http_404_reported",
+    "pull_request_url": "https://github.com/forger-ai/forger-ai.github.io/pull/15",
+    "required_github_reviews": 1,
+    "review_requirement_satisfied": false,
+    "mobile_handoff_status": "implemented_and_tested_locally_pending_deployment",
+    "local_verification": {
+      "commit": "2d248f2",
+      "focused_tests_passed": 34,
+      "production_build_pages": 38,
+      "emulated_browser_journeys_passed": 12,
+      "physical_device_validation": false
+    },
+    "mobile_handoff_methods_in_local_code": [
+      "share_link",
+      "copy_link"
+    ],
+    "email_delivery_verified": false,
+    "central_landing_analytics_available": false,
+    "utm_source": "instagram",
+    "utm_medium": "paid_social",
+    "utm_campaign": "first_app_2026_09"
+  },
+  "released_product": {
+    "installer_version_tested": null,
+    "installer_url_verified": null,
+    "authentication_destination": "https://platform.forger.cloud",
+    "authentication_status": "cloudflare_dns_error_1016_reported",
+    "published_desktop_uses_this_destination": true,
+    "sign_in_verified": false,
+    "first_app_creation_and_opening_verified": false,
+    "verification_evidence_reference": null,
+    "latest_public_version_observed": "v0.5.17",
+    "authentication_configuration_evidence": "forger-ai/forger-desktop tag v0.5.17, src/main/core/main-process.ts:133"
+  },
+  "ads": [
+    {
+      "variant_key": "reel_01",
+      "language": "en",
+      "format": "video",
+      "creative_status": "prepared_locally_not_uploaded",
+      "asset_path": "marketing/instagram/followup-2026-09-24/exports/paid-reel-free-private-local.mp4",
+      "meta_asset_id": null,
+      "meta_ad_id": null,
+      "final_primary_text": "Using Forger on your computer is free. Create your first app with a supported provider account you already have. Provider terms and costs may apply.",
+      "final_headline": "Free. Private. Local.",
+      "final_cta": null,
+      "reviewed": true,
+      "utm_content": "reel_01",
+      "destination_url": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_2026_09&utm_content=reel_01",
+      "cover_asset_path": "marketing/instagram/followup-2026-09-24/exports/paid-reel-free-private-local-cover.png",
+      "local_review": {
+        "status": "reviewed",
+        "commit": "8431c6c",
+        "scope": "Real screenshot sequence, cover/end-card copy and Mac Apple silicon label; no continuous app-creation recording or physical-device product-flow validation."
+      }
+    },
+    {
+      "variant_key": "reel_02",
+      "language": "en",
+      "format": "video",
+      "creative_status": "prepared_locally_not_uploaded",
+      "asset_path": "marketing/instagram/followup-2026-09-24/exports/paid-reel-daily-compass.mp4",
+      "meta_asset_id": null,
+      "meta_ad_id": null,
+      "final_primary_text": "Turn your idea into an app you actually use. Open, focus, and complete a real workflow in Daily Compass. Provider terms and costs may apply.",
+      "final_headline": "Open. Focus. Complete.",
+      "final_cta": null,
+      "reviewed": true,
+      "utm_content": "reel_02",
+      "destination_url": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_2026_09&utm_content=reel_02",
+      "cover_asset_path": "marketing/instagram/followup-2026-09-24/exports/paid-reel-daily-compass-cover.png",
+      "local_review": {
+        "status": "reviewed",
+        "commit": "8431c6c",
+        "scope": "Real screenshot sequence, cover/end-card copy and Mac Apple silicon label; no continuous app-creation recording or physical-device product-flow validation."
+      }
+    }
+  ],
+  "meta_configuration": {
+    "campaign_id": null,
+    "adset_id": null,
+    "objective": null,
+    "performance_goal": null,
+    "placements": null,
+    "desired_initial_delivery_status": "PAUSED",
+    "creation_completed": false,
+    "proposed_objective": "TRAFFIC",
+    "proposed_performance_goal": "Link clicks, subject to account availability; product conversion tracking is unavailable."
+  },
+  "measurement": {
+    "results_file": "results.csv",
+    "row_grain": "One metric per source, entity, reporting window and extraction.",
+    "missing_values": [
+      "",
+      "NA"
+    ],
+    "zero_requires_observed_evidence": true,
+    "planned_meta_metrics": [
+      "meta_outbound_clicks",
+      "meta_media_spend"
+    ],
+    "meta_report_export_verified": false,
+    "backend_aggregate_categories": [
+      "installation",
+      "app_creation",
+      "app_opening"
+    ],
+    "backend_counter_window_days": 30,
+    "backend_funnel_window_days": 90,
+    "backend_aggregate_campaign_linkage": false,
+    "central_landing_metrics_available": false,
+    "campaign_attributed_installations_available": false,
+    "campaign_attributed_sign_ins_available": false,
+    "campaign_attributed_first_app_creations_available": false,
+    "campaign_cost_per_app_available": false,
+    "prohibited_inferences": [
+      "An outbound click equals a loaded landing or completed download.",
+      "A shared link equals a delivered email or completed installation.",
+      "A product opening equals a successful sign-in or retained user.",
+      "An app creation aggregate equals unique users creating their first app.",
+      "Unlinked product aggregates are conversions from this campaign.",
+      "Thirty-day counters and ninety-day funnels form a single conversion funnel.",
+      "Campaign spend divided by unattributed product aggregates establishes acquisition cost."
+    ]
+  },
+  "readiness_gates": [
+    {
+      "id": "public_route",
+      "status": "blocked",
+      "evidence_reference": null
+    },
+    {
+      "id": "mobile_handoff",
+      "status": "pending",
+      "evidence_reference": null
+    },
+    {
+      "id": "released_product_flow",
+      "status": "blocked",
+      "evidence_reference": null
+    },
+    {
+      "id": "identity_and_creative",
+      "status": "pending",
+      "evidence_reference": null
+    },
+    {
+      "id": "bounded_approved_spend",
+      "status": "pending",
+      "evidence_reference": null
+    },
+    {
+      "id": "truthful_reporting",
+      "status": "pending",
+      "evidence_reference": null
+    }
+  ],
+  "activation_rule": "Every readiness gate must pass. Keep delivery paused until explicit payment approval is recorded.",
+  "pause_conditions": [
+    "The public landing, installer or released-product sign-in fails.",
+    "The ad uses an incorrect identity, unsupported claim, asset or destination.",
+    "The approved all-in trial limit is reached or is at risk of being exceeded.",
+    "Required spending or reporting controls cannot be verified."
+  ],
+  "continuation_rule": "Stop at the approved trial limit, review actual evidence and obtain a new approval before additional spending.",
+  "validation": {
+    "test_suite_passed": 57,
+    "build_pages": 38,
+    "source": "Owning implementation tasks verified the integrated working tree before commits 2d248f2 and 8431c6c."
+  }
+}
