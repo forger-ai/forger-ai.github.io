@@ -42,14 +42,27 @@ test('campaign clearly states the free, no-additional-subscription, provider-ter
   assert.match(page, /t[uú] decides qu[eé] compartir/i);
   assert.match(page, /Forger is free for people/);
   assert.match(page, /does not charge an additional subscription/i);
-  assert.match(page, /Cloud services are used only when you choose features that need them/i);
+  assert.match(page, /Your AI provider processes the information you send it/i);
+  assert.match(page, /Tu proveedor de IA procesa la informaci[oó]n que le env[ií]as/i);
+});
+
+test('personal campaign avoids unavailable Teams, catalog and cloud-feature promises', async () => {
+  const page = await readCampaignPage();
+  for (const routeUrl of [campaignRoute, englishCampaignRoute]) {
+    const route = await readFile(routeUrl, 'utf8');
+    assert.match(route, /navigation="campaign"/);
+    assert.match(route, /href: '#instalar'/);
+  }
+  const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
+  assert.match(layout, /navigation = 'full'/);
+  assert.match(layout, /navigation === 'full' &&/);
+  assert.doesNotMatch(page, /forger-catalog|Explore apps inside Forger|cat[aá]logo local|account, backup, or sharing|cuenta, respaldo o compartir/);
 });
 
 test('campaign only presents genuine Forger screenshots from the checked-in screenshots directory', async () => {
   const page = await readCampaignPage();
   const screenshots = [
     'forger-new-experience.png',
-    'forger-catalog.png',
     'forger-my-apps.png',
   ];
 
