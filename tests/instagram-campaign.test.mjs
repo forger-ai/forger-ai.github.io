@@ -61,15 +61,17 @@ test('campaign only presents genuine Forger screenshots from the checked-in scre
   assert.doesNotMatch(page, /(?:imagegen|mockup|unsplash|pexels|https?:\/\/[^"']+\.(?:png|jpe?g|webp|gif))/i);
 });
 
-test('mobile-to-computer handoff preserves UTMs and records download intent without third-party tracking', async () => {
+test('handoff uses shared device and safe-link behavior without exposing campaign internals', async () => {
   const page = await readCampaignPage();
 
-  assert.match(page, /new URL\(window\.location\.href\)/);
-  assert.match(page, /key\.startsWith\('utm_'\)/);
-  assert.match(page, /navigator\.share/);
-  assert.match(page, /navigator\.clipboard/);
+  assert.match(page, /buildCampaignUrl/);
+  assert.match(page, /isMobileDevice/);
+  assert.match(page, /copyHandoffLink/);
+  assert.match(page, /shareHandoffLink/);
+  assert.match(page, /data-campaign-cta-label/);
   assert.match(page, /sessionStorage\.setItem\('forger-campaign-download-intent'/);
   assert.match(page, /new CustomEvent\('forger:download-intent'/);
   assert.match(page, /data-campaign-download/);
+  assert.doesNotMatch(page, /keep the campaign attribution|conservar[aá] la campa[nñ]a/i);
   assert.doesNotMatch(page, /facebook\.net|fbevents|gtag\(|google-analytics|plausible|posthog|segment/i);
 });

@@ -35,7 +35,8 @@ const copy = {
     install: {
       eyebrow: 'Install it where you will create',
       title: 'Forger installs on your computer.',
-      description: 'If you came from Instagram on your phone, send yourself this link. When you open it on your computer, it will keep the campaign attribution and show the right download.',
+      description: 'Open this page on your computer to download Forger and create your first app. On your phone or tablet, send yourself the link to continue there.',
+      phoneCta: 'Send link to my computer',
       phoneTitle: 'Are you on your phone?',
       phoneDescription: 'Send yourself this link however you prefer, then open it from your computer.',
       linkLabel: 'Forger download link',
@@ -68,13 +69,13 @@ const copy = {
       description: 'Free for people. Use the AI you already have. Keep your apps on your computer.',
       download: 'Download Forger free',
     },
-    campaignPath: 'forger.cloud/instagram',
+    campaignPath: 'https://forger.cloud/instagram',
     shareTitle: 'Forger free for people',
     shareText: 'Create local apps with the AI you already use.',
     copied: 'Link copied. Open it from your computer to download Forger.',
     manualCopy: 'Select and copy this link to open it on your computer.',
-    shared: 'Done: share the link and open it from your computer.',
-    shareFallback: 'You can copy the link and send it to yourself however you prefer.',
+    shared: 'Link shared. Open it from your computer to download Forger.',
+    cancelled: 'Sharing cancelled. You can still copy the link.',
   },
   es: {
     hero: {
@@ -90,7 +91,8 @@ const copy = {
     install: {
       eyebrow: 'Instálalo donde crearás',
       title: 'Forger se instala en tu computador.',
-      description: 'Si llegaste desde Instagram en tu teléfono, compártete este enlace. Al abrirlo en tu computador conservará la campaña y mostrará la descarga correcta.',
+      description: 'Abre esta página en tu computador para descargar Forger y crear tu primera app. Desde tu teléfono o tablet, envíate el enlace para continuar allí.',
+      phoneCta: 'Enviarme el enlace al computador',
       phoneTitle: '¿Estás en tu teléfono?',
       phoneDescription: 'Envíate este enlace por el medio que prefieras y ábrelo desde tu computador.',
       linkLabel: 'Enlace de descarga de Forger',
@@ -123,13 +125,13 @@ const copy = {
       description: 'Gratis para personas. Usa la IA que ya tienes. Mantén tus apps en tu computador.',
       download: 'Descargar Forger gratis',
     },
-    campaignPath: 'forger.cloud/es/instagram',
+    campaignPath: 'https://forger.cloud/es/instagram',
     shareTitle: 'Forger gratis para personas',
     shareText: 'Crea apps locales con la IA que ya usas.',
     copied: 'Enlace copiado. Ábrelo desde tu computador para descargar Forger.',
     manualCopy: 'Selecciona y copia este enlace para abrirlo en tu computador.',
-    shared: 'Listo: comparte el enlace y ábrelo desde tu computador.',
-    shareFallback: 'Puedes copiar el enlace y enviártelo por el medio que prefieras.',
+    shared: 'Enlace compartido. Ábrelo desde tu computador para descargar Forger.',
+    cancelled: 'No se compartió el enlace. Puedes copiarlo si prefieres.',
   },
 }[lang];
 ---
@@ -155,7 +157,7 @@ const copy = {
         </ul>
         <a href="#instalar" class="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
           <Download size={18} aria-hidden="true" />
-          {copy.hero.download}
+          <span data-campaign-cta-label data-mobile-label={copy.install.phoneCta}>{copy.hero.download}</span>
         </a>
         <p class="mt-3 text-xs leading-relaxed text-zinc-500">{copy.hero.note}</p>
       </div>
@@ -176,7 +178,7 @@ const copy = {
       data-campaign-copied={copy.copied}
       data-campaign-manual-copy={copy.manualCopy}
       data-campaign-shared={copy.shared}
-      data-campaign-share-fallback={copy.shareFallback}
+      data-campaign-cancelled={copy.cancelled}
       data-campaign-share-title={copy.shareTitle}
       data-campaign-share-text={copy.shareText}
     >
@@ -272,16 +274,18 @@ const copy = {
     <h2 class="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">{copy.closing.title}</h2>
     <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400">{copy.closing.description}</p>
     <a href="#instalar" class="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
-      <Download size={18} aria-hidden="true" /> {copy.closing.download}
+      <Download size={18} aria-hidden="true" /> <span data-campaign-cta-label data-mobile-label={copy.install.phoneCta}>{copy.closing.download}</span>
     </a>
   </section>
 </div>
 
-<script is:inline>
+<script>
+  import { isMobileDevice } from '../lib/desktop-download.mjs';
+  import { buildCampaignUrl, copyHandoffLink, shareHandoffLink } from '../lib/campaign-handoff.mjs';
   (() => {
-    const handoff = document.querySelector('[data-campaign-handoff]');
-    const linkInput = document.querySelector('[data-campaign-link]');
-    const status = document.querySelector('[data-campaign-status]');
+    const handoff = document.querySelector<HTMLElement>('[data-campaign-handoff]');
+    const linkInput = document.querySelector<HTMLInputElement>('[data-campaign-link]');
+    const status = document.querySelector<HTMLElement>('[data-campaign-status]');
     const shareButton = document.querySelector('[data-campaign-share]');
     const copyButton = document.querySelector('[data-campaign-copy]');
 
@@ -291,74 +295,55 @@ const copy = {
       copied: handoff.dataset.campaignCopied,
       manualCopy: handoff.dataset.campaignManualCopy,
       shared: handoff.dataset.campaignShared,
-      shareFallback: handoff.dataset.campaignShareFallback,
+      cancelled: handoff.dataset.campaignCancelled,
       shareTitle: handoff.dataset.campaignShareTitle,
       shareText: handoff.dataset.campaignShareText,
     };
 
-    function campaignUrl() {
-      const url = new URL(window.location.href);
-      for (const key of [...url.searchParams.keys()]) {
-        if (!key.startsWith('utm_')) url.searchParams.delete(key);
+    const url = buildCampaignUrl(window.location.href);
+    linkInput.value = url;
+    const mobile = isMobileDevice(navigator);
+    handoff.dataset.device = mobile ? 'mobile' : 'desktop';
+    if (mobile) {
+      for (const label of document.querySelectorAll<HTMLElement>('[data-campaign-cta-label]')) {
+        label.textContent = label.dataset.mobileLabel || label.textContent;
       }
-      if (!url.searchParams.has('utm_source')) url.searchParams.set('utm_source', 'instagram');
-      return url.toString();
+    } else {
+      // Match visual and keyboard order: downloads are first on a computer.
+      const downloads = handoff.querySelector('[data-campaign-download]');
+      if (downloads) downloads.parentElement?.prepend(downloads);
     }
 
-    function setStatus(message) {
-      if (status) status.textContent = message;
+    function setStatus(message: string | undefined) {
+      if (status) status.textContent = message || '';
     }
 
-    async function copyCampaignLink() {
-      const url = campaignUrl();
-      linkInput.value = url;
-
-      try {
-        await navigator.clipboard.writeText(url);
-        setStatus(messages.copied);
-      } catch {
-        linkInput.focus();
-        linkInput.select();
-        setStatus(messages.manualCopy);
-      }
-    }
-
-    linkInput.value = campaignUrl();
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    handoff.dataset.device = isMobile ? 'mobile' : 'desktop';
-
-    copyButton?.addEventListener('click', copyCampaignLink);
+    copyButton?.addEventListener('click', async () => {
+      setStatus('');
+      const outcome = await copyHandoffLink({ navigator, input: linkInput, url });
+      setStatus(messages[outcome]);
+    });
     shareButton?.addEventListener('click', async () => {
-      const url = campaignUrl();
-      if (!navigator.share) {
-        await copyCampaignLink();
-        return;
-      }
-
-      try {
-        await navigator.share({
-          title: messages.shareTitle,
-          text: messages.shareText,
-          url,
-        });
-        setStatus(messages.shared);
-      } catch {
-        setStatus(messages.shareFallback);
-      }
+      setStatus('');
+      const outcome = await shareHandoffLink({
+        navigator, input: linkInput, url,
+        title: messages.shareTitle, text: messages.shareText,
+      });
+      setStatus(messages[outcome]);
     });
 
     document.querySelectorAll('[data-campaign-download]').forEach((container) => {
       container.addEventListener('click', (event) => {
-        const link = event.target.closest('a[href]');
+        const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
         if (!link) return;
 
-        const option = link.closest('[data-download-option]');
-        const attributionUrl = new URL(campaignUrl());
+        const option = link.closest<HTMLElement>('[data-download-option]');
+        const attributionUrl = new URL(url);
         const utm = Object.fromEntries(attributionUrl.searchParams.entries());
         const intent = {
           campaign: 'instagram',
           action: 'download_intent',
-          platform: option?.dataset.downloadOption || 'automatic',
+          platform: option?.dataset.downloadOption || link.dataset.downloadTarget || 'automatic',
           utm,
         };
 

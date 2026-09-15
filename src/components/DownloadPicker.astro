@@ -15,7 +15,9 @@ const copy = {
     nav: 'Download',
     fallback: 'Download Forger',
     soon: 'Coming soon',
-    other: 'Other downloads',
+    other: 'All desktop versions',
+    desktopVersions: 'View desktop downloads',
+    mobileNav: 'Desktop versions',
     macArm: 'Download for macOS Apple silicon',
     macIntel: 'Download for macOS Intel',
     windowsX64: 'Download for Windows x64',
@@ -33,7 +35,9 @@ const copy = {
     nav: 'Descargar',
     fallback: 'Descargar Forger',
     soon: 'Pronto',
-    other: 'Otras descargas',
+    other: 'Todas las versiones de escritorio',
+    desktopVersions: 'Ver descargas de escritorio',
+    mobileNav: 'Versiones de escritorio',
     macArm: 'Descargar para macOS Apple silicon',
     macIntel: 'Descargar para macOS Intel',
     windowsX64: 'Descargar para Windows x64',
@@ -118,14 +122,17 @@ const downloadOptions = [
     data-windows-arm={copy.windowsArm}
     data-linux-x64={copy.linuxX64}
     data-unsupported={copy.unsupported}
+    data-desktop-versions={copy.desktopVersions}
+    data-mobile-nav={copy.mobileNav}
   >
     <a
       data-download-primary
-      href={macArmUrl}
+      role="button"
+      tabindex="0"
       class={`${compact ? 'px-4 py-1.5' : 'px-6 py-3'} inline-flex items-center justify-center gap-2 rounded-l-full bg-brand text-sm font-semibold text-white transition-colors hover:bg-brand-dark`}
     >
       <Download size={compact ? 15 : 17} />
-      <span data-download-label>{copy.nav}</span>
+      <span data-download-label>{compact ? copy.mobileNav : copy.desktopVersions}</span>
     </a>
 
     <details class="group relative z-[90]" data-download-details>
@@ -163,132 +170,86 @@ const downloadOptions = [
   )}
 </div>
 
-<script is:inline>
-  (async () => {
-  const downloadPickers = document.querySelectorAll('.download-picker');
-  const downloadDetails = document.querySelectorAll('[data-download-details]');
+<script>
+  import { desktopAssetMap, detectDownloadTarget, isMobileDevice } from '../lib/desktop-download.mjs';
+
+  const downloadPickers = document.querySelectorAll<HTMLElement>('.download-picker');
+  const downloadDetails = document.querySelectorAll<HTMLDetailsElement>('[data-download-details]');
 
   document.addEventListener('click', (event) => {
     for (const details of downloadDetails) {
-      if (!details.contains(event.target)) details.removeAttribute('open');
+      if (event.target instanceof Node && !details.contains(event.target)) details.open = false;
     }
   });
-
   document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    for (const details of downloadDetails) details.removeAttribute('open');
+    if (event.key === 'Escape') for (const details of downloadDetails) details.open = false;
   });
 
-  async function loadDesktopMetadataAssets() {
+  // Before detection, and on phones, the main control opens the explicit versions.
+  // It never starts a Mac/Linux download on a mobile device.
+  for (const picker of downloadPickers) {
+    const link = picker.querySelector<HTMLAnchorElement>('[data-download-primary]');
+    const details = picker.querySelector<HTMLDetailsElement>('[data-download-details]');
+    if (!link || !details) continue;
+    link.addEventListener('click', (event) => {
+      if (link.hasAttribute('href')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      details.open = !details.open;
+      if (details.open) details.querySelector<HTMLAnchorElement>('a:not(.hidden)')?.focus();
+    });
+    link.addEventListener('keydown', (event) => {
+      if (!link.hasAttribute('href') && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        link.click();
+      }
+    });
+  }
+
+  async function loadDesktopAssets() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     try {
-      const response = await fetch('/desktop-versions/latest.json', { cache: 'no-store' });
-      if (!response.ok) return new Map();
-      const metadata = await response.json();
-      if (!Array.isArray(metadata.assets)) return new Map();
-      return new Map(
-        metadata.assets
-          .filter((asset) => asset?.url && asset?.platform && asset?.arch)
-          .map((asset) => [`${asset.platform}:${asset.arch}`, asset]),
-      );
+      const response = await fetch('/desktop-versions/latest.json', { cache: 'no-store', signal: controller.signal });
+      return response.ok ? desktopAssetMap(await response.json()) : null;
     } catch {
-      return new Map();
+      return null;
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
-  function hasAsset(metadataAssets, platform, arch, options = {}) {
-    return (options.allowWithoutMetadata && metadataAssets.size === 0) || metadataAssets.has(`${platform}:${arch}`);
-  }
-
-  async function detectDownloadTarget(metadataAssets) {
-    const nav = window.navigator;
-    const ua = nav.userAgent || '';
-    const platform = nav.userAgentData?.platform || nav.platform || '';
-    let architecture = '';
-
-    if (nav.userAgentData?.getHighEntropyValues) {
-      try {
-        const values = await nav.userAgentData.getHighEntropyValues(['architecture']);
-        architecture = values.architecture || '';
-      } catch {
-        architecture = '';
-      }
-    }
-
-    const isWindows = /Windows/i.test(platform) || /Windows/i.test(ua);
-    const isMac = /Mac/i.test(platform) || /Mac OS X/i.test(ua);
-    const isLinux = /Linux|Ubuntu/i.test(platform) || /Linux|Ubuntu/i.test(ua);
-    const isArm = /arm|aarch64/i.test(architecture);
-    const isIntel = /x86|x64|amd64/i.test(architecture);
-
-    if (isWindows && isArm && hasAsset(metadataAssets, 'win32', 'arm64')) return { kind: 'windows-arm' };
-    if (isWindows && hasAsset(metadataAssets, 'win32', 'x64', { allowWithoutMetadata: true })) return { kind: 'windows-x64' };
-    if (isMac && isIntel && hasAsset(metadataAssets, 'darwin', 'x64', { allowWithoutMetadata: true })) return { kind: 'mac-intel' };
-    if (isMac && isArm) return { kind: 'mac-arm' };
-    if (isMac) return { kind: 'mac-arm' };
-    if (isLinux && hasAsset(metadataAssets, 'linux', 'x64', { allowWithoutMetadata: true })) return { kind: 'linux-x64' };
-    return { kind: 'unsupported' };
-  }
-
-  function setUnsupported(link, label, text) {
-    link.removeAttribute('href');
-    link.setAttribute('aria-disabled', 'true');
-    link.classList.add('cursor-not-allowed', 'bg-zinc-700', 'text-zinc-300', 'hover:bg-zinc-700');
-    link.classList.remove('bg-brand', 'hover:bg-brand-dark');
-    label.textContent = text;
-  }
-
-  function updateOptionUrls(picker, metadataAssets) {
-    const optionAssetKeys = {
-      'mac-arm': 'darwin:arm64',
-      'mac-intel': 'darwin:x64',
-      'windows-x64': 'win32:x64',
-      'linux-x64': 'linux:x64',
-      'windows-arm': 'win32:arm64',
-    };
-
-    for (const [optionKey, assetKey] of Object.entries(optionAssetKeys)) {
-      const option = picker.querySelector(`[data-download-option="${optionKey}"]`);
-      const asset = metadataAssets.get(assetKey);
-      if (!option || !asset?.url) continue;
-      option.href = asset.url;
-      if (option.dataset.metadataOnly === 'true') {
-        option.classList.remove('hidden');
-        option.classList.add('block');
-      }
-    }
-  }
-
-  function metadataUrl(metadataAssets, key, fallback) {
-    return metadataAssets.get(key)?.url || fallback;
-  }
-
-  const metadataAssets = await loadDesktopMetadataAssets();
-  const target = await detectDownloadTarget(metadataAssets);
+  async function prepareDownloads() {
+    const mobile = isMobileDevice(navigator);
+    const assets = await loadDesktopAssets();
+    const target = await detectDownloadTarget(navigator, assets);
     for (const picker of downloadPickers) {
-      updateOptionUrls(picker, metadataAssets);
-
-      const link = picker.querySelector('[data-download-primary]');
-      const label = picker.querySelector('[data-download-label]');
+      for (const option of picker.querySelectorAll<HTMLAnchorElement>('[data-download-option]')) {
+        const asset = assets?.get(option.dataset.downloadOption);
+        const available = assets === null ? option.dataset.metadataOnly !== 'true' : Boolean(asset);
+        option.classList.toggle('hidden', !available);
+        option.classList.toggle('block', available);
+        if (asset) option.href = asset.url;
+      }
+      const link = picker.querySelector<HTMLAnchorElement>('[data-download-primary]');
+      const label = picker.querySelector<HTMLElement>('[data-download-label]');
+      const option = picker.querySelector<HTMLAnchorElement>(`[data-download-option="${target}"]`);
       if (!link || !label) continue;
-
-      if (target.kind === 'windows-arm') {
-        link.href = metadataUrl(metadataAssets, 'win32:arm64', picker.dataset.windowsArmUrl);
-        label.textContent = picker.dataset.nav;
-      } else if (target.kind === 'windows-x64') {
-        link.href = metadataUrl(metadataAssets, 'win32:x64', picker.dataset.windowsX64Url);
-        label.textContent = picker.dataset.nav;
-      } else if (target.kind === 'linux-x64') {
-        link.href = metadataUrl(metadataAssets, 'linux:x64', picker.dataset.linuxX64Url);
-        label.textContent = picker.dataset.nav;
-      } else if (target.kind === 'mac-arm') {
-        link.href = metadataUrl(metadataAssets, 'darwin:arm64', picker.dataset.macArmUrl);
-        label.textContent = picker.dataset.nav;
-      } else if (target.kind === 'mac-intel') {
-        link.href = metadataUrl(metadataAssets, 'darwin:x64', picker.dataset.macIntelUrl);
-        label.textContent = picker.dataset.nav;
+      picker.dataset.device = mobile ? 'mobile' : 'desktop';
+      if (option && target !== 'mobile' && target !== 'unsupported') {
+        link.href = option.href;
+        link.removeAttribute('role');
+        link.removeAttribute('tabindex');
+        link.dataset.downloadTarget = target;
+        label.textContent = picker.dataset.compact === 'true'
+          ? picker.dataset.nav || ''
+          : option.querySelector('span')?.textContent || picker.dataset.nav || '';
+        link.setAttribute('aria-label', option.querySelector('span')?.textContent || '');
       } else {
-        setUnsupported(link, label, picker.dataset.unsupported);
+        label.textContent = picker.dataset.compact === 'true'
+          ? picker.dataset.mobileNav || '' : picker.dataset.desktopVersions || '';
       }
     }
-  })();
+  }
+  void prepareDownloads();
 </script>
