@@ -25,13 +25,61 @@ function fixture(options = {}) {
   return { client, values, writes, requests, storage, get ids() { return ids; } };
 }
 
-test('known published campaign tuples resolve to ten shared fixed codes', () => {
-  assert.equal(campaignRegistry.length, 10);
+test('known campaign tuples keep ten Desktop codes and two web-only LATAM codes distinct', () => {
+  assert.equal(campaignRegistry.length, 12);
+  assert.equal(campaignRegistry.filter(({ desktopEligible }) => desktopEligible === true).length, 10);
+  assert.equal(campaignRegistry.filter(({ desktopEligible }) => desktopEligible === false).length, 2);
   for (const campaign of campaignRegistry) {
     const url = new URL('https://forger.cloud/es/instagram');
     for (const [key, value] of Object.entries(campaign.utm)) url.searchParams.set(key, value);
     assert.equal(campaignCodeForUrl(url.href), campaign.code);
-    assert.equal(desktopCampaignUrl(campaign.code), `forger://campaign?code=${campaign.code}`);
+    assert.equal(desktopCampaignUrl(campaign.code), campaign.desktopEligible ? `forger://campaign?code=${campaign.code}` : null);
+  }
+});
+
+for (const number of ['01', '02']) {
+  test(`LATAM reel ${number} has consent-only web attribution without reusing a US or Desktop code`, async () => {
+    const url = `https://forger.cloud/es/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_latam_2026_09&utm_content=reel_${number}`;
+    const code = `ig_202609_latam_paid_${number}`;
+    assert.equal(campaignCodeForUrl(url), code);
+    assert.equal(campaignCodeForUrl(url.replace('first_app_latam_2026_09', 'first_app_2026_09')), `ig_202609_paid_${number}`);
+    assert.equal(desktopCampaignUrl(code), null);
+    const f = fixture({ locationHref: url });
+    const events = measurementEvents.filter((event) => event !== 'forger_campaign_desktop_handoff');
+    for (const event of events) assert.equal(await f.client.capture(event), false);
+    assert.equal(f.ids, 0); assert.equal(f.requests.length, 0); assert.equal(f.writes.length, 0);
+    f.client.decline();
+    for (const event of events) assert.equal(await f.client.capture(event), false);
+    assert.equal(f.ids, 0); assert.equal(f.requests.length, 0);
+    f.client.allow();
+    for (const event of events) assert.equal(await f.client.capture(event), true);
+    assert.equal(f.ids, 1);
+    assert.deepEqual(f.requests.map(({ body }) => body.event), events);
+    for (const { body } of f.requests) {
+      assert.deepEqual(body.properties, { campaign_code: code, surface: 'web', schema_version: 1, environment: 'test', $process_person_profile: false, $geoip_disable: true });
+    }
+    f.client.decline();
+    assert.equal(await f.client.capture(events[0]), false);
+    assert.equal(f.requests.length, events.length);
+  });
+}
+
+test('all existing organic mappings remain eligible for Desktop handoff', () => {
+  const contents = ['free_private_local', 'existing_provider', 'daily_compass', 'local_data_sharing'];
+  for (const [prefix, source] of [['ig', 'instagram'], ['fb', 'facebook']]) {
+    contents.forEach((content, index) => {
+      const code = `${prefix}_202609_org_0${index + 1}`;
+      const url = `https://forger.cloud/instagram?utm_source=${source}&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=${content}`;
+      assert.equal(campaignCodeForUrl(url), code);
+      assert.equal(desktopCampaignUrl(code), `forger://campaign?code=${code}`);
+    });
+  }
+});
+
+test('LATAM attribution rejects duplicate or unsupported campaign values', () => {
+  const url = 'https://forger.cloud/es/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_latam_2026_09&utm_content=reel_01';
+  for (const candidate of [url + '&utm_campaign=first_app_latam_2026_09', url + '&utm_content=reel_01', url.replace('reel_01', 'reel_03'), url.replace('instagram&utm', 'facebook&utm')]) {
+    assert.equal(campaignCodeForUrl(candidate), null);
   }
 });
 
