@@ -44,4 +44,18 @@ At 12:29 UTC on September 16, the real Pages capture module is exercised from No
 
 The Pages implementation passes 88 behavioral tests and its 38-page build. Local browser preview verifies readable desktop/mobile layouts, preserved attribution across the EN/ES switch, and phone-specific copy/share emphasis with no Desktop protocol link on the simulated phone. The production-host guard correctly keeps analytics unavailable in localhost previews. Desktop integration and release gates remain pending.
 
+An additional isolated browser fixture exercises the real rendered consent controls and UI module with memory-only storage and a mocked network. Rejection leaves zero requests and no identifier; acceptance makes one mocked landing request and creates the identifier; withdrawal removes it without another request. The fixture is removed by reloading the page, and all temporary viewport/user-agent overrides are reset. It does not send external telemetry or alter the production-host guard.
+
+## Synthetic Desktop receipt verification
+
+At 12:41 UTC, the compiled Desktop measurement service and its real transport are exercised with a newly created temporary profile, explicit test configuration and the known paid-01 code. The test calls the first-app milestone directly; it does not claim that a real person installed Forger or created a real app through the interface.
+
+- Before consent: zero requests and no identifier.
+- After explicit consent: exactly one `forger_campaign_first_open` and one `forger_campaign_first_app_created` reach the dedicated capture endpoint with HTTP 200 / `status: Ok`.
+- Both use the same synthetic profile ID, distinct event UUIDs and `environment: test`; payload properties are strictly limited to code, surface, schema, environment, version/platform and privacy flags.
+- A repeated first-app signal adds no request.
+- Withdrawal clears the identifier and outbox and disqualifies the temporary profile from acquisition. All temporary test-state files are removed afterward; no installed Forger profile is used.
+
+PostHog Activity subsequently shows all seven expected synthetic events. The inspected Desktop first-open event contains only the expected code, version/platform, surface, environment, schema and privacy flags plus its timestamp, with no IP, location, URL, account, file or chat property. Verified queries return one synthetic profile per Desktop milestone and no production profile. Saved QA insight `11939182` / `vUMPZB2C` executes with the expected result; production insight `11939212` / `u0yu07F7` filters production only and labels the figures as consenting local profiles rather than people or total installations. Full regression checks, feature-specific isolated real Electron smoke and the signed/notarized release remain separate gates.
+
 References: https://posthog.com/docs/settings/organizations, https://posthog.com/docs/settings/projects, https://posthog.com/docs/privacy/data-collection, https://posthog.com/docs/api/capture.
