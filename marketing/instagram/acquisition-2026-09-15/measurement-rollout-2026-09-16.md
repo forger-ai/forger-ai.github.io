@@ -12,7 +12,7 @@ The user authorizes separate voluntary measurement, a dedicated free PostHog des
 ## Implementation and local verification
 
 - Desktop PR: https://github.com/forger-ai/forger-desktop/pull/161.
-- Desktop candidate: `8d8c69069f93cf7cee084c8081fc750cf1dfc7b2`, version `0.5.18`.
+- Desktop candidate: `84579fbbe6d9210391a617e0c54d1a94610955a4`, version `0.5.18`.
 - Companion Pages PR: https://github.com/forger-ai/forger-ai.github.io/pull/17.
 - Desktop main: 2,036 passing; 100% statements, branches, functions and lines in the strict suite.
 - Desktop renderer: 808 passing across 91 files; 100% in all four strict coverage metrics. The final later change is only in a main-process test and does not change renderer or product code.
@@ -22,7 +22,7 @@ The user authorizes separate voluntary measurement, a dedicated free PostHog des
 
 Independent privacy and UX review findings are addressed. Tests cover default-denied consent, refusal, withdrawal/storage failure, strict IPC callers and deep links, new-profile eligibility, stable retry payloads, first-app cohort consistency, language preservation and phone-to-desktop handoff.
 
-Two pre-existing main-process test races are corrected without changing product behavior or time limits. OAuth rejection assertions attach before yielding; scheduled-run assertions wait for persistence/notification/timer completion and always clean up. The scheduled test exits naturally without force-exit. Earlier failed or canceled CI runs are not counted as successful verification.
+Two classes of pre-existing main-process test races are corrected without changing product behavior or time limits. OAuth rejection assertions attach before yielding; automation fixtures wait for persistence/terminal notification/timer completion before assertions or cleanup, including failed runs and provider-setup errors. The final complete 41-test automation file passes three consecutive runs with natural exit, without force-exit. The complete strict Electron suite also passes after those changes. Earlier failed or canceled CI runs are not counted as successful verification.
 
 ## Publication status
 
