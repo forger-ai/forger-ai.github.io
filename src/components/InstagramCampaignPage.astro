@@ -12,6 +12,7 @@ import {
 } from 'lucide-astro';
 import DownloadPicker from './DownloadPicker.astro';
 import ScreenshotFrame from './ScreenshotFrame.astro';
+import CampaignMeasurement from './CampaignMeasurement.astro';
 import type { Lang } from '../i18n/utils';
 
 interface Props {
@@ -219,6 +220,7 @@ const copy = {
           </div>
         </div>
       </div>
+      <CampaignMeasurement lang={lang} />
     </div>
   </section>
 
@@ -273,6 +275,7 @@ const copy = {
 <script>
   import { isMobileDevice } from '../lib/desktop-download.mjs';
   import { buildCampaignUrl, copyHandoffLink, shareHandoffLink } from '../lib/campaign-handoff.mjs';
+  import { setupCampaignMeasurement, recordHandoffOutcome } from '../lib/campaign-measurement-ui.mjs';
   (() => {
     const handoff = document.querySelector<HTMLElement>('[data-campaign-handoff]');
     const linkInput = document.querySelector<HTMLInputElement>('[data-campaign-link]');
@@ -294,6 +297,7 @@ const copy = {
     const url = buildCampaignUrl(window.location.href);
     linkInput.value = url;
     const mobile = isMobileDevice(navigator);
+    const measurement = setupCampaignMeasurement({ document, window, mobile });
     handoff.dataset.device = mobile ? 'mobile' : 'desktop';
     if (mobile) {
       for (const label of document.querySelectorAll<HTMLElement>('[data-campaign-cta-label]')) {
@@ -313,6 +317,7 @@ const copy = {
       setStatus('');
       const outcome = await copyHandoffLink({ navigator, input: linkInput, url });
       setStatus(messages[outcome]);
+      recordHandoffOutcome(measurement, outcome);
     });
     shareButton?.addEventListener('click', async () => {
       setStatus('');
@@ -321,6 +326,7 @@ const copy = {
         title: messages.shareTitle, text: messages.shareText,
       });
       setStatus(messages[outcome]);
+      recordHandoffOutcome(measurement, outcome);
     });
 
     document.querySelectorAll('[data-campaign-download]').forEach((container) => {
@@ -328,23 +334,9 @@ const copy = {
         const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
         if (!link) return;
 
-        const option = link.closest<HTMLElement>('[data-download-option]');
-        const attributionUrl = new URL(url);
-        const utm = Object.fromEntries(attributionUrl.searchParams.entries());
-        const intent = {
-          campaign: 'instagram',
-          action: 'download_intent',
-          platform: option?.dataset.downloadOption || link.dataset.downloadTarget || 'automatic',
-          utm,
-        };
-
-        try {
-          sessionStorage.setItem('forger-campaign-download-intent', JSON.stringify(intent));
-        } catch {
-          // This local handoff continues even when browser storage is unavailable.
+        if (link.matches('[data-download-option], [data-download-primary]')) {
+          void measurement.capture('forger_campaign_download_click');
         }
-
-        window.dispatchEvent(new CustomEvent('forger:download-intent', { detail: intent }));
       });
     });
   })();

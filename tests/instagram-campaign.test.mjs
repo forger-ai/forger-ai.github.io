@@ -82,9 +82,20 @@ test('handoff uses shared device and safe-link behavior without exposing campaig
   assert.match(page, /copyHandoffLink/);
   assert.match(page, /shareHandoffLink/);
   assert.match(page, /data-campaign-cta-label/);
-  assert.match(page, /sessionStorage\.setItem\('forger-campaign-download-intent'/);
-  assert.match(page, /new CustomEvent\('forger:download-intent'/);
+  assert.match(page, /setupCampaignMeasurement/);
+  assert.match(page, /recordHandoffOutcome/);
+  assert.doesNotMatch(page, /sessionStorage|forger:download-intent/);
   assert.match(page, /data-campaign-download/);
   assert.doesNotMatch(page, /keep the campaign attribution|conservar[aá] la campa[nñ]a/i);
-  assert.doesNotMatch(page, /facebook\.net|fbevents|gtag\(|google-analytics|plausible|posthog|segment/i);
+  assert.doesNotMatch(page, /facebook\.net|fbevents|gtag\(|google-analytics|plausible|posthog\.init|posthog-js|segment/i);
+});
+
+test('only campaign language links progressively preserve attribution without changing SEO links', async () => {
+  const layout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8');
+  assert.match(layout, /href=\{altPath\}\s+data-campaign-language=\{navigation === 'campaign' \? altLang : undefined\}/);
+  assert.match(layout, /buildCampaignLanguagePath\(window\.location\.href, link\.dataset\.campaignLanguage\)/);
+  assert.match(layout, /querySelectorAll<HTMLAnchorElement>\('a\[data-campaign-language\]'\)/);
+  assert.match(layout, /if \(path\) link\.href = path/);
+  assert.match(layout, /const canonicalURL = new URL\(Astro\.url\.pathname, Astro\.site\)/);
+  assert.match(layout, /rel="alternate" hreflang=\{altLang\} href=\{new URL\(altPath, Astro\.site\)\}/);
 });

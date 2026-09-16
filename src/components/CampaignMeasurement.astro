@@ -1,0 +1,62 @@
+---
+import type { Lang } from '../i18n/utils';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const copy = {
+  en: {
+    title: 'Optional measurement',
+    description: 'If you allow it, we send this campaign visit, download-button clicks, completed link copies or shares, and attempts to open Forger to PostHog. A random browser identifier and a campaign code are included, never files or chats. Downloads work either way.',
+    allow: 'Allow measurement', decline: 'Continue without sharing', withdraw: 'Stop sharing metrics',
+    undecided: 'Off until you choose to allow it.', denied: 'Measurement is off. You can change your choice here.',
+    granted: 'Measurement is on for this browser. Stopping clears its identifier and stops future and pending requests; it does not delete events already received.',
+    grantedUnsaved: 'Measurement is on only for this page because your browser could not save your choice. You can stop sharing below.',
+    deniedUnsaved: 'Measurement is off on this page, but your browser could not save your choice or clear its previous identifier. Clear this website’s stored data in your browser to prevent a previous permission returning on your next visit.',
+    unavailable: 'Measurement is unavailable here. You can still download Forger.',
+    privacy: 'Privacy details',
+    installedTitle: 'After installing on your computer',
+    installedDescription: 'Optional: open Forger with this campaign code. Choose whether to share measurement separately inside Forger. Your choice on this website does not give permission in the app.',
+    open: 'After installing: open Forger', code: 'Campaign code',
+    fallback: 'If nothing opens, launch Forger directly. In Settings → Privacy & security → Optional measurement, enter the code before choosing Allow measurement. You can use Forger without adding a code.',
+    attempt: 'This only asks your computer to open Forger; it does not confirm an installation.',
+  },
+  es: {
+    title: 'Medición opcional',
+    description: 'Si aceptas, enviamos a PostHog esta visita de campaña, clics en Descargar, enlaces copiados o compartidos e intentos de abrir Forger. Se incluyen un identificador aleatorio del navegador y un código de campaña, nunca archivos ni chats. Puedes descargar aunque no aceptes.',
+    allow: 'Permitir medición', decline: 'Continuar sin compartir', withdraw: 'Dejar de compartir métricas',
+    undecided: 'Desactivada hasta que decidas permitirla.', denied: 'La medición está desactivada. Puedes cambiar tu decisión aquí.',
+    granted: 'La medición está activada para este navegador. Al detenerla, se borra su identificador y se detienen los envíos futuros y pendientes; no se borran los eventos ya recibidos.',
+    grantedUnsaved: 'La medición está activada solo para esta página porque tu navegador no pudo guardar la decisión. Puedes detenerla abajo.',
+    deniedUnsaved: 'La medición está desactivada en esta página, pero tu navegador no pudo guardar tu decisión ni borrar el identificador anterior. Borra los datos de este sitio desde el navegador para evitar que un permiso anterior vuelva en tu próxima visita.',
+    unavailable: 'La medición no está disponible aquí. Puedes descargar Forger igualmente.',
+    privacy: 'Detalles de privacidad',
+    installedTitle: 'Después de instalar en tu computador',
+    installedDescription: 'Opcional: abre Forger con este código de campaña. Decide por separado dentro de Forger si quieres compartir la medición. Tu decisión en esta web no da permiso en la app.',
+    open: 'Después de instalar: abrir Forger', code: 'Código de campaña',
+    fallback: 'Si no se abre, inicia Forger directamente. En Configuración → Privacidad y seguridad → Medición opcional, ingresa el código antes de elegir Permitir medición. Puedes usar Forger sin añadir un código.',
+    attempt: 'Esto solo pide a tu computador que abra Forger; no confirma una instalación.',
+  },
+}[lang];
+---
+<section id="campaign-measurement" class="mt-6 border-t border-white/10 pt-6" aria-labelledby="campaign-measurement-title" data-campaign-measurement
+  data-status-undecided={copy.undecided} data-status-denied={copy.denied} data-status-granted={copy.granted} data-status-unavailable={copy.unavailable}
+  data-status-granted-unsaved={copy.grantedUnsaved} data-status-denied-unsaved={copy.deniedUnsaved}>
+  <h3 id="campaign-measurement-title" class="font-semibold text-white">{copy.title}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-zinc-300">{copy.description}</p>
+  <div class="mt-3 flex flex-wrap gap-3" data-measurement-choices hidden>
+    <button type="button" data-measurement-allow class="min-h-11 rounded-xl border border-white/25 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white hover:bg-white/10">{copy.allow}</button>
+    <button type="button" data-measurement-decline class="min-h-11 rounded-xl border border-white/25 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white hover:bg-white/10">{copy.decline}</button>
+  </div>
+  <p class="mt-3 text-sm leading-relaxed text-zinc-400" data-measurement-status aria-live="polite">{copy.undecided}</p>
+  <div class="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <button type="button" data-measurement-withdraw hidden class="min-h-11 text-zinc-200 underline underline-offset-4 hover:text-white">{copy.withdraw}</button>
+    <a class="inline-flex min-h-11 items-center text-zinc-300 underline underline-offset-4 hover:text-white" href={lang === 'es' ? '/es/privacy#campaign-measurement' : '/privacy#campaign-measurement'}>{copy.privacy}</a>
+  </div>
+  <div data-measurement-desktop class="mt-5 rounded-2xl border border-white/10 bg-zinc-950/45 p-5" hidden>
+    <h3 class="font-semibold text-white">{copy.installedTitle}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-zinc-300">{copy.installedDescription}</p>
+    <a data-measurement-desktop-open class="mt-3 inline-flex min-h-11 items-center rounded-xl border border-white/25 px-4 py-2 text-sm font-semibold text-zinc-100 hover:bg-white/10">{copy.open}</a>
+    <p class="mt-3 text-sm text-zinc-300">{copy.code}: <code data-measurement-code class="select-all break-all"></code></p>
+    <p class="mt-2 text-sm leading-relaxed text-zinc-400">{copy.fallback}</p>
+    <p class="mt-2 text-sm leading-relaxed text-zinc-400">{copy.attempt}</p>
+  </div>
+</section>

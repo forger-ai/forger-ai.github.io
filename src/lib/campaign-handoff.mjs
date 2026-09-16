@@ -21,6 +21,20 @@ export function buildCampaignUrl(locationHref) {
   return result.toString();
 }
 
+/** Preserve safe campaign labels across languages without leaving the current site. */
+export function buildCampaignLanguagePath(locationHref, targetLanguage) {
+  if (targetLanguage !== 'en' && targetLanguage !== 'es') return null;
+  try {
+    const source = new URL(locationHref);
+    if (!/^\/(?:es\/)?instagram\/?$/.test(source.pathname)) return null;
+    const result = new URL(buildCampaignUrl(locationHref));
+    result.pathname = targetLanguage === 'es' ? '/es/instagram' : '/instagram';
+    return `${result.pathname}${result.search}`;
+  } catch {
+    return null;
+  }
+}
+
 function selectForManualCopy(input, url) {
   input.value = url;
   input.focus();

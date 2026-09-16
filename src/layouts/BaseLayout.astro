@@ -84,6 +84,7 @@ const teamsUrl = teamsSiteUrl(lang);
           </>}
           <a
             href={altPath}
+            data-campaign-language={navigation === 'campaign' ? altLang : undefined}
             class="text-zinc-500 hover:text-zinc-300 transition-colors font-mono text-xs tracking-widest uppercase"
             title={altLang === 'es' ? 'Español' : 'English'}
           >
@@ -120,5 +121,13 @@ const teamsUrl = teamsSiteUrl(lang);
         </div>
       </div>
     </footer>
+    <script>
+      import { buildCampaignLanguagePath } from '../lib/campaign-handoff.mjs';
+
+      for (const link of document.querySelectorAll<HTMLAnchorElement>('a[data-campaign-language]')) {
+        const path = buildCampaignLanguagePath(window.location.href, link.dataset.campaignLanguage);
+        if (path) link.href = path;
+      }
+    </script>
   </body>
 </html>
