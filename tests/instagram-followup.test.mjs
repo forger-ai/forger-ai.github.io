@@ -104,8 +104,9 @@ test('follow-up campaign is reproducible, English, and grounded only in approved
   );
 });
 
-test('manifest defines the four approved organic posts on the requested cadence', async () => {
+test('manifest records the four approved and scheduled organic posts on the requested cadence', async () => {
   const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
+  assert.equal(manifest.status, 'scheduled');
   assert.equal(manifest.timeZone, 'America/Santiago');
   assert.deepEqual(
     manifest.posts.map(({ scheduledLocal, format }) => ({ scheduledLocal, format })),
@@ -122,11 +123,11 @@ test('manifest defines the four approved organic posts on the requested cadence'
   for (const post of manifest.posts) {
     assert.deepEqual(post.lifecycle, {
       prepared: true,
-      approved: false,
-      scheduled: false,
+      approved: true,
+      scheduled: true,
       published: false,
     });
-    assert.match(post.captions.instagram.text, /Create your first app/i);
+    assert.match(post.captions.instagram.text, /\bCreate your (?:own )?first app\b/i);
     assert.match(post.captions.instagram.text, /Open forger\.cloud on your Mac/i);
     assert.match(post.captions.instagram.text, /link in bio/i);
     assert.match(post.captions.instagram.text, /Provider terms and costs may apply\./i);
@@ -144,6 +145,7 @@ test('manifest defines the four approved organic posts on the requested cadence'
     assert.equal(facebookUrl.searchParams.get('utm_source'), 'facebook');
     assert.equal(facebookUrl.searchParams.get('utm_medium'), 'organic_social');
     assert.equal(facebookUrl.searchParams.get('utm_campaign'), 'forger_first_app_2026_09');
+    assert.match(post.captions.facebook.text, /\bCreate your (?:own )?first app\b/i);
     assert.match(post.captions.facebook.text, /Provider terms and costs may apply\./i);
     assert.ok(post.captions.facebook.text.includes(post.captions.facebook.destinationUrl));
     facebookContents.add(facebookUrl.searchParams.get('utm_content'));
@@ -186,7 +188,9 @@ test('both Reels are practical silent 1080 by 1920 H.264 masters lasting 12 to 1
     assert.ok(reel.durationSeconds >= 12 && reel.durationSeconds <= 15, reel.id);
     assert.equal(reel.framesPerSecond, 30);
     assert.equal(reel.audio, 'silent master');
-    assert.match(reel.publishingNote, /Meta Sound Collection/i);
+    assert.match(reel.publishingNote, /Scheduled on Instagram and Facebook/i);
+    assert.match(reel.publishingNote, /no added music/i);
+    assert.match(reel.publishingNote, /Promotion is off/i);
 
     const video = await readFile(new URL(reel.filename, exportBaseUrl));
     const metadata = inspectMp4(video);
@@ -240,6 +244,16 @@ test('Daily Compass Reel opens on the visible result before the Open, Focus, Com
   );
   assert.deepEqual(reel.screenshotSequence, reel.scenes.slice(0, 4).map(({ source }) => source));
   assert.match(reel.scenes.at(-1).support, /Turn your idea into an app you actually use\./i);
+});
+
+test('Daily Compass captions identify it as an example and invite people to create their own app', async () => {
+  const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
+  const reel = manifest.posts.find(({ id }) => id === '2026-10-01-daily-compass');
+  assert.ok(reel);
+  for (const channel of ['instagram', 'facebook']) {
+    assert.match(reel.captions[channel].text, /Daily Compass is an example app created with Forger/i);
+    assert.match(reel.captions[channel].text, /\bCreate your own first app\b/i);
+  }
 });
 
 test('two paid Reel variants are prepared for Apple silicon without activating spend or delivery', async () => {

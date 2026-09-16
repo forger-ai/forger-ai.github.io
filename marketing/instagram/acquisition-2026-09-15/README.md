@@ -1,6 +1,6 @@
 # Instagram acquisition: first app
 
-Operational snapshot: **2026-09-15**. Status: **blocked; no advertising spend incurred by this task**.
+Historical prelaunch plan. The live-state record is [Launch status, September 15](launch-status-2026-09-15.md), which supersedes the account, hosting, activation and scheduling status below. Do not recreate the existing campaign from this older plan.
 
 ## Goal and scope
 
