@@ -1,5 +1,7 @@
 {
   "schema_version": 1,
+  "record_type": "historical_prelaunch_plan",
+  "superseded_by": "launch-status-2026-09-15.md",
   "snapshot_date": "2026-09-15",
   "snapshot_source": "Coordinating task observations; external state requires a fresh prelaunch check.",
   "campaign_key": "first_app_2026_09",

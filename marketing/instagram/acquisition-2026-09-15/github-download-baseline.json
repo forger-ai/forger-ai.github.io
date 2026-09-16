@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-09-16T00:14:40Z",
+  "local_date": "2026-09-15",
+  "timezone": "America/Santiago",
+  "source": "GitHub REST API: repos/forger-ai/forger-desktop/releases/latest",
+  "release_tag": "forger-desktop/v0.5.17",
+  "release_published_at": "2026-08-11T21:58:39Z",
+  "release_url": "https://github.com/forger-ai/forger-desktop/releases/tag/forger-desktop/v0.5.17",
+  "metric": "github_release_asset_download_count",
+  "scope": "cumulative_since_asset_publication",
+  "attribution": "unattributed_all_sources",
+  "asset": {
+    "id": "510802155",
+    "name": "forger-desktop-macos-arm64.dmg",
+    "platform": "macOS Apple silicon",
+    "download_count": 74
+  },
+  "limitations": [
+    "Counts asset downloads across all sources, not Instagram campaign conversions.",
+    "Does not establish completed transfers, successful installation, first launch, unique people or retained users.",
+    "Repeat downloads, automation and other distribution activity can affect the count.",
+    "Compare only the same asset ID; a new release requires a separate baseline."
+  ]
+}

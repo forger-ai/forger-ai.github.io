@@ -1,7 +1,7 @@
 {
   "campaign": "Forger organic follow-up",
   "language": "English",
-  "status": "ready-for-review",
+  "status": "scheduled",
   "timeZone": "America/Santiago",
   "sourceAuthenticity": "real-current-product-screenshots",
   "mockProductUi": false,
@@ -19,7 +19,7 @@
     "narrativeCta": "Turn your idea into an app you actually use.",
     "commonCta": "Download free at forger.cloud",
     "providerCaveat": "Provider terms and costs may apply.",
-    "reviewState": "Assets must be reviewed before any public scheduling action."
+    "reviewState": "Approved for execution under the user's delegated creative approval. All four organic posts are scheduled on Instagram and Facebook; Meta confirmations and the monthly calendar verified their dates and times in America/Santiago."
   },
   "posts": [
     {
@@ -27,7 +27,7 @@
       "scheduledLocal": "2026-09-24 13:00",
       "channels": ["Instagram", "Facebook"],
       "format": "reel",
-      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "lifecycle": { "prepared": true, "approved": true, "scheduled": true, "published": false },
       "headline": "FREE. PRIVATE. LOCAL.",
       "filename": "reel-2026-09-24-free-private-local.mp4",
       "coverFilename": "reel-2026-09-24-free-private-local-cover.png",
@@ -37,7 +37,7 @@
       "durationSeconds": 13,
       "framesPerSecond": 30,
       "audio": "silent master",
-      "publishingNote": "Add one royalty-free track from Meta Sound Collection only when publishing; keep the silent master as the reusable source.",
+      "publishingNote": "Scheduled on Instagram and Facebook using the organic silent master and its corresponding manual cover, with no added music. Promotion is off; no additional paid spend was added.",
       "captions": {
         "instagram": {
           "text": "Free for people. Private by design. Local-first. Turn your idea into an app you actually use. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #LocalFirst #PersonalSoftware",
@@ -108,7 +108,7 @@
       "scheduledLocal": "2026-09-27 11:00",
       "channels": ["Instagram", "Facebook"],
       "format": "carousel",
-      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "lifecycle": { "prepared": true, "approved": true, "scheduled": true, "published": false },
       "headline": "Use the provider you already have",
       "dimensions": { "width": 1080, "height": 1350 },
       "captions": {
@@ -173,7 +173,7 @@
       "scheduledLocal": "2026-10-01 13:00",
       "channels": ["Instagram", "Facebook"],
       "format": "reel",
-      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "lifecycle": { "prepared": true, "approved": true, "scheduled": true, "published": false },
       "headline": "Open. Focus. Complete.",
       "filename": "reel-2026-10-01-daily-compass.mp4",
       "coverFilename": "reel-2026-10-01-daily-compass-cover.png",
@@ -184,14 +184,14 @@
       "framesPerSecond": 30,
       "interaction": "Open the real Daily Compass app, apply Focus, and Complete a task.",
       "audio": "silent master",
-      "publishingNote": "Add one royalty-free track from Meta Sound Collection only when publishing; keep the silent master as the reusable source.",
+      "publishingNote": "Scheduled on Instagram and Facebook using the organic silent master and its corresponding manual cover, with no added music. Promotion is off; no additional paid spend was added.",
       "captions": {
         "instagram": {
-          "text": "Turn your idea into an app you actually use. Open the week, focus on what matters, and complete one task in Daily Compass. Create your first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #DailyCompass #PersonalSoftware",
+          "text": "Turn your idea into an app you actually use. Daily Compass is an example app created with Forger: open the week, focus on what matters, and complete one task. Create your own first app. Open forger.cloud on your Mac. Link in bio. Provider terms and costs may apply.\n\n#Forger #DailyCompass #PersonalSoftware",
           "bioUrl": "https://forger.cloud/instagram?utm_source=instagram&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass"
         },
         "facebook": {
-          "text": "Turn your idea into an app you actually use. Open the week, focus on what matters, and complete one task in Daily Compass. Create your first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass",
+          "text": "Turn your idea into an app you actually use. Daily Compass is an example app created with Forger: open the week, focus on what matters, and complete one task. Create your own first app on your Mac. Provider terms and costs may apply. https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass",
           "destinationUrl": "https://forger.cloud/instagram?utm_source=facebook&utm_medium=organic_social&utm_campaign=forger_first_app_2026_09&utm_content=daily_compass"
         }
       },
@@ -255,7 +255,7 @@
       "scheduledLocal": "2026-10-04 11:00",
       "channels": ["Instagram", "Facebook"],
       "format": "carousel",
-      "lifecycle": { "prepared": true, "approved": false, "scheduled": false, "published": false },
+      "lifecycle": { "prepared": true, "approved": true, "scheduled": true, "published": false },
       "headline": "Local data. Explicit sharing.",
       "dimensions": { "width": 1080, "height": 1350 },
       "captions": {
