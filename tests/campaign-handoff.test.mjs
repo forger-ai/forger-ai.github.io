@@ -1,6 +1,25 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildCampaignUrl, buildCampaignLanguagePath, copyHandoffLink, shareHandoffLink } from '../src/lib/campaign-handoff.mjs';
+import { campaignCodeForUrl, desktopCampaignUrl } from '../src/lib/campaign-registry.mjs';
+
+for (const number of ['01', '02']) {
+  test(`LATAM reel ${number} remains distinct when copying, sharing and changing language`, async () => {
+    const source = `https://forger.cloud/es/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_latam_2026_09&utm_content=reel_${number}`;
+    const copiedUrl = buildCampaignUrl(source);
+    const englishUrl = new URL(buildCampaignLanguagePath(copiedUrl, 'en'), 'https://forger.cloud').href;
+    const spanishUrl = new URL(buildCampaignLanguagePath(englishUrl, 'es'), 'https://forger.cloud').href;
+    let copied; let shared;
+    await copyHandoffLink({ navigator: { clipboard: { writeText: async (value) => { copied = value; } } }, input: inputFixture(), url: copiedUrl });
+    await shareHandoffLink({ navigator: { share: async (value) => { shared = value.url; } }, input: inputFixture(), url: copiedUrl, title: 'Forger', text: 'Crea una app' });
+    for (const url of [copiedUrl, englishUrl, spanishUrl, copied, shared]) {
+      const code = campaignCodeForUrl(url);
+      assert.equal(code, `ig_202609_latam_paid_${number}`);
+      assert.equal(desktopCampaignUrl(code), null);
+    }
+    assert.equal(spanishUrl, source);
+  });
+}
 
 test('phone link keeps only known, bounded campaign labels on the canonical site', () => {
   const result = new URL(buildCampaignUrl('https://preview.example/es/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first-app&utm_content=reel-1&utm_term=AI+builders&utm_secret=private&access_token=secret&email=person%40example.com#token=secret'));
