@@ -50,6 +50,29 @@ test('Desktop handoff is separate from consent and contains only the public code
   assert.equal(pageFixture({ locationHref: 'https://forger.cloud/instagram' }).element('desktop').hidden, true);
 });
 
+for (const number of ['01', '02']) {
+  for (const mobile of [false, true]) {
+    test(`LATAM reel ${number} keeps consent available without an unsupported Desktop code on ${mobile ? 'mobile' : 'desktop'}`, async () => {
+      const locationHref = `https://forger.cloud/es/instagram?utm_source=instagram&utm_medium=paid_social&utm_campaign=first_app_latam_2026_09&utm_content=reel_${number}`;
+      const f = pageFixture({ mobile, locationHref });
+      assert.equal(f.element('desktop').hidden, true);
+      assert.equal(f.element('desktop-open').href, '');
+      assert.equal(f.element('code').textContent, '');
+      assert.equal(f.requests.length, 0); assert.equal(f.values.size, 0);
+      f.click('decline');
+      assert.equal(f.requests.length, 0);
+      f.click('allow');
+      await f.client.capture('forger_campaign_download_click');
+      recordHandoffOutcome(f.client, 'copied');
+      assert.deepEqual(f.requests.map(({ body }) => body.event), ['forger_campaign_landing_view', 'forger_campaign_download_click', 'forger_campaign_handoff_copy']);
+      assert.ok(f.requests.every(({ body }) => body.properties.campaign_code === `ig_202609_latam_paid_${number}`));
+      assert.equal(f.element('desktop').hidden, true);
+      assert.equal(f.element('desktop-open').href, '');
+      assert.equal(f.element('code').textContent, '');
+    });
+  }
+}
+
 test('localhost previews cannot send production events even if consent controls are invoked', () => {
   const f = pageFixture({ locationHref: href.replace('https://forger.cloud', 'http://localhost:4321') });
   assert.equal(f.client.status(), 'unavailable'); assert.equal(f.element('choices').hidden, true);
