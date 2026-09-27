@@ -120,6 +120,7 @@ export const parseSha256 = async (asset) => {
 };
 
 export const metadataForRelease = async (release) => {
+  if (release.draft || release.prerelease) return null;
   const version = versionFromRelease(release);
   if (!version || !release.published_at) {
     return null;

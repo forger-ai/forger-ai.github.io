@@ -128,3 +128,29 @@ test('rejects latest desktop metadata when release notes are the generic fallbac
     /Latest desktop release 1\.2\.3 is missing changelog text/,
   );
 });
+
+test('draft and prerelease installers never become public update metadata', async () => {
+  const candidate = release([releaseAsset('forger-desktop-macos-arm64.dmg')]);
+  assert.equal(await metadataForRelease({ ...candidate, draft: true }), null);
+  assert.equal(await metadataForRelease({ ...candidate, prerelease: true }), null);
+});
+
+test('a newer incomplete prerelease cannot replace the stable latest or enter the version index', async (t) => {
+  const fs = await import('node:fs/promises');
+  const os = await import('node:os');
+  const path = await import('node:path');
+  const { promisify } = await import('node:util');
+  const { execFile } = await import('node:child_process');
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'forger-metadata-'));
+  t.after(() => fs.rm(directory, { recursive: true, force: true }));
+  const stable = release([releaseAsset('forger-desktop-macos-arm64.dmg')]);
+  const partial = { ...stable, tag_name: 'forger-desktop/v1.2.4', published_at: '2026-06-16T12:00:00Z', prerelease: true };
+  const draft = { ...stable, tag_name: 'forger-desktop/v1.2.5', published_at: '2026-06-17T12:00:00Z', draft: true };
+  const script = new URL('../scripts/generate-desktop-versions.mjs', import.meta.url).href;
+  await promisify(execFile)(process.execPath, ['--input-type=module', '-e', `import { main } from ${JSON.stringify(script)}; globalThis.fetch = async () => ({ok:true,json:async()=>${JSON.stringify([draft, partial, stable])}}); await main();`], { cwd: directory });
+  const latest = JSON.parse(await fs.readFile(path.join(directory, 'dist/desktop-versions/latest.json'), 'utf8'));
+  const index = JSON.parse(await fs.readFile(path.join(directory, 'dist/desktop-versions/index.json'), 'utf8'));
+  assert.equal(latest.version, '1.2.3');
+  assert.deepEqual(index.releases.map((entry) => entry.version), ['1.2.3']);
+  assert.deepEqual((await fs.readdir(path.join(directory, 'dist/desktop-versions'))).sort(), ['1.2.3.json', 'index.json', 'latest.json']);
+});
